@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return params;
             }
         };
-
+//
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 
