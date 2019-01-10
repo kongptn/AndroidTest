@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="หน้าแรก" />
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/ic_news"
+            android:title="ข่าวสาร" />
+        <item
+            android:id="@+id/nav_search_act"
+            android:icon="@drawable/ic_search_act"
+            android:title="ค้นหากิจกรรม" />
+        <item
+            android:id="@+id/nav_join_act"
+            android:icon="@drawable/ic_join_act"
+            android:title="กิจกรรมที่เข้าร่วม" />
+        <item
+            android:id="@+id/nav_friend"
+            android:icon="@drawable/ic_friend"
+            android:title="เพื่อน" />
+    </group>
+
+
+
+</menu>
