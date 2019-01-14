@@ -11,9 +11,19 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -24,6 +34,7 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,6 +43,8 @@ import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog mDialog;
     ImageView imaAvatar;
     Button btn_login, btn_regis_page;
+    private EditText email, password;
+    private ProgressBar loading;
+    private static String URL_LOGIN = "http://192.168.2.33/android_register_login/login.php";
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -64,6 +80,30 @@ public class MainActivity extends AppCompatActivity {
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList("public_profile", "email", "user_birthday", "user_friends"));
 
+        loading = findViewById(R.id.loading);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        btn_login = (Button) findViewById(R.id.btn_login);    //ปุ่ม Login
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mEmail = email.getText().toString().trim();
+                String mPass = password.getText().toString().trim();
+
+                if (!mEmail.isEmpty() || !mPass.isEmpty()) {
+                    Login(mEmail, mPass);
+
+
+                }else {
+                    email.setError("Please insert email");
+                    password.setError("Please insert password");
+                }
+
+
+
+            }
+        });
 
         btn_regis_page = (Button) findViewById(R.id.btn_regis_page);   //ปุ่ม register
         btn_regis_page.setOnClickListener(new View.OnClickListener() {
@@ -120,19 +160,73 @@ public class MainActivity extends AppCompatActivity {
             //Just set User Id
             txtEmail.setText(AccessToken.getCurrentAccessToken().getUserId());
         }
-        btn_login = (Button) findViewById(R.id.btn_login);    //ปุ่ม Login
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent btn_login = new Intent(MainActivity.this, NavDrawer.class);
-                startActivity(btn_login);
-            }
-        });
+
 
 
     }
 
+    private void Login(final String email, final String password) {
+        loading.setVisibility(View.VISIBLE);
+        btn_login.setVisibility(View.GONE);
 
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            JSONArray jsonArray = jsonObject.getJSONArray("login");
+
+                            if (success.equals("1")){
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+
+                                    String name = object.getString("name").trim();
+                                    String email = object.getString("email").trim();
+
+                                    Toast.makeText(MainActivity.this,
+                                            "Success Login. \nYour Name : "
+                                                    +name+"\nYour Email : "
+                                                    +email, Toast.LENGTH_SHORT)
+                                            .show();
+
+                                    loading.setVisibility(View.GONE);
+                                    Intent btn_login = new Intent(MainActivity.this, NavDrawer.class); //login to page home
+
+                                    startActivity(btn_login);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            loading.setVisibility(View.GONE);
+                            btn_login.setVisibility(View.VISIBLE);
+                            Toast.makeText(MainActivity.this, "Error " +e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        loading.setVisibility(View.GONE);
+                        btn_login.setVisibility(View.VISIBLE);
+                        Toast.makeText(MainActivity.this, "Error " +error.toString(), Toast.LENGTH_SHORT).show();
+
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                params.put("password", password);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
 
 
     private void getData(JSONObject object) {

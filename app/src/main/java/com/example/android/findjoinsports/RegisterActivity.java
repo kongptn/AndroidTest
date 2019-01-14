@@ -1,5 +1,6 @@
 package com.example.android.findjoinsports;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText name, email, password, c_password;
     private Button btn_regist;
     private ProgressBar loading;
-    private static String URL_REGIST = "http://localhost/register.php";
+    private static String URL_REGIST = "http://192.168.2.33/android_register_login/register.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +67,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                         if (success.equals("1")){
                             Toast.makeText(RegisterActivity.this, "Register Success!", Toast.LENGTH_SHORT).show();
+
+                            Intent btn_regist = new Intent(RegisterActivity.this, MainActivity.class); //to page main
+
+                            startActivity(btn_regist);
                         }
 
                     }catch (JSONException e){
@@ -95,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
                 return params;
             }
         };
-//
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 
