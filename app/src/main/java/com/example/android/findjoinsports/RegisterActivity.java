@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
+//
     private void Regist(){
         loading.setVisibility(View.VISIBLE);
         btn_regist.setVisibility(View.GONE);
