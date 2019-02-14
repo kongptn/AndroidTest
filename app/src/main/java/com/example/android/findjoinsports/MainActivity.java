@@ -171,9 +171,11 @@ public class MainActivity extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN,
                 new Response.Listener<String>() {
+
                     @Override
                     public void onResponse(String response) {
                         try {
+                            
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
                             JSONArray jsonArray = jsonObject.getJSONArray("login");
@@ -195,8 +197,10 @@ public class MainActivity extends AppCompatActivity {
                                     Intent btn_login = new Intent(MainActivity.this, NavDrawer.class); //login to page home
 
                                     startActivity(btn_login);
+
                                 }
                             }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             loading.setVisibility(View.GONE);
@@ -208,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+
                         loading.setVisibility(View.GONE);
                         btn_login.setVisibility(View.VISIBLE);
                         Toast.makeText(MainActivity.this, "Error " +error.toString(), Toast.LENGTH_SHORT).show();

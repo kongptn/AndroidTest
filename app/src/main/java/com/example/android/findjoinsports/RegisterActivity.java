@@ -1,5 +1,6 @@
 package com.example.android.findjoinsports;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +11,16 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -48,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-//
+    //
     private void Regist(){
         loading.setVisibility(View.VISIBLE);
         btn_regist.setVisibility(View.GONE);
@@ -58,37 +66,53 @@ public class RegisterActivity extends AppCompatActivity {
         final String password = this.password.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REGIST,
+
+
+
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                    try {
-                        JSONObject jsonObject = new JSONObject(response);
-                        String success = jsonObject.getString("success");
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
 
-                        if (success.equals("1")){
-                            Toast.makeText(RegisterActivity.this, "Register Success!", Toast.LENGTH_SHORT).show();
 
-                            Intent btn_regist = new Intent(RegisterActivity.this, MainActivity.class); //to page main
 
-                            startActivity(btn_regist);
+                            if (success.equals("1")){
+
+                                Toast.makeText(RegisterActivity.this, "Register Success!", Toast.LENGTH_SHORT).show();
+
+                                Intent btn_regist = new Intent(RegisterActivity.this, MainActivity.class); //to page main
+
+                                startActivity(btn_regist);
+                            }
+
+                        }catch (JSONException e){
+                            e.printStackTrace();
+                            Toast.makeText(RegisterActivity.this, "Register Error! " + e.toString(), Toast.LENGTH_SHORT).show();
+                            loading.setVisibility(View.GONE);
+                            btn_regist.setVisibility(View.VISIBLE);
                         }
-
-                    }catch (JSONException e){
-                        e.printStackTrace();
-                        Toast.makeText(RegisterActivity.this, "Register Error! " + e.toString(), Toast.LENGTH_SHORT).show();
-                        loading.setVisibility(View.GONE);
-                        btn_regist.setVisibility(View.VISIBLE);
-                    }
                     }
                 },
+
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+
+
+
                         Toast.makeText(RegisterActivity.this, "Register Error! " + error.toString(), Toast.LENGTH_SHORT).show();
                         loading.setVisibility(View.GONE);
                         btn_regist.setVisibility(View.VISIBLE);
+
+
                     }
+
+
                 })
+
+
         {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -100,9 +124,10 @@ public class RegisterActivity extends AppCompatActivity {
                 return params;
             }
         };
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
+
         requestQueue.add(stringRequest);
+
 
 
     }
