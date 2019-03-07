@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_news"
-            android:title="ข่าวสาร" />
+            android:title="ฟีดข่าว" />
         <item
             android:id="@+id/nav_search_act"
             android:icon="@drawable/ic_search_act"

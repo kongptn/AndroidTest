@@ -1,48 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
-    tools:context=".CreateFootball">
+    tools:context=".CreateFootball"
+    tools:layout_editor_absoluteY="81dp">
+
+    <Button
+        android:id="@+id/chooseBT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="25dp"
+        android:text="Choose Image" />
 
     <EditText
-        android:id="@+id/editName"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="89dp"
-        android:layout_marginBottom="21dp"
+        android:id="@+id/editStad_name"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/chooseBT"
+        android:layout_marginTop="25dp"
         android:background="#ffffff"
-        android:hint="ชื่อสถานที่"
-        app:layout_constraintBottom_toTopOf="@+id/editLastName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:hint="ชื่อสถานที่" />
 
     <EditText
-        android:id="@+id/editLastName"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="40dp"
+        android:id="@+id/editdescrip"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/editStad_name"
+        android:layout_marginTop="25dp"
         android:background="#ffffff"
-        android:hint="วัน - เวลาและข้อมูล"
-        app:layout_constraintBottom_toTopOf="@+id/btn_create"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editName" />
+        android:hint="รายละเอียดกิจกรรม" />
 
     <Button
         android:id="@+id/btn_create"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="213dp"
         android:background="@color/colorPrimary"
         android:text="สร้างกิจกรรม"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLastName" />
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/editdescrip"
+        android:textColor="#ffffff" />
 
-</android.support.constraint.ConstraintLayout>
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="20dp"
+        android:hint="Enter a Name"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:visibility="gone" />
+
+</RelativeLayout>
