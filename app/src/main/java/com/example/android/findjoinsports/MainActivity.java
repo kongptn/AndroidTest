@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn_login, btn_regis_page;
     private EditText email, password;
     private ProgressBar loading;
-    private static String URL_LOGIN = "http://192.168.2.34/android_register_login/login.php";
+    private static String URL_LOGIN = "http://10.13.3.202/android_register_login/login.php";
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

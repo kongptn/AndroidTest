@@ -7,6 +7,16 @@
     tools:context=".CreateFootball"
     tools:layout_editor_absoluteY="81dp">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
     <Button
         android:id="@+id/chooseBT"
         android:layout_width="match_parent"
@@ -24,11 +34,71 @@
         android:background="#ffffff"
         android:hint="ชื่อสถานที่" />
 
+    <TextView
+        android:id="@+id/textDate"
+        android:text="วันที่"
+        android:layout_marginTop="15dp"
+        android:textSize="18dp"
+        android:layout_below="@+id/editStad_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnDate"
+        android:layout_toRightOf="@id/textDate"
+        android:text="เลือกวันที่"
+        android:layout_below="@+id/editStad_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textTime"
+        android:text="เวลา"
+        android:layout_marginTop="5dp"
+        android:textSize="18dp"
+        android:layout_below="@+id/btnDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnTime"
+        android:layout_toRightOf="@id/textTime"
+        android:text="เลือกวันที่"
+        android:layout_below="@+id/btnDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textPlace"
+        android:text="ข้อมูลแผนที่"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/textTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textPlace"
+            android:onClick="goPlacePicker"
+            android:text="Click Here For Place Picker"
+            tools:ignore="OnClick" />
+
+        <TextView
+            android:layout_below="@+id/btnPlace"
+            android:id="@+id/tvPlace"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
     <EditText
         android:id="@+id/editdescrip"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_below="@+id/editStad_name"
+        android:layout_below="@+id/btnPlace"
         android:layout_marginTop="25dp"
         android:background="#ffffff"
         android:hint="รายละเอียดกิจกรรม" />
@@ -59,5 +129,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:visibility="gone" />
+
+    </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>
