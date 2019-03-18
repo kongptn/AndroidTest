@@ -1,139 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgapp"
+    android:background="@drawable/back"
     tools:context=".SearchActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="20dp">
-        </RelativeLayout>
-
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="8dp"
-            android:alignmentMode="alignMargins"
-            android:columnCount="2"
-            android:columnOrderPreserved="false"
-            android:rowCount="3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp">
-
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="6dp">
-
-                    <ImageButton
-                        android:layout_width="120dp"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/ball" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Football"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="6dp">
-
-                    <ImageButton
-                        android:layout_width="120dp"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/basketball" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="ฺBasketball"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="6dp">
-
-                    <ImageButton
-                        android:layout_width="120dp"
-                        android:layout_height="80dp"
-                        android:layout_marginTop="5dp"
-                        android:src="@drawable/badminton" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Badminton"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </GridLayout>
-
-    </LinearLayout>
 
     <!-- TODO: Update blank fragment layout -->
 
+    <Button
+        android:id="@+id/bt_serchBALL"
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:background="@drawable/se_ball"/>
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/bt_serchGUN"
+        android:layout_below="@+id/bt_serchBALL"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:background="@drawable/se_gun"/>
+
+    <Button
+        android:id="@+id/bt_serchBAS"
+        android:layout_below="@+id/bt_serchGUN"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:background="@drawable/se_bas"/>
+
+</RelativeLayout>

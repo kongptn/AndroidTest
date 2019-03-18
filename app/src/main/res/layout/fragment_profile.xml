@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgg"
+    android:background="@drawable/back"
     tools:context=".SearchActivity">
 
     <ImageView
@@ -59,7 +59,7 @@
         android:layout_centerHorizontal="true"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="#9b0d0d"
         android:text="แก้ไขโปร์ฟล์"
         android:layout_marginTop="25dp"
         android:layout_below="@+id/edit_age"

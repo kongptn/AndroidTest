@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -33,10 +34,11 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText name, email, password, c_password;
+    private EditText name, email, password, c_password, firstname, lastname, age, phone;
     private Button btn_regist;
+    private RadioGroup sex;
     private ProgressBar loading;
-    private static String URL_REGIST = "http://10.13.3.102/android_register_login/register.php";
+    private static String URL_REGIST = "http://192.168.2.34/android_register_login/register.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,13 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         c_password = findViewById(R.id.c_password);
         btn_regist = findViewById(R.id.btn_regist);
+        firstname = findViewById(R.id.firstname);
+        lastname = findViewById(R.id.lastname);
+        age = findViewById(R.id.age);
+        phone = findViewById(R.id.phonenum);
+        //sex = findViewById(R.id.sex);
+
+
 
         btn_regist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +73,12 @@ public class RegisterActivity extends AppCompatActivity {
         final String name = this.name.getText().toString().trim();
         final String email = this.email.getText().toString().trim();
         final String password = this.password.getText().toString().trim();
+        final String firstname = this.firstname.getText().toString().trim();
+        final String lastname = this.lastname.getText().toString().trim();
+         final String age = this.age.getText().toString().trim();
+         final String phone = this.phone.getText().toString().trim();
+        //final String sex = this.sex.getText().toString().trim();
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REGIST,
 
@@ -120,6 +135,13 @@ public class RegisterActivity extends AppCompatActivity {
                 params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
+               params.put("user_firstname", firstname);
+             params.put("user_lastname", lastname);
+                params.put("user_age", age);
+            params.put("user_tel", phone);
+               // params.put("user_sex", sex);
+
+
 
                 return params;
             }

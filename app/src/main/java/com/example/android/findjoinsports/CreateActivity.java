@@ -39,20 +39,18 @@ public class CreateActivity extends Fragment {
         bt_cre_bas_type.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fram,new CreateBasketball());
-                fragmentTransaction.commit();
+                Intent i = new Intent(getActivity(),CreateBasketball.class);
+                startActivity(i);
             }
         });
 
 
-        Button bt_cre_bad_type = (Button) view.findViewById(R.id.bt_cre_bad_type);
+        Button bt_cre_bad_type = (Button) view.findViewById(R.id.bt_cre_bbgun_type);
         bt_cre_bad_type.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fram,new CreateBadminton());
-                fragmentTransaction.commit();
+                Intent i = new Intent(getActivity(),CreateBB_Gun.class);
+                startActivity(i);
             }
         });
         return view;

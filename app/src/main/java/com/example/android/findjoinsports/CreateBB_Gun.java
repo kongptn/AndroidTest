@@ -1,5 +1,6 @@
 package com.example.android.findjoinsports;
 
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -25,7 +26,6 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -34,9 +34,6 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -44,7 +41,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateFootball extends AppCompatActivity implements View.OnClickListener ,DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+public class CreateBB_Gun extends AppCompatActivity implements View.OnClickListener ,DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private EditText editStad_name, editdescrip, NAME;
     private TextView textDate, textTime, textPlace, tvPlace;
     private ImageView imgView;
@@ -52,7 +49,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
     private String stadium_name, description ,date, time;
     private final int IMG_REQUEST = 1;
     int PLACE_PICKER_REQUEST = 1;
-    String type_id = "1";
+    String type_id = "2";
     private Bitmap bitmap;
     private static final String URL = "http://192.168.2.37/findjoinsport/football/InsertData.php";
     private String UploadUrl = "http://10.13.3.102/ImageUploadApp/updateinfo.php";
@@ -60,7 +57,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_football);
+        setContentView(R.layout.activity_create_bb__gun);
 
         tvPlace = (TextView)findViewById(R.id.tvPlace);
 
@@ -70,9 +67,9 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
             public void onClick(View v) {
                 PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
-               Intent intent;
+                Intent intent;
                 try {
-                    intent = builder.build(CreateFootball.this);
+                    intent = builder.build(CreateBB_Gun.this);
                     startActivityForResult(intent,PLACE_PICKER_REQUEST);
                 } catch (GooglePlayServicesRepairableException e) {
                     e.printStackTrace();
@@ -128,7 +125,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
         try {
-            startActivityForResult(builder.build(CreateFootball.this),PLACE_PICKER_REQUEST);
+            startActivityForResult(builder.build(CreateBB_Gun.this),PLACE_PICKER_REQUEST);
 
         }catch (GooglePlayServicesRepairableException e){
             e.printStackTrace();
@@ -180,7 +177,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
 
         date = textDate.getText().toString();
         time = textTime.getText().toString();
-        type_id = "1";
+        type_id = "2";
     }
 
     private void onButtonClick() {
@@ -201,7 +198,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
                     imgView.setVisibility(View.GONE);
                     NAME.setText("");
                     NAME.setVisibility(View.GONE);
-                    Toast.makeText(CreateFootball.this, "สร้างกิจกรรมแล้ว", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateBB_Gun.this, "สร้างกิจกรรมแล้ว", Toast.LENGTH_SHORT).show();
                 }
 
             }, new Response.ErrorListener() {
@@ -210,7 +207,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
 
                     Log.d("Create Error", error.toString());
 //                    Toast.makeText(CreateFootball.this, "เกิดข้อผิดพลาดโปรดลองอีกครั้ง", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(CreateFootball.this,"กรอกผิดแล้ว",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateBB_Gun.this,"กรอกผิดแล้ว",Toast.LENGTH_SHORT).show();
 
                 }
 

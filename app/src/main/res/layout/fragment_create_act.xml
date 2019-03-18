@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgg"
+    android:background="@drawable/back"
     tools:context=".SearchActivity"
     tools:layout_editor_absoluteY="81dp">
 
@@ -20,13 +20,13 @@
         android:layout_marginEnd="67dp"
         android:layout_marginBottom="11dp"
         android:background="@drawable/football"
-        app:layout_constraintBottom_toTopOf="@+id/bt_cre_bad_type"
+        app:layout_constraintBottom_toTopOf="@+id/bt_cre_bbgun_type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bt_cre_bad_type"
+        android:id="@+id/bt_cre_bbgun_type"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="67dp"
@@ -50,7 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_cre_bad_type" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_cre_bbgun_type" />
 
 
 </android.support.constraint.ConstraintLayout>
