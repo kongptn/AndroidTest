@@ -50,7 +50,7 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
     int PLACE_PICKER_REQUEST = 1;
     String type_id = "3";
     private Bitmap bitmap;
-    private static final String URL = "http://192.168.2.37/findjoinsport/football/InsertData.php";
+    private static final String URL = "http://192.168.2.34/findjoinsport/football/InsertData.php";
     private String UploadUrl = "http://10.13.3.102/ImageUploadApp/updateinfo.php";
 
     @Override

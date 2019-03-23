@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText email, password;
     private ProgressBar loading;
     private static String URL_LOGIN = "http://192.168.2.37/android_register_login/login.php";
-
+    SessionManager sessionManager;
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sessionManager = new SessionManager(this);
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -187,16 +189,19 @@ public class MainActivity extends AppCompatActivity {
                                     String name = object.getString("name").trim();
                                     String email = object.getString("email").trim();
 
-                                    Toast.makeText(MainActivity.this,
-                                            "Success Login. \nYour Name : "
-                                                    +name+"\nYour Email : "
-                                                    +email, Toast.LENGTH_SHORT)
-                                            .show();
+                                    sessionManager.createSession(name, email);
+
+
+                                    Intent intent = new Intent(MainActivity.this,NavDrawer.class);
+                                    intent.putExtra("name", name);
+                                    intent.putExtra("email", email);
+                                    startActivity(intent);
 
                                     loading.setVisibility(View.GONE);
-                                    Intent btn_login = new Intent(MainActivity.this, NavDrawer.class); //login to page home
 
-                                    startActivity(btn_login);
+//                                    Intent btn_login = new Intent(MainActivity.this, NavDrawer.class); //login to page home
+//
+//                                    startActivity(btn_login);
 
                                 }
                             }

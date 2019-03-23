@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btn_regist;
     private RadioGroup sex;
     private ProgressBar loading;
-    private static String URL_REGIST = "http://192.168.2.34/android_register_login/register.php";
+    private static String URL_REGIST = "http://10.13.4.28/android_register_login/register.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

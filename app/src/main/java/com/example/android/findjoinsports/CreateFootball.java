@@ -45,22 +45,40 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CreateFootball extends AppCompatActivity implements View.OnClickListener ,DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
-    private EditText editStad_name, editdescrip, NAME;
-    private TextView textDate, textTime, textPlace, tvPlace;
+    private EditText editStad_name, editdescrip, PHOTO;
+    private TextView textDate, textTime, textPlace, tvPlace, nametxt, emailtxt;
     private ImageView imgView;
     private Button btn_create, ChooseBT;
-    private String stadium_name, description ,date, time;
+    private String stadium_name, description ,date, time, mName;
     private final int IMG_REQUEST = 1;
     int PLACE_PICKER_REQUEST = 1;
     String type_id = "1";
+    String getName = mName;
+    private int user_id;
     private Bitmap bitmap;
-    private static final String URL = "http://192.168.2.37/findjoinsport/football/InsertData.php";
+    private static final String URL = "http://192.168.2.34/findjoinsport/football/InsertData.php";
     private String UploadUrl = "http://10.13.3.102/ImageUploadApp/updateinfo.php";
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_football);
+
+        sessionManager = new SessionManager(this);
+        sessionManager.checkLogin();
+
+        nametxt = findViewById(R.id.nametxt);
+        emailtxt = findViewById(R.id.emailtxt);
+
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        String mName = user.get(sessionManager.NAME);
+        String mEmail = user.get(sessionManager.EMAIL);
+
+        nametxt.setText(mName);
+        emailtxt.setText(mEmail);
+
+
 
         tvPlace = (TextView)findViewById(R.id.tvPlace);
 
@@ -104,11 +122,12 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
         textDate = (TextView)findViewById(R.id.textDate);
         textTime = (TextView)findViewById(R.id.textTime);
         ChooseBT = (Button) findViewById(R.id.chooseBT);
-        NAME = (EditText) findViewById(R.id.name);
+        PHOTO = (EditText) findViewById(R.id.photo);
         imgView = (ImageView) findViewById(R.id.imageView);
         btn_create = (Button) findViewById(R.id.btn_create);
         ChooseBT.setOnClickListener(this);
         btn_create.setOnClickListener(this);
+
 
 
         onBindView();
@@ -119,6 +138,9 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
                 onEditText();
                 onButtonClick();
 //                uploadImage();
+
+
+
             }
         });
     }
@@ -181,8 +203,11 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
         date = textDate.getText().toString();
         time = textTime.getText().toString();
         type_id = "1";
-    }
 
+       mName = nametxt.getText().toString();
+
+
+    }
     private void onButtonClick() {
         if (!stadium_name.isEmpty() && !description.isEmpty()) {
             RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -199,8 +224,9 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
                     // --
                     imgView.setImageResource(0);
                     imgView.setVisibility(View.GONE);
-                    NAME.setText("");
-                    NAME.setVisibility(View.GONE);
+                    PHOTO.setText("");
+                    PHOTO.setVisibility(View.GONE);
+
                     Toast.makeText(CreateFootball.this, "สร้างกิจกรรมแล้ว", Toast.LENGTH_SHORT).show();
                 }
 
@@ -222,11 +248,15 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("stadium_name", stadium_name);
                     params.put("description", description);
-                    params.put("name", NAME.getText().toString().trim());
+                    params.put("photo", PHOTO.getText().toString().trim());
                     params.put("image", imageToString(bitmap));
                     params.put("date", date);
                     params.put("time", time);
                     params.put("type_id", type_id);
+
+                    params.put("name", mName);
+//                    params.put("name", mName);
+
                     return params;
                 }
             };
@@ -263,7 +293,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), path);
                 imgView.setImageBitmap(bitmap);
                 imgView.setVisibility(View.VISIBLE);
-                NAME.setVisibility(View.VISIBLE);
+                PHOTO.setVisibility(View.VISIBLE);
             } catch (IOException e) {
                 e.printStackTrace();
             }

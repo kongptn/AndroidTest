@@ -47,7 +47,9 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".PlacePickerActivity" />
         <activity android:name=".CreateBB_Gun" />
-        <activity android:name=".CreateBasketball"></activity>
+        <activity android:name=".CreateBasketball" />
+        <activity android:name=".SearchFootball" />
+        <activity android:name=".TestSearch"></activity>
     </application>
 
 </manifest>

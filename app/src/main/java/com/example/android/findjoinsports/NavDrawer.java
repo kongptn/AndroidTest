@@ -27,7 +27,9 @@ public class NavDrawer extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        FragmentTransaction frr = getSupportFragmentManager().beginTransaction();
+        frr.add(R.id.fram,new SearchActivity());
+        frr.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
