@@ -1,4 +1,4 @@
-package com.example.android.findjoinsports;
+package com.example.android.findjoinsports.SearchActivity;
 
 
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android.findjoinsports.Adapter.Adapter;
+import com.example.android.findjoinsports.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,13 +29,13 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchBasketball extends Fragment {
+public class SearchBB_GUN extends Fragment {
 
 
-    public SearchBasketball() {
+    public SearchBB_GUN() {
         // Required empty public constructor
     }
-    private static final String URL_PRODUCTS = "http://192.168.2.37/findjoinsport/search_activity/basketball_search.php";
+    private static final String URL_PRODUCTS = "http://192.168.2.34/findjoinsport/search_activity/bbgun_search.php";
 
     //a list to store all the products
     List<RecyclerSearch> recyclerSearchList;
@@ -45,8 +47,7 @@ public class SearchBasketball extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_search_basketball, container, false);
+        View view =  inflater.inflate(R.layout.fragment_search_bb__gun, container, false);
 
         //getting the recyclerview from xml
         recyclerView = view.findViewById(R.id.recyclerview);
@@ -59,6 +60,7 @@ public class SearchBasketball extends Fragment {
         //this method will fetch and parse json
         //to display it in recyclerview
         loadProducts();
+
         return view;
     }
 
@@ -92,10 +94,11 @@ public class SearchBasketball extends Fragment {
                                 String date = object.getString("date");
                                 String time = object.getString("time");
                                 String name = object.getString("name");
+                                String location = object.getString("location");
+                                String description = object.getString("description");
 
 
-
-                                RecyclerSearch recyclerSearch = new RecyclerSearch(id, stadiumname, photo, date, time, name);
+                                RecyclerSearch recyclerSearch = new RecyclerSearch(id, stadiumname, photo, date, time, name, location, description);
                                 recyclerSearchList.add(recyclerSearch);
                             }
 
@@ -119,5 +122,3 @@ public class SearchBasketball extends Fragment {
         Volley.newRequestQueue(getContext()).add(stringRequest);
     }
 }
-
-

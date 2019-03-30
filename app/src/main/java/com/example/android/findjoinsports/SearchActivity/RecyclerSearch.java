@@ -1,4 +1,4 @@
-package com.example.android.findjoinsports;
+package com.example.android.findjoinsports.SearchActivity;
 
 public class RecyclerSearch {
 
@@ -8,14 +8,21 @@ public class RecyclerSearch {
     private String date;
     private String time;
     private String name;
+    private String location;
+    private String description;
 
-    public RecyclerSearch(int id, String stadium_name, String photo, String date, String time, String name) {
+
+
+    public RecyclerSearch(int id, String stadium_name, String photo, String date, String time, String name, String location, String description) {
         this.id = id;
         this.stadium_name = stadium_name;
         this.photo = photo;
         this.date = date;
         this.time = time;
         this.name = name;
+        this.location = location;
+        this.description = description;
+
     }
 
 
@@ -43,4 +50,14 @@ public class RecyclerSearch {
     public String getName() {
         return name;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+
 }

@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import com.example.android.findjoinsports.CreateActivity.CreateActivity;
+import com.example.android.findjoinsports.SearchActivity.SearchActivity;
 
 public class BottomNav extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 

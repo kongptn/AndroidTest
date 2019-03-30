@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
     TextView txtEmail, txtBirthday, txtFriends, btn_regis_page;
     ProgressDialog mDialog;
     ImageView imaAvatar;
-    Button btn_login;
+    Button btn_login,btnMap;
     private EditText email, password;
     private ProgressBar loading;
-    private static String URL_LOGIN = "http://192.168.2.37/android_register_login/login.php";
+    private static String URL_LOGIN = "http://192.168.2.34/android_register_login/login.php";
     SessionManager sessionManager;
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -163,6 +163,14 @@ public class MainActivity extends AppCompatActivity {
             txtEmail.setText(AccessToken.getCurrentAccessToken().getUserId());
         }
 
+        Button btnMap = (Button)findViewById(R.id.btnMap);
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this,MapsActivity.class);
+                startActivity(i);
+            }
+        });
 
 
     }

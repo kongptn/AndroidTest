@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back"
-    tools:context=".SearchActivity">
+    tools:context=".SearchActivity.SearchActivity">
 
     <ImageView
         android:layout_centerHorizontal="true"

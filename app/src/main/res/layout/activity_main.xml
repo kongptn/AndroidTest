@@ -123,4 +123,10 @@
         android:textColor="@color/colorPrimary"
         />
 
+    <Button
+        android:id="@+id/btnMap"
+        android:text="GOOGLE MAP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back"
-    tools:context=".CreateBasketball"
+    tools:context=".CreateActivity.CreateBasketball"
     tools:layout_editor_absoluteY="81dp">
 
     <ScrollView
@@ -22,14 +22,14 @@
                 android:id="@+id/chooseBT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/name"
+                android:layout_below="@+id/photo"
                 android:layout_marginTop="25dp"
                 android:text="Choose Image" />
 
             <EditText
                 android:id="@+id/editStad_name"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_below="@+id/chooseBT"
                 android:layout_marginTop="25dp"
                 android:textColor="#FFFFFF"
@@ -73,38 +73,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/textPlace"
-                android:text="ข้อมูลแผนที่"
-                android:layout_marginTop="35dp"
+
+
+            <EditText
+                android:id="@+id/editlocation"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/btnTime"
                 android:textColor="#FFFFFF"
-                android:layout_below="@+id/textTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/btnPlace"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textPlace"
-                android:onClick="goPlacePicker"
-                android:text="Click Here For Place Picker"
-                tools:ignore="OnClick" />
-
-            <TextView
-                android:layout_below="@+id/btnPlace"
-                android:id="@+id/tvPlace"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+                android:textColorHint="#FFFFFF"
+                android:layout_marginTop="25dp"
+                android:background="#002d33"
+                android:hint="กรอกที่อยู่" />
 
 
             <EditText
                 android:id="@+id/editdescrip"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_below="@+id/btnPlace"
+                android:layout_below="@+id/editlocation"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 android:layout_marginTop="25dp"
@@ -116,13 +103,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#de692f"
-                android:text="สร้างกิจกรรม"
+                android:text="CREATE ACTIVITY"
                 android:layout_marginTop="25dp"
                 android:layout_below="@+id/editdescrip"
                 android:textColor="#ffffff" />
 
             <EditText
-                android:id="@+id/name"
+                android:id="@+id/photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageView"

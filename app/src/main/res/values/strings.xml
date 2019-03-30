@@ -19,8 +19,9 @@
     <string name="title_notifications">Notifications</string>
 
 
-    <string name="google_place_api">AIzaSyBdVl-AIzaSyCLu-M3GKvJoMkfKBBtMDsLRO07ZVoUdV0</string>
+    <string name="google_place_api">AIzaSyAulmK2iD7YbpepcAK1mLKNXQhz5wmHFa0</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps2">Map</string>
 
 
 </resources>

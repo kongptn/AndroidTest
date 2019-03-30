@@ -1,4 +1,4 @@
-package com.example.android.findjoinsports;
+package com.example.android.findjoinsports.CreateActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -25,17 +25,17 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android.findjoinsports.DatePickerFragment;
+import com.example.android.findjoinsports.R;
+import com.example.android.findjoinsports.SessionManager;
+import com.example.android.findjoinsports.TimePickerFragment;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -44,61 +44,32 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateFootball extends AppCompatActivity implements View.OnClickListener ,DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
-    private EditText editStad_name, editdescrip, PHOTO;
-    private TextView textDate, textTime, textPlace, tvPlace, nametxt, emailtxt;
+public class CreateBasketball extends AppCompatActivity implements View.OnClickListener ,DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+    private EditText editStad_name, editdescrip, PHOTO, editlocation;
+    private TextView textDate, textTime, nametxt, emailtxt;
     private ImageView imgView;
     private Button btn_create, ChooseBT;
-    private String stadium_name, description ,date, time, mName;
+    private String stadium_name, description ,date, time, mName,location, mEmail;
     private final int IMG_REQUEST = 1;
-    int PLACE_PICKER_REQUEST = 1;
-    String type_id = "1";
-    String getName = mName;
-    private int user_id;
+    String type_id = "3";
     private Bitmap bitmap;
     private static final String URL = "http://192.168.2.34/findjoinsport/football/InsertData.php";
-    private String UploadUrl = "http://10.13.3.102/ImageUploadApp/updateinfo.php";
+    private String UploadUrl = "http://10.13.4.117/ImageUploadApp/updateinfo.php";
     SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_football);
+        setContentView(R.layout.activity_create_bb__gun);
 
         sessionManager = new SessionManager(this);
         sessionManager.checkLogin();
 
-        nametxt = findViewById(R.id.nametxt);
-        emailtxt = findViewById(R.id.emailtxt);
-
         HashMap<String, String> user = sessionManager.getUserDetail();
-        String mName = user.get(sessionManager.NAME);
-        String mEmail = user.get(sessionManager.EMAIL);
-
-        nametxt.setText(mName);
-        emailtxt.setText(mEmail);
+        mName = user.get(sessionManager.NAME);
+//        mEmail = user.get(sessionManager.EMAIL);
 
 
-
-        tvPlace = (TextView)findViewById(R.id.tvPlace);
-
-        textPlace = (TextView)findViewById(R.id.textPlace);
-        textPlace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-
-               Intent intent;
-                try {
-                    intent = builder.build(CreateFootball.this);
-                    startActivityForResult(intent,PLACE_PICKER_REQUEST);
-                } catch (GooglePlayServicesRepairableException e) {
-                    e.printStackTrace();
-                } catch (GooglePlayServicesNotAvailableException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
         Button btnTime = (Button) findViewById(R.id.btnTime);
         btnTime.setOnClickListener(new View.OnClickListener() {
@@ -125,9 +96,9 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
         PHOTO = (EditText) findViewById(R.id.photo);
         imgView = (ImageView) findViewById(R.id.imageView);
         btn_create = (Button) findViewById(R.id.btn_create);
+        editlocation = (EditText) findViewById(R.id.editlocation);
         ChooseBT.setOnClickListener(this);
         btn_create.setOnClickListener(this);
-
 
 
         onBindView();
@@ -138,39 +109,13 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
                 onEditText();
                 onButtonClick();
 //                uploadImage();
-
-
-
             }
         });
     }
 
-    public void goPlacePicker (View view){ //map api
 
-        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
-        try {
-            startActivityForResult(builder.build(CreateFootball.this),PLACE_PICKER_REQUEST);
 
-        }catch (GooglePlayServicesRepairableException e){
-            e.printStackTrace();
-        }catch (GooglePlayServicesNotAvailableException e){
-            e.printStackTrace();
-        }
-
-    }
-
-    protected void onActivityResultMap(int requestCode, int resultCode ,Intent data){
-        if (requestCode == PLACE_PICKER_REQUEST)
-        {
-            if (resultCode == RESULT_OK)
-            {
-                Place place = PlacePicker.getPlace(data,this);
-                String address = String.format("Place: %s",place.getAddress());
-                textPlace.setText(address);
-            }
-        }
-    }
 
 
     @Override
@@ -199,15 +144,12 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
     private void onEditText() {
         stadium_name = editStad_name.getText().toString();
         description = editdescrip.getText().toString();
-
+        location = editlocation.getText().toString();
         date = textDate.getText().toString();
         time = textTime.getText().toString();
-        type_id = "1";
-
-       mName = nametxt.getText().toString();
-
-
+        type_id = "3";
     }
+
     private void onButtonClick() {
         if (!stadium_name.isEmpty() && !description.isEmpty()) {
             RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -218,7 +160,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
                     editStad_name.setText("");
                     editdescrip.setText("");
 
-
+                    editlocation.setText("");
                     textDate.setText("");
                     textTime.setText("");
                     // --
@@ -226,8 +168,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
                     imgView.setVisibility(View.GONE);
                     PHOTO.setText("");
                     PHOTO.setVisibility(View.GONE);
-
-                    Toast.makeText(CreateFootball.this, "สร้างกิจกรรมแล้ว", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateBasketball.this, "สร้างกิจกรรมแล้ว", Toast.LENGTH_SHORT).show();
                 }
 
             }, new Response.ErrorListener() {
@@ -236,7 +177,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
 
                     Log.d("Create Error", error.toString());
 //                    Toast.makeText(CreateFootball.this, "เกิดข้อผิดพลาดโปรดลองอีกครั้ง", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(CreateFootball.this,"กรอกผิดแล้ว",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateBasketball.this,"กรอกผิดแล้ว",Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -252,11 +193,9 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
                     params.put("image", imageToString(bitmap));
                     params.put("date", date);
                     params.put("time", time);
+                    params.put("location", location);
                     params.put("type_id", type_id);
-
                     params.put("name", mName);
-//                    params.put("name", mName);
-
                     return params;
                 }
             };

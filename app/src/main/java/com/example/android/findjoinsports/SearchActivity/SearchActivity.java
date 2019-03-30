@@ -1,17 +1,15 @@
-package com.example.android.findjoinsports;
+package com.example.android.findjoinsports.SearchActivity;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.android.findjoinsports.R;
 
 
 /**
@@ -29,14 +27,14 @@ public class SearchActivity extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_search, null);
 
 
-        Button bt_serchBALL = (Button) view.findViewById(R.id.bt_serchBALL);
-        bt_serchBALL.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getActivity(),SearchFootball.class);
-                startActivity(i);
-            }
-        });
+//        Button bt_serchBALL = (Button) view.findViewById(R.id.bt_serchBALL);
+//        bt_serchBALL.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getActivity(),SearchFootball.class);
+//                startActivity(i);
+//            }
+//        });
 
 //        Button bt_serchBAS = (Button) view.findViewById(R.id.bt_serchBAS);
 //        bt_serchBAS.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +61,16 @@ public class SearchActivity extends Fragment implements View.OnClickListener {
 //                        .commit();
 //            }
 //        });
+        Button bt_serchBALL = (Button)view.findViewById(R.id.bt_serchBALL);
+        bt_serchBALL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fr = getFragmentManager().beginTransaction();
+                fr.replace(R.id.fram,new SearchFootball());
+                fr.commit();
+            }
+        });
+
         Button bt_serchGUN = (Button)view.findViewById(R.id.bt_serchGUN);
         bt_serchGUN.setOnClickListener(new View.OnClickListener() {
             @Override

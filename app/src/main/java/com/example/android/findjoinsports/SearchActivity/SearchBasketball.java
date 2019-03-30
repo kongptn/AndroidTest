@@ -1,9 +1,13 @@
-package com.example.android.findjoinsports;
-import android.support.v7.app.AppCompatActivity;
+package com.example.android.findjoinsports.SearchActivity;
+
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ImageView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -11,7 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
+import com.example.android.findjoinsports.Adapter.Adapter;
+import com.example.android.findjoinsports.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,11 +25,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestSearch extends AppCompatActivity {
 
-    //this is the JSON Data URL
-    //make sure you are using the correct ip else it will not work
-    private static final String URL_PRODUCTS = "http://192.168.2.37/findjoinsport/search_activity/bbgun_search.php";
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class SearchBasketball extends Fragment {
+
+
+    public SearchBasketball() {
+        // Required empty public constructor
+    }
+    private static final String URL_PRODUCTS = "http://192.168.2.34/findjoinsport/search_activity/basketball_search.php";
 
     //a list to store all the products
     List<RecyclerSearch> recyclerSearchList;
@@ -34,14 +45,14 @@ public class TestSearch extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_football);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view =  inflater.inflate(R.layout.fragment_search_basketball, container, false);
 
         //getting the recyclerview from xml
-        recyclerView = findViewById(R.id.recyclerview);
+        recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //initializing the productlist
         recyclerSearchList = new ArrayList<>();
@@ -49,6 +60,8 @@ public class TestSearch extends AppCompatActivity {
         //this method will fetch and parse json
         //to display it in recyclerview
         loadProducts();
+
+        return view;
     }
 
     private void loadProducts() {
@@ -81,15 +94,16 @@ public class TestSearch extends AppCompatActivity {
                                 String date = object.getString("date");
                                 String time = object.getString("time");
                                 String name = object.getString("name");
+                                String location = object.getString("location");
+                                String description = object.getString("description");
 
 
-
-                                RecyclerSearch recyclerSearch = new RecyclerSearch(id, stadiumname, photo, date, time, name);
+                                RecyclerSearch recyclerSearch = new RecyclerSearch(id, stadiumname, photo, date, time, name, location, description);
                                 recyclerSearchList.add(recyclerSearch);
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            Adapter adapter = new Adapter(TestSearch.this, recyclerSearchList);
+                            Adapter adapter = new Adapter(getContext(), recyclerSearchList);
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -99,12 +113,12 @@ public class TestSearch extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(TestSearch.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
 
         //adding our stringrequest to queue
-        Volley.newRequestQueue(this).add(stringRequest);
+        Volley.newRequestQueue(getContext()).add(stringRequest);
     }
 }
