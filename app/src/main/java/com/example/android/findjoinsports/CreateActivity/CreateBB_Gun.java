@@ -30,12 +30,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.android.findjoinsports.DatePickerFragment;
 import com.example.android.findjoinsports.R;
+import com.example.android.findjoinsports.SearchActivity.SearchActivity;
 import com.example.android.findjoinsports.SessionManager;
 import com.example.android.findjoinsports.TimePickerFragment;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -49,12 +49,12 @@ public class CreateBB_Gun extends AppCompatActivity implements View.OnClickListe
     private TextView textDate, textTime, nametxt, emailtxt;
     private ImageView imgView;
     private Button btn_create, ChooseBT;
-    private String stadium_name, description ,date, time, mName,location, mEmail;
+    private String stadium_name, description ,date, time, mName,location, mUser;
     private final int IMG_REQUEST = 1;
     String type_id = "2";
     private int user_id;
     private Bitmap bitmap;
-    private static final String URL = "http://192.168.2.34/findjoinsport/football/InsertData.php";
+    private static final String URL = "http://192.168.2.33/findjoinsport/football/InsertData.php";
     private String UploadUrl = "http://10.13.4.117/ImageUploadApp/updateinfo.php";
     SessionManager sessionManager;
 
@@ -73,9 +73,8 @@ public class CreateBB_Gun extends AppCompatActivity implements View.OnClickListe
 //        emailtxt = findViewById(R.id.emailtxt);
 
         HashMap<String, String> user = sessionManager.getUserDetail();
+        mUser = user.get(sessionManager.USER_ID);
         mName = user.get(sessionManager.NAME);
-        mEmail = user.get(sessionManager.EMAIL);
-
 //        nametxt.setText(mName);
 //        emailtxt.setText(mEmail);
 
@@ -118,9 +117,12 @@ public class CreateBB_Gun extends AppCompatActivity implements View.OnClickListe
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 onEditText();
                 onButtonClick();
 //                uploadImage();
+
 
 
 
@@ -214,8 +216,8 @@ public class CreateBB_Gun extends AppCompatActivity implements View.OnClickListe
                     params.put("time", time);
                     params.put("location", location);
                     params.put("type_id", type_id);
+                    params.put("user_id", mUser);
                     params.put("name", mName);
-//                    params.put("name", mName);
 
                     return params;
                 }

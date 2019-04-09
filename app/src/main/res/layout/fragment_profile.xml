@@ -4,65 +4,210 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back"
-    tools:context=".SearchActivity.SearchActivity">
+    tools:context=".SearchActivity.DescriptionActivity">
 
-    <ImageView
-        android:layout_centerHorizontal="true"
-        android:id="@+id/photo_user"
-        android:layout_width="200dp"
-        android:layout_height="150dp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/photo"
+                android:layout_width="200dp"
+                android:layout_height="150dp" />
+
+            <TextView
+                android:id="@+id/tvname"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/photo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:hint="Name :"
+                android:textColorHint="#ffffff" />
+
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_marginLeft="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/photo"
+                android:textColor="#FFFFFF"
+                android:hint="Name" />
+
+
+            <TextView
+                android:id="@+id/tvemail"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:hint="Email :"
+                android:textColorHint="#ffffff" />
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_marginLeft="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/name"
+                android:textColor="#ffffff"
+                android:hint="Email" />
+
+            <TextView
+                android:id="@+id/tvuser_firstname"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/email"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:hint="FirstName :"
+                android:textColorHint="#ffffff" />
+
+            <TextView
+                android:id="@+id/user_firstname"
+                android:layout_marginLeft="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/email"
+                android:textColor="#ffffff"
+                android:hint="Username" />
+
+            <TextView
+                android:id="@+id/tvuser_lastname"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_firstname"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:hint="LastName :"
+                android:textColorHint="#ffffff" />
+
+            <TextView
+                android:id="@+id/user_lastname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_firstname"
+                android:layout_marginLeft="200dp"
+                android:layout_marginTop="25dp"
+                android:hint="Username_lastname"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/tvuser_age"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/user_lastname"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:hint="Age :"
+                android:textColorHint="#ffffff" />
+
+            <TextView
+                android:id="@+id/user_age"
+                android:layout_marginLeft="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/user_lastname"
+                android:textColor="#ffffff"
+                android:hint="age" />
+
+            <TextView
+                android:id="@+id/tvtelephone"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/age"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="395dp"
+                android:hint="Telephone :"
+                android:textColorHint="#ffffff" />
+
+            <TextView
+                android:id="@+id/telephone"
+                android:layout_marginLeft="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="395dp"
+                android:layout_below="@+id/age"
+                android:textColor="#ffffff"
+                android:hint="telephone" />
 
 
 
-    <EditText
-        android:id="@+id/edit_name"
-        android:layout_centerHorizontal="true"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/photo_user"
-        android:background="#ffffff"
-        android:hint="ชื่อผู้ใช้" />
+            <RadioGroup
+                android:layout_below="@+id/telephone"
+                android:layout_marginTop="25dp"
+                android:id="@+id/sex"
 
-    <EditText
-        android:id="@+id/edit_email"
-        android:layout_centerHorizontal="true"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/edit_name"
-        android:background="#ffffff"
-        android:hint="อีเมลล์ผู้ใช้" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
 
-    <EditText
-        android:id="@+id/edit_phone"
-        android:layout_centerHorizontal="true"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="25dp"
-        android:background="#ffffff"
-        android:layout_below="@+id/edit_email"
-        android:hint="เบอร์ติดต่อ" />
 
-    <EditText
-        android:id="@+id/edit_age"
-        android:layout_centerHorizontal="true"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="25dp"
-        android:background="#ffffff"
-        android:layout_below="@+id/edit_phone"
-        android:hint="อายุ" />
-    <!-- TODO: Update blank fragment layout -->
-    <Button
-        android:id="@+id/btn_edit"
-        android:layout_centerHorizontal="true"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:background="#9b0d0d"
-        android:text="แก้ไขโปร์ฟล์"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/edit_age"
-        android:textColor="#ffffff" />
+                <RadioButton
+                    android:id="@+id/rb_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male" />
+
+                <RadioButton
+                    android:id="@+id/rb_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female" />
+
+            </RadioGroup>
+
+
+            <!-- TODO: Update blank fragment layout -->
+            <Button
+                android:id="@+id/btn_edit"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_marginTop="350dp"
+                android:background="#6495ED"
+                android:text="แก้ไขโปร์ฟล์"
+                android:layout_centerHorizontal="true"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_edit"
+                android:layout_marginTop="10dp"
+                android:background="#9b0d0d"
+                android:text="ออกจากรเะบบ"
+                android:layout_centerHorizontal="true"
+                android:textColor="#ffffff" />
+
+            <EditText
+
+                android:id="@+id/user_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="1000dp"
+                android:gravity="center"
+                android:text="password"
+                android:textColor="@color/colorPrimary"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+
+
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

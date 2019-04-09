@@ -28,14 +28,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.example.android.findjoinsports.DatePickerFragment;
 import com.example.android.findjoinsports.R;
+
+import com.example.android.findjoinsports.SearchActivity.SearchActivity;
 import com.example.android.findjoinsports.SessionManager;
 import com.example.android.findjoinsports.TimePickerFragment;
+
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
+
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -49,12 +52,12 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
     private TextView textDate, textTime, nametxt, emailtxt;
     private ImageView imgView;
     private Button btn_create, ChooseBT;
-    private String stadium_name, description ,date, time, mName,location, mEmail;
+    private String stadium_name, description ,date, time, mUser,location, mName;
     private final int IMG_REQUEST = 1;
     String type_id = "3";
     private Bitmap bitmap;
-    private static final String URL = "http://192.168.2.34/findjoinsport/football/InsertData.php";
-    private String UploadUrl = "http://10.13.4.117/ImageUploadApp/updateinfo.php";
+    private static final String URL = "http://192.168.2.33/findjoinsport/football/InsertData.php";
+    private String UploadUrl = "http://10.13.4.53/ImageUploadApp/updateinfo.php";
     SessionManager sessionManager;
 
     @Override
@@ -66,7 +69,10 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
         sessionManager.checkLogin();
 
         HashMap<String, String> user = sessionManager.getUserDetail();
+        mUser = user.get(sessionManager.USER_ID);
         mName = user.get(sessionManager.NAME);
+        Log.d("bb",mUser);
+        Log.d("nn",mName);
 //        mEmail = user.get(sessionManager.EMAIL);
 
 
@@ -106,9 +112,13 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
         btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 onEditText();
                 onButtonClick();
 //                uploadImage();
+
+
             }
         });
     }
@@ -195,6 +205,7 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
                     params.put("time", time);
                     params.put("location", location);
                     params.put("type_id", type_id);
+                    params.put("user_id", mUser);
                     params.put("name", mName);
                     return params;
                 }

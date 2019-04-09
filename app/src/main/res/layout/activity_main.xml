@@ -63,7 +63,7 @@
 
     <EditText
         android:layout_below="@+id/email"
-        android:id="@+id/password"
+        android:id="@+id/telephone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -74,7 +74,7 @@
 
     <ProgressBar
         android:id="@+id/loading"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/telephone"
         android:layout_width="match_parent"
 
         android:layout_height="wrap_content"
@@ -85,8 +85,8 @@
         app:layout_constraintStart_toStartOf="@+id/avatar"
         app:layout_constraintTop_toTopOf="@+id/avatar" />
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
+    <Button
+        android:id="@+id/login_button_facebook"
         android:layout_below="@+id/btn_regis_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
         android:id="@+id/btn_login"
         android:layout_width="178dp"
         android:layout_height="25dp"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/telephone"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp"
         android:layout_marginEnd="91dp"
@@ -124,9 +124,27 @@
         />
 
     <Button
-        android:id="@+id/btnMap"
-        android:text="GOOGLE MAP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:id="@+id/forget_password"
+        android:layout_width="178dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/btn_regis_page"
+        android:layout_centerHorizontal="true"
+        android:background="#FFFFFF"
+        android:text="Forget Password"
+        android:textColor="@color/colorPrimary"
+        />
+
+    <Button
+        android:id="@+id/bbb"
+        android:layout_width="178dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/forget_password"
+        android:layout_centerHorizontal="true"
+        android:background="#FFFFFF"
+        android:text="sdfsfd"
+        android:textColor="@color/colorPrimary"
+        />
 
 </RelativeLayout>

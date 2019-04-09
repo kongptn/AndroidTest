@@ -1,18 +1,17 @@
 package com.example.android.findjoinsports.Adapter;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.android.findjoinsports.R;
-import com.example.android.findjoinsports.SearchActivity.DescriptionActivity;
-import com.example.android.findjoinsports.SearchActivity.RecyclerSearch;
+import com.example.android.findjoinsports.DATA.RecyclerSearch;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -26,11 +25,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
 
     private Context mCtx;
     private List<RecyclerSearch> recyclerSearchList;
+    private OnItemClickListener listener;
 
-    public Adapter(Context mCtx, List<RecyclerSearch> recyclerSearchList) {
+    public Adapter(Context mCtx, List<RecyclerSearch> recyclerSearchList,OnItemClickListener listener) {
         this.mCtx = mCtx;
         this.recyclerSearchList = recyclerSearchList;
+        this.listener = listener;
     }
+
+    public interface OnItemClickListener {
+        void onItemClick(int id);
+    }
+
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -44,27 +50,40 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
         final RecyclerSearch recyclerSearch = recyclerSearchList.get(position);
 
         //loading the image
-        String photo = "http://192.168.2.34/findjoinsport/football/"+recyclerSearch.getPhoto();
+        String photo = "http://10.13.4.158/findjoinsport/football/"+recyclerSearch.getPhoto();
         if (photo.equalsIgnoreCase("")){
             photo = "Default";
         }
         Picasso.with(mCtx).load(photo).placeholder(R.drawable.s).into(holder.imageView);
-        Picasso.with(mCtx).load(photo).placeholder(R.drawable.n).into(holder.imgUser);
+
+        String photo_user = "http://10.13.4.158/android_register_login/"+recyclerSearch.getPhoto_user();
+        if (photo_user.equalsIgnoreCase("")){
+            photo_user = "Default";
+        }
+        Picasso.with(mCtx).load(photo_user).placeholder(R.drawable.n).into(holder.imgUser);
         Log.d("CheckPhoto",photo);
         holder.textViewStadiumName.setText(recyclerSearch.getStadium_name());
         holder.textViewName.setText(recyclerSearch.getName());
         holder.textViewDate.setText(recyclerSearch.getDate());
         holder.textViewTime.setText(recyclerSearch.getTime());
 
+
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(recyclerSearch.getId());
+            }
+        });
        // holder.id.setText(recyclerSearch.getId());
 
         final String userid = String.valueOf(recyclerSearch.getId());
+
 
         //holder.textViewLocation.setText(recyclerSearch.getLocation());
         //holder.textViewDescriptrion.setText(recyclerSearch.getDescription());
 
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+       /* holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mCtx,DescriptionActivity.class);
@@ -81,7 +100,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
 
             }
         });
-
+*/
     }
 
     @Override
@@ -94,6 +113,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
         RelativeLayout parentLayout;
         TextView textViewStadiumName, textViewName, textViewDate, textViewTime, textViewLocation, textViewDescriptrion;
         ImageView imageView, imgUser;
+        LinearLayout rootView;
 
 
         public ProductViewHolder(View itemView) {
@@ -106,6 +126,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
             imageView = itemView.findViewById(R.id.imageView1);
             parentLayout = itemView.findViewById(R.id.parentLayout);
             imgUser = itemView.findViewById(R.id.imgUser);
+            rootView = itemView.findViewById(R.id.rootView);
         }
     }
 }

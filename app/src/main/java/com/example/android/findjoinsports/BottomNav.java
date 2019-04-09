@@ -24,7 +24,7 @@ public class BottomNav extends AppCompatActivity implements BottomNavigationView
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
 
-        loadFragment(new News());
+        loadFragment(new Alert());
     }
 
     private boolean loadFragment(Fragment fragment){
@@ -45,7 +45,7 @@ public class BottomNav extends AppCompatActivity implements BottomNavigationView
 
         switch (item.getItemId()){
             case R.id.navigation_news:
-                fragment = new News();
+                fragment = new Alert();
                 break;
 
             case R.id.navigation_search_act:

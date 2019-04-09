@@ -1,6 +1,7 @@
 package com.example.android.findjoinsports.SearchActivity;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.android.findjoinsports.Adapter.Adapter;
+import com.example.android.findjoinsports.DATA.RecyclerSearch;
 import com.example.android.findjoinsports.R;
 
 import org.json.JSONArray;
@@ -35,7 +37,7 @@ public class SearchBB_GUN extends Fragment {
     public SearchBB_GUN() {
         // Required empty public constructor
     }
-    private static final String URL_PRODUCTS = "http://192.168.2.34/findjoinsport/search_activity/bbgun_search.php";
+    private static final String URL_PRODUCTS = "http://192.168.2.33/findjoinsport/search_activity/bbgun_search.php";
 
     //a list to store all the products
     List<RecyclerSearch> recyclerSearchList;
@@ -96,14 +98,23 @@ public class SearchBB_GUN extends Fragment {
                                 String name = object.getString("name");
                                 String location = object.getString("location");
                                 String description = object.getString("description");
+                                int userid = object.getInt("user_id");
+                                String photo_user = object.getString("photo_user");
 
-
-                                RecyclerSearch recyclerSearch = new RecyclerSearch(id, stadiumname, photo, date, time, name, location, description);
+                                RecyclerSearch recyclerSearch = new RecyclerSearch(id, userid, stadiumname, photo, photo_user, date, time, name, location, description);
                                 recyclerSearchList.add(recyclerSearch);
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            Adapter adapter = new Adapter(getContext(), recyclerSearchList);
+                            Adapter adapter = new Adapter(getContext(), recyclerSearchList, new Adapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(int id) {
+                                    Intent intent = new Intent(getContext(),DescriptionActivity.class);
+                                    intent.putExtra("id",String.valueOf(id));
+                                    Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+                                    startActivity(intent);
+                                }
+                            });
                             recyclerView.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();

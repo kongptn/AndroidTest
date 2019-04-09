@@ -42,10 +42,10 @@
         <!-- android:name="com.google.android.geo.API_KEY" -->
         <!-- android:value="@string/google_place_api" /> -->
 
-        <activity android:name=".PlacePickerActivity" />
         <activity android:name=".CreateActivity.CreateBB_Gun" />
         <activity android:name=".CreateActivity.CreateBasketball" />
         <activity android:name=".SearchActivity.DescriptionActivity" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -60,7 +60,13 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".Edit_Profile" />
+        <activity android:name=".ResetPassword" />
+        <activity android:name=".Show_Act_User" />
+        <activity android:name=".Search_Friend" />
+        <activity android:name=".DetailsActivity" />
+        <activity android:name=".Friends_List"></activity>
     </application>
 
 </manifest>

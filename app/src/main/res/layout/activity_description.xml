@@ -17,33 +17,59 @@
         android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/image"
-        android:background="@drawable/s"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgUser"
+            android:layout_width="72dp"
+            android:layout_height="74dp"
+            android:layout_below="@+id/image"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp" />
+
     <TextView
         android:id="@+id/tvUserName"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="10dp"
         android:layout_below="@+id/image"
-        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/imgUser"
+        android:layout_marginTop="30dp"
         android:text="ชื่อผู้ใช้"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textColor="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+        <TextView
+            android:id="@+id/txtSta_name"
+            android:layout_marginLeft="30dp"
+            android:layout_below="@+id/imgUser"
+            android:text="ชื่อสนาม"
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tvStadium"
-        android:layout_marginLeft="30dp"
-        android:layout_below="@+id/tvUserName"
-
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/imgUser"
+        android:layout_toRightOf="@+id/txtSta_name"
         android:textSize="20dp"
         android:text="ชื่อสถานที่"
         android:textColor="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_below="@+id/imgPlace"
+            android:layout_width="325dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:background="@android:color/holo_blue_light"></View>
+
 <ImageView
     android:id="@+id/imgPlace"
     android:layout_marginLeft="30dp"
@@ -83,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/imgPlace"
-            android:text="JOIN PLAYERS" />
+            android:text="ผู้เข้าร่วม" />
 
         <ImageView
             android:id="@+id/imgClock"
@@ -114,10 +140,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+        <View
+            android:id="@+id/view2"
+            android:layout_below="@+id/imgpro"
+            android:layout_width="325dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:background="@android:color/holo_blue_light"></View>
 
+        <TextView
+            android:id="@+id/txtDes"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/imgpro"
+            android:text="รายละเอียด"
+            android:textSize="15dp"
+            android:textColor="#FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/tvDescript"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/txtDes"
         android:layout_below="@+id/imgpro"
         android:layout_marginTop="20dp"
         android:text="รายละเอียดกิจกรรม"

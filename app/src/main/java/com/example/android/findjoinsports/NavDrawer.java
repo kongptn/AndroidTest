@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import com.example.android.findjoinsports.CreateActivity.CreateActivity;
 import com.example.android.findjoinsports.SearchActivity.SearchActivity;
 
+
 public class NavDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -40,10 +41,10 @@ public class NavDrawer extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         //when application starts this fragment will be displayed
-        setTitle("หน้าแรก");
-        Home fragment = new Home();
+        setTitle("ค้นหากิจกรรม");
+        SearchActivity fragment = new SearchActivity();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fram, fragment,"หน้าแรก");
+        fragmentTransaction.replace(R.id.fram, fragment,"ค้นหากิจกรรม");
         fragmentTransaction.commit();
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -59,8 +60,8 @@ public class NavDrawer extends AppCompatActivity
 
                     switch (item.getItemId()) {
                         case R.id.nav_news:
-                            selectedFragment = new News();
-                            setTitle("ข่าวสาร");
+                            selectedFragment = new Alert();
+                            setTitle("แจ้งเตือน");
                             break;
                         case R.id.nav_search_act:
                             selectedFragment = new SearchActivity();
@@ -107,29 +108,29 @@ public class NavDrawer extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            setTitle("หน้าแรก");
-            Home fragment = new Home();
+            setTitle("คำร้องขอเข้ากิจกรรม");
+            Request_Join_Creator fragment = new Request_Join_Creator();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fram, fragment,"หน้าแรก");
+            fragmentTransaction.replace(R.id.fram, fragment,"คำร้องขอเข้ากิจกรรม");
             fragmentTransaction.commit();
         } else if (id == R.id.nav_news) {
-            setTitle("ข่าวสาร");
-            News fragment = new News();
+            setTitle("กิจกรรมที่สร้าง");
+            Act_User_Create fragment = new Act_User_Create();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fram, fragment,"ข่าวสาร");
+            fragmentTransaction.replace(R.id.fram, fragment,"กิจกรรมที่สร้าง");
             fragmentTransaction.commit();
         } else if (id == R.id.nav_search_act) {
-            setTitle("ค้นหากิจกรรม");
-            SearchActivity fragment = new SearchActivity();
+            setTitle("คำร้องขอเป็นเพื่อน");
+            Request_Friend fragment = new Request_Friend();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fram, fragment,"ค้นหากิจกรรม");
+            fragmentTransaction.replace(R.id.fram, fragment,"คำร้องขอเป็นเพื่อน");
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_join_act) {
-            setTitle("กิจกรรมที่เข้าร่วม");
-            JoinActivity fragment = new JoinActivity();
+            setTitle("กิจกรรมที่สมัคร");
+            Request_Join fragment = new Request_Join();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fram, fragment,"กิจกรรมที่เข้าร่วม");
+            fragmentTransaction.replace(R.id.fram, fragment,"กิจกรรมที่สมัคร");
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_friend) {

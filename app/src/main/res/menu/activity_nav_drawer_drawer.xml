@@ -4,26 +4,30 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_home"
-            android:title="หน้าแรก" />
+            android:icon="@drawable/alrt"
+            android:title="คำร้องขอเข้ากิจกรรม" />
+
         <item
             android:id="@+id/nav_news"
-            android:icon="@drawable/alrt"
-            android:title="แจ้งเตือน" />
-        <item
-            android:id="@+id/nav_search_act"
-            android:icon="@drawable/ic_search_act"
-            android:title="ค้นหากิจกรรม" />
+            android:icon="@drawable/ic_create_act"
+            android:title="กิจกรรมที่สร้าง" />
+
         <item
             android:id="@+id/nav_join_act"
             android:icon="@drawable/ic_join_act"
-            android:title="กิจกรรมที่เข้าร่วม" />
+            android:title="กิจกรรมที่สมัคร" />
         <item
             android:id="@+id/nav_friend"
             android:icon="@drawable/ic_friend"
             android:title="เพื่อน" />
+
+        <item
+            android:id="@+id/nav_search_act"
+            android:icon="@drawable/ic_person_add"
+            android:title="คำร้องขอเป็นเพื่อน" />
     </group>
 
 
