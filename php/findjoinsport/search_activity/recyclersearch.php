@@ -11,7 +11,7 @@ if(mysqli_connect_errno()){
     die();
 }
 
-$stmt = $conn->prepare("SELECT id, stadium_name, photo, date, time, name FROM football_activity;");
+$stmt = $conn->prepare("SELECT id, stadium_name, photo, date, time, name FROM activity;");
 
 $stmt->execute();
 

@@ -46,8 +46,8 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoin_Creator.ReqjoinViewHolder> {
 
-    private static final String URL_DIA = "http://10.13.4.158/findjoinsport/request_joinact/update_req.php";
-    private static final String URL_numjoin = "http://10.13.4.158/findjoinsport/request_joinact/update_numberjoin.php";
+    private static final String URL_DIA = "http://192.168.2.34/findjoinsport/request_joinact/update_req.php";
+    private static final String URL_numjoin = "http://192.168.2.34/findjoinsport/request_joinact/update_numberjoin.php";
     String mUser_id,user_join,actid,reqid;
     int numjoin = 1;
 
@@ -94,7 +94,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final Request_JoinData_Creator request_joinData_creator = request_joinData_creatorList.get(position);
-        String photo_user = "http://10.13.4.158/android_register_login/"+request_joinData_creator.getPhoto_user();
+        String photo_user = "http://192.168.2.34/android_register_login/"+request_joinData_creator.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }
@@ -137,7 +137,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
 
                 ImageView imgDialog = (ImageView)myDialog.findViewById(R.id.imgDialog);
                 dialog_tv.setText(request_joinData_creator.getName());
-                String photo_user = "http://10.13.4.158/android_register_login/"+request_joinData_creator.getPhoto_user();
+                String photo_user = "http://192.168.2.34/android_register_login/"+request_joinData_creator.getPhoto_user();
                 if (photo_user.equalsIgnoreCase("")){
                     photo_user = "Default";
                 }

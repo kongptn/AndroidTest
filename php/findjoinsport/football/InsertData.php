@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $upload_path = "uploads/$photo.jpg";
     //$photo = "http://10.13.4.80/findjoinsport/football/".$upload_path;
 
-    $query = "INSERT INTO football_activity (stadium_name, description, photo, date, time, location, type_id, user_id, name) VALUES ('$stadium_name', '$description','$upload_path', '$date', '$time', '$location', '$type_id','$user_id', '$name')";
+    $query = "INSERT INTO activity (stadium_name, description, photo, date, time, location, type_id, user_id, name) VALUES ('$stadium_name', '$description','$upload_path', '$date', '$time', '$location', '$type_id','$user_id', '$name')";
     if (mysqli_query($con,$query)) {
         file_put_contents($upload_path,base64_decode($image));
     } else {

@@ -37,10 +37,10 @@ import java.util.Map;
 
 public class Show_Act_User extends AppCompatActivity {
 
-    private static final String URL_SHOW = "http://10.13.4.158/findjoinsport/search_activity/test.php";
-    private static final String URL_DEL = "http://10.13.4.158/findjoinsport/football/delete_act.php";
+    private static final String URL_SHOW = "http://192.168.2.34/findjoinsport/search_activity/test.php";
+    private static final String URL_DEL = "http://192.168.2.34/findjoinsport/football/delete_act.php";
 
-    private static final String URL_DEL_REQ = " http://10.13.4.158/findjoinsport/football/delete_reqjoin.php";
+    private static final String URL_DEL_REQ = " http://192.168.2.34/findjoinsport/football/delete_reqjoin.php";
 
 
 
@@ -124,14 +124,14 @@ public class Show_Act_User extends AppCompatActivity {
                     tvLocation.setText(Location);
                     tvNumJoin.setText(numjoin);
 
-                    String photo = "http://10.13.4.158/findjoinsport/football/"+Photo;
+                    String photo = "http://192.168.2.34/findjoinsport/football/"+Photo;
                     if (photo.equalsIgnoreCase("")){
                         photo = "Default";
                     }
 
                     Picasso.with(Show_Act_User.this).load(photo).placeholder(R.drawable.s).into(image);
 
-                    String photo_user = "http://10.13.4.158/android_register_login/"+Photo_user;
+                    String photo_user = "http://192.168.2.34/android_register_login/"+Photo_user;
                     if (photo_user.equalsIgnoreCase("")){
                         photo_user = "Default";
                     }

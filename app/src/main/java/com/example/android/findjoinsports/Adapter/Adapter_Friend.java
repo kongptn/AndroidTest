@@ -51,7 +51,7 @@ public class Adapter_Friend extends RecyclerView.Adapter<Adapter_Friend.MyViewHo
         holder.email.setText(user_data.getEmail());
 
 
-        String ph = "http://10.13.4.158/android_register_login/"+user_data.getPhoto_user();
+        String ph = "http://192.168.2.34/android_register_login/"+user_data.getPhoto_user();
 
         if (ph.equalsIgnoreCase("")){
             ph = "default";

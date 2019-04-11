@@ -139,7 +139,15 @@ public class NavDrawer extends AppCompatActivity
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fram, fragment,"เพื่อน");
             fragmentTransaction.commit();
-        }
+
+        } else if (id == R.id.nav_invite) {
+        setTitle("คำเชิญเข้าร่วมกิจกรรม");
+        Invite_Joinact fragment = new Invite_Joinact();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fram, fragment,"คำเชิญเข้าร่วมกิจกรรม");
+        fragmentTransaction.commit();
+    }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

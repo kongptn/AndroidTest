@@ -24,7 +24,7 @@
 	}
 	
 	//creating a query
-	$stmt = $conn->prepare("SELECT a.id , a.stadium_name , a.description , a.photo , a.date , a.time , a.location , a.number_join , u.user_id , u.name , u.photo_user , sp.type_id FROM football_activity a INNER JOIN users u on a.user_id = u.user_id INNER JOIN sport_type sp on a.type_id = sp.type_id WHERE sp.type_id=2");
+	$stmt = $conn->prepare("SELECT a.id , a.stadium_name , a.description , a.photo , a.date , a.time , a.location , a.number_join , u.user_id , u.name , u.photo_user , sp.type_id FROM activity a INNER JOIN users u on a.user_id = u.user_id INNER JOIN sport_type sp on a.type_id = sp.type_id WHERE sp.type_id=2");
 	
 	//executing the query 
 	$stmt->execute();

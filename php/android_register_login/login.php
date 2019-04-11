@@ -18,11 +18,22 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         
         $row = mysqli_fetch_assoc($response);
 
-        if ( password_verify($password, $row['password']) ) {
+        if (isset($_POST['email']) && isset($_POST['password'])) {
             
             $index['name'] = $row['name'];
-            $index['email'] = $row['email'];
-            $index['id'] = $row['id'];
+            $index['email'] = $row['email'];           
+            $index['user_id'] = $row['user_id'];
+            $index['user_firstname'] = $row['user_firstname'];
+            $index['user_lastname'] = $row['user_lastname'];
+            $index['password'] = $row['password'];
+            $index['user_age']       = $row['user_age'] ;
+             $index['user_tel']       = $row['user_tel'] ;
+             $index['user_sex']       = $row['user_sex'] ;
+             $index['security_code']       = $row['security_code'] ;
+        
+           
+            
+            
 
             array_push($result['login'], $index);
 

@@ -29,7 +29,7 @@
 	// INNER JOIN users u on rq.user_create = u.user_id and rq.user_create!='$user_id'");
 
 	$stmt = $conn->prepare("SELECT rq.req_id , a.id , a.stadium_name , a.date , a.time , a.user_id , s.status_id , s.status_name , u.user_id , u.name , u.photo_user 
-	FROM request_joinact rq INNER JOIN football_activity a on rq.id = a.id INNER JOIN status s on rq.status_id = s.status_id INNER JOIN users u on rq.user_create = u.user_id WHERE rq.userid_join = '$user_id'");
+	FROM request_joinact rq INNER JOIN activity a on rq.id = a.id INNER JOIN status s on rq.status_id = s.status_id INNER JOIN users u on rq.user_create = u.user_id WHERE rq.userid_join = '$user_id'");
 	
 	//executing the query 
 	$stmt->execute();

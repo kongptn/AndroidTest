@@ -11,7 +11,7 @@
     $id = isset($_POST['id']) ? $_POST['id'] : '';
     $number_join = isset($_POST['number_join']) ? $_POST['number_join'] : '';
   
-    $sql = "UPDATE football_activity SET number_join = $number_join WHERE id = $id";
+    $sql = "UPDATE activity SET number_join = $number_join WHERE id = $id";
 
     if ($con->query($sql) === TRUE) {
         echo "true";

@@ -18,7 +18,7 @@
 	$id = isset($_POST['id']) ? $_POST['id'] : '';
 //	$id = isset($_POST['id']);
 	$sql ="SELECT a.id , a.stadium_name , a.description , a.photo , a.date , a.time , a.location , a.number_join , u.user_id , u.name , u.photo_user 
-	FROM football_activity a INNER JOIN users u on a.user_id = u.user_id WHERE id = '$id'";
+	FROM activity a INNER JOIN users u on a.user_id = u.user_id WHERE id = '$id'";
 
 //	$sql ="SELECT * FROM football_activity WHERE id = 300";
 	$result = mysqli_query($con ,$sql);

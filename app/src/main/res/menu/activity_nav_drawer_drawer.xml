@@ -28,6 +28,10 @@
             android:id="@+id/nav_search_act"
             android:icon="@drawable/ic_person_add"
             android:title="คำร้องขอเป็นเพื่อน" />
+        <item
+            android:id="@+id/nav_invite"
+            android:icon="@drawable/ic_whatshot"
+            android:title="คำเชิญเข้าร่วมกิจกรรม" />
     </group>
 
 

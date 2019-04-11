@@ -1,7 +1,7 @@
 <?php
 $con=mysqli_connect("localhost","root","","findjoinsport");
 
-$sql="SELECT * FROM football_activity fa inner join sport_type sp on fa.type_id = sp.type_id WHERE sp.type_id = 1;";
+$sql="SELECT * FROM activity fa inner join sport_type sp on fa.type_id = sp.type_id WHERE sp.type_id = 1;";
 										
 
 

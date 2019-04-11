@@ -46,7 +46,7 @@ public class Request_Friend extends Fragment {
         // Required empty public constructor
     }
 
-    private static final String URL_REQfriend = "http://10.13.4.158/findjoinsport/friend/show_req_friend.php";
+    private static final String URL_REQfriend = "http://192.168.2.34/findjoinsport/friend/show_req_friend.php";
 
     //a list to store all the products
     List<Request_FriendData> request_friendDataList;

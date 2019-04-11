@@ -2,6 +2,7 @@ package com.example.android.findjoinsports.SearchActivity;
 import com.android.volley.AuthFailureError;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.android.findjoinsports.CreateActivity.CreateBasketball;
+import com.example.android.findjoinsports.Friends_List;
+import com.example.android.findjoinsports.Friends_List_Invite;
 import com.example.android.findjoinsports.R;
 import com.example.android.findjoinsports.SessionManager;
 import com.google.android.gms.maps.CameraUpdate;
@@ -37,14 +40,14 @@ import java.util.Map;
 
 public class DescriptionActivity extends AppCompatActivity {
 
-    private static final String URL_SHOW = "http://192.168.2.33/findjoinsport/search_activity/test.php";
-    private static final String URL_REQ = "http://192.168.2.33/findjoinsport/request_joinact/request_joinact.php";
+    private static final String URL_SHOW = "http://192.168.2.34/findjoinsport/search_activity/test.php";
+    private static final String URL_REQ = "http://192.168.2.34/findjoinsport/request_joinact/request_joinact.php";
 
 
     ImageView image,imgUser;
     TextView tvUserName, tvStadium, tvPlace, tvDate, tvTime, tvDescript, tvLocation, tvNumJoin;
     String userid, mUser_id, status_id,User_id;
-    Button btn_join;
+    Button btn_join,btn_invite;
     SessionManager sessionManager;
     @SuppressLint("WrongViewCast")
     @Override
@@ -84,6 +87,19 @@ public class DescriptionActivity extends AppCompatActivity {
                 btn_join.setEnabled(false);
             }
         });
+
+        btn_invite = findViewById(R.id.btn_invite);
+        btn_invite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DescriptionActivity.this,Friends_List_Invite.class);
+                i.putExtra("id",String.valueOf(userid));
+                i.putExtra("user_id",String.valueOf(User_id));
+                Toast.makeText(DescriptionActivity.this, String.valueOf(userid), Toast.LENGTH_SHORT).show();
+                btn_invite.setEnabled(false);
+                startActivity(i);
+            }
+        });
     }
 
     private void onButtonClick(final String userid) {
@@ -118,14 +134,14 @@ public class DescriptionActivity extends AppCompatActivity {
                         tvLocation.setText(Location);
                         tvNumJoin.setText(numjoin);
 
-                        String photo = "http://192.168.2.33/findjoinsport/football/"+Photo;
+                        String photo = "http://192.168.2.34/findjoinsport/football/"+Photo;
                         if (photo.equalsIgnoreCase("")){
                             photo = "Default";
                         }
 
                         Picasso.with(DescriptionActivity.this).load(photo).placeholder(R.drawable.s).into(image);
 
-                        String photo_user = "http://192.168.2.33/android_register_login/"+Photo_user;
+                        String photo_user = "http://192.168.2.34/android_register_login/"+Photo_user;
                         if (photo_user.equalsIgnoreCase("")){
                             photo_user = "Default";
                         }
