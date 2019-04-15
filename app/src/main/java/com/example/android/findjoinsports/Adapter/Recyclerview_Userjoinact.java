@@ -3,6 +3,7 @@ package com.example.android.findjoinsports.Adapter;
 import android.app.Dialog;
 import android.content.Context;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 
 import android.util.Log;
@@ -23,8 +24,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android.findjoinsports.DATA.Descrip_ActData;
 import com.example.android.findjoinsports.DATA.List_FriendData;
 import com.example.android.findjoinsports.DATA.Request_FriendData;
+import com.example.android.findjoinsports.DATA.Request_JoinData_Creator;
+import com.example.android.findjoinsports.DetailsActivity;
 import com.example.android.findjoinsports.R;
 import com.example.android.findjoinsports.SessionManager;
 import com.squareup.picasso.Picasso;
@@ -33,12 +37,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Adapter_List_Friends extends RecyclerView.Adapter<Adapter_List_Friends.ReqjoinViewHolder> {
-    String mUser_id,rf_id;
+public class Recyclerview_Userjoinact extends RecyclerView.Adapter<Recyclerview_Userjoinact.ReqjoinViewHolder> {
+    String mUser_id,rf_id,user_join;
     String status_id = "F02";
     //private static final String URL_DIA = "http://192.168.2.37/findjoinsport/friend/update_reqfriend.php";
     private Context mCtx;
-    private List<List_FriendData> list_friendDataListi;
+    private List<Descrip_ActData> descrip_actDataList;
     private OnItemClickListener listener_reqjoin;
 
     SessionManager sessionManager;
@@ -49,9 +53,9 @@ public class Adapter_List_Friends extends RecyclerView.Adapter<Adapter_List_Frie
 //        this.listener_reqjoin = (OnItemClickListener) reqjoin;
 //    }
 
-    public Adapter_List_Friends(Context mCtx, List<List_FriendData> list_friendDataListi, OnItemClickListener onItemClickListener) {
+    public Recyclerview_Userjoinact(Context mCtx, List<Descrip_ActData> descrip_actDataList, OnItemClickListener onItemClickListener) {
         this.mCtx = mCtx;
-        this.list_friendDataListi = list_friendDataListi;
+        this.descrip_actDataList = descrip_actDataList;
         this.listener_reqjoin =  onItemClickListener;
     }
 
@@ -63,7 +67,7 @@ public class Adapter_List_Friends extends RecyclerView.Adapter<Adapter_List_Frie
     @Override
     public ReqjoinViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.item_list_friend, null);
+        View view = inflater.inflate(R.layout.list_user_joinact, null);
         sessionManager = new SessionManager(mCtx);
         sessionManager.checkLogin();
         HashMap<String, String> user = sessionManager.getUserDetail();
@@ -75,37 +79,27 @@ public class Adapter_List_Friends extends RecyclerView.Adapter<Adapter_List_Frie
 
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
-        final List_FriendData list_friendData = list_friendDataListi.get(position);
-        String photo_user = "http://192.168.2.37/android_register_login/"+list_friendData.getPhoto_user();
+        final Descrip_ActData descrip_actData = descrip_actDataList.get(position);
+        String photo_user = "http://192.168.2.37/android_register_login/"+descrip_actData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }
         Picasso.with(mCtx).load(photo_user).placeholder(R.drawable.n).into(holder.images);
 
 
-        holder.name.setText(list_friendData.getName());
+        holder.name.setText(descrip_actData.getName());
 
 
 
 
-        holder.rootView.setOnClickListener(new View.OnClickListener() {
+        holder.images.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                listener_reqjoin.onItemClick(request_friend.getId());
-                listener_reqjoin.onItemClick(list_friendData.getUser_id());
-             //   listener_reqjoin.onItemClick(list_friendData.getUserid_add());
-                //   listener_reqjoin.onItemClick(Integer.parseInt(request_friend.getStatus_id()));
-                listener_reqjoin.onItemClick(list_friendData.getRf_id());
-//                listener_reqjoin.onItemClick(request_friend.getUser_create());
-
-//                actid = String.valueOf((request_friend.getId()));
-//
-//                numjoin = Integer.parseInt(String.valueOf((request_friend.getNumber_join())));
-//
-                rf_id = String.valueOf((list_friendData.getRf_id()));
-//
-//                user_join = String.valueOf((request_friend.getUserid_join()));
-//                Log.d("fdf", user_join);
+                user_join = String.valueOf((descrip_actData.getUserid_join()));
+                Intent i = new Intent(mCtx,DetailsActivity.class);
+                i.putExtra("user_id",String.valueOf(user_join));
+                Toast.makeText(mCtx, String.valueOf(user_join), Toast.LENGTH_SHORT).show();
+                mCtx.startActivity(i);
 
 
 
@@ -116,7 +110,7 @@ public class Adapter_List_Friends extends RecyclerView.Adapter<Adapter_List_Frie
 
     @Override
     public int getItemCount() {
-        return list_friendDataListi.size();
+        return descrip_actDataList.size();
     }
 
     class ReqjoinViewHolder extends RecyclerView.ViewHolder {
@@ -129,8 +123,7 @@ public class Adapter_List_Friends extends RecyclerView.Adapter<Adapter_List_Frie
         public ReqjoinViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            email = itemView.findViewById(R.id.email);
-            images = itemView.findViewById(R.id.images);
+            images = itemView.findViewById(R.id.image_view);
             rootView = itemView.findViewById(R.id.rootView);
         }
     }

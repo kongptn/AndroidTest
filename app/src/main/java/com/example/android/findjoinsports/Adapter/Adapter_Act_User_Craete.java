@@ -51,13 +51,13 @@ public class Adapter_Act_User_Craete extends RecyclerView.Adapter<Adapter_Act_Us
         final Act_User_CreateData act_user_createData = act_user_createDataList.get(position);
 
         //loading the image
-        String photo = "http://192.168.2.34/findjoinsport/football/"+act_user_createData.getPhoto();
+        String photo = "http://192.168.2.37/findjoinsport/football/"+act_user_createData.getPhoto();
         if (photo.equalsIgnoreCase("")){
             photo = "Default";
         }
         Picasso.with(mCtx).load(photo).placeholder(R.drawable.s).into(holder.imageView);
 
-        String photo_user = "http://192.168.2.34/android_register_login/"+act_user_createData.getPhoto_user();
+        String photo_user = "http://192.168.2.37/android_register_login/"+act_user_createData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }

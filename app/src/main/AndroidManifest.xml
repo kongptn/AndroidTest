@@ -67,7 +67,8 @@
         <activity android:name=".Search_Friend" />
         <activity android:name=".DetailsActivity" />
         <activity android:name=".Friends_List" />
-        <activity android:name=".Friends_List_Invite"></activity>
+        <activity android:name=".Friends_List_Invite" />
+        <activity android:name=".Edit_Activity"></activity>
     </application>
 
 </manifest>

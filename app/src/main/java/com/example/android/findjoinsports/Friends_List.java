@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Friends_List extends AppCompatActivity {
-    private static final String URL_REQfriend = "http://192.168.2.34/findjoinsport/friend/friend_list.php";
+    private static final String URL_REQfriend = "http://192.168.2.37/findjoinsport/friend/friend_list.php";
    // private static final String URL_friend = "http://192.168.2.34/findjoinsport/friend/friend_list_2.php";
 
     //a list to store all the products

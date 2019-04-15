@@ -46,7 +46,7 @@ public class Invite_Joinact extends Fragment {
         // Required empty public constructor
     }
 
-    private static final String URL_sendREQJOIN = "http://192.168.2.34/findjoinsport/friend/show_invite_joinact.php";
+    private static final String URL_sendREQJOIN = "http://192.168.2.37/findjoinsport/friend/show_invite_joinact.php";
     //private static final String URL_REQJOIN = "http://192.168.2.35/findjoinsport/request_joinact/reqjoin_show.php";
 
     //a list to store all the products
@@ -56,8 +56,8 @@ public class Invite_Joinact extends Fragment {
     RecyclerView recyclerView;
     SessionManager sessionManager;
 
-    int id;
-    //    String userid_join;
+
+    //     String userid_join;
 
 
     @Override
@@ -113,7 +113,7 @@ public class Invite_Joinact extends Fragment {
 
                                 //adding the product to product list
                                 int invite_id = object.getInt("invite_id");
-                                id = object.getInt("id");
+                                int id = object.getInt("id");
                                 String stadium_name = object.getString("stadium_name");
                                 String name = object.getString("name");
                                 String photo = object.getString("photo");
@@ -151,10 +151,10 @@ public class Invite_Joinact extends Fragment {
 
                                 @Override
                                 public void onItemClick(int id) {
-//                                    Intent intent = new Intent(getContext(),DescriptionActivity.class);
-//                                    intent.putExtra("id",String.valueOf(id));
-//                                    Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
-//                                    startActivity(intent);
+                                    Intent intent = new Intent(getContext(),DescriptionActivity.class);
+                                    intent.putExtra("id",String.valueOf(id));
+                                    Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+                                    startActivity(intent);
                                 }
                             });
                             recyclerView.setAdapter(adapter_invite_joinact);

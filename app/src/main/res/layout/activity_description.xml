@@ -88,6 +88,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/imgpro"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recyclerview_userjoin"
+            android:orientation="horizontal"></android.support.v7.widget.RecyclerView>
+
         <TextView
             android:id="@+id/tvNumJoin"
             android:layout_toRightOf="@+id/imgpro"
@@ -142,7 +150,7 @@
 
         <View
             android:id="@+id/view2"
-            android:layout_below="@+id/imgpro"
+            android:layout_below="@+id/recyclerview_userjoin"
             android:layout_width="325dp"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
@@ -153,7 +161,7 @@
             android:id="@+id/txtDes"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/imgpro"
+            android:layout_below="@+id/view2"
             android:text="รายละเอียด"
             android:textSize="15dp"
             android:textColor="#FFFFFF"
@@ -163,7 +171,7 @@
         android:id="@+id/tvDescript"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/txtDes"
-        android:layout_below="@+id/imgpro"
+        android:layout_below="@+id/view2"
         android:layout_marginTop="20dp"
         android:text="รายละเอียดกิจกรรม"
         android:textSize="15dp"

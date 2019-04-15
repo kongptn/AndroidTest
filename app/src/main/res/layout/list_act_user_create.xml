@@ -12,7 +12,7 @@
         android:id="@+id/parentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        android:background="#d8e0e3"
         android:padding="8dp">
 
 
@@ -26,32 +26,46 @@
 
         <RelativeLayout
             android:id="@+id/rtlayout"
+            android:layout_marginTop="8dp"
             android:layout_below="@+id/imageView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ffffff">
+            android:background="@drawable/req">
 
             <TextView
                 android:id="@+id/textViewName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="14dp"
-                android:layout_toRightOf="@+id/imgUser"
-                android:text="Apple MacBook Air Core"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:textColor="#000000"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/imgUser"
+                android:layout_marginLeft="25dp"
+                android:text="ชื่อผู้ใช้"
+                android:textColor="#ffffff"
                 android:textStyle="bold" />
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgUser"
-                android:layout_width="50dp"
-                android:layout_height="40dp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_below="@+id/textViewStadiumName"
+                android:layout_toRightOf="@+id/imgUser"
+                android:layout_marginLeft="8dp"
+                android:layout_width="325dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="#bebebe"></View>
+
             <TextView
                 android:id="@+id/textViewStadiumName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewName"
-                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@+id/imgUser"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="8dp"
                 android:text="ชื่อสนาม"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />
@@ -60,12 +74,12 @@
                 android:id="@+id/textViewDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/textViewStadiumName"
+                android:layout_below="@id/view2"
+                android:layout_toRightOf="@+id/imgUser"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:layout_marginLeft="8dp"
                 android:text="วันที่"
+                android:textColor="#FFFFFF"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
                 android:textStyle="bold" />
 
@@ -74,9 +88,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewDate"
+                android:layout_toRightOf="@+id/imgUser"
                 android:layout_marginTop="4dp"
-                android:background="@color/colorPrimary"
+                android:layout_marginLeft="8dp"
                 android:text="เวลา"
+                android:textColor="#FFFFFF"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse"
                 android:textStyle="bold" />
 
@@ -84,5 +100,4 @@
 
 
     </RelativeLayout>
-
 </LinearLayout>

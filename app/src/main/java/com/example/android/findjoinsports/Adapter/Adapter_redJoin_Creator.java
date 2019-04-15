@@ -29,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.android.findjoinsports.DATA.Request_JoinData_Creator;
+import com.example.android.findjoinsports.DetailsActivity;
 import com.example.android.findjoinsports.R;
 import com.example.android.findjoinsports.SearchActivity.DescriptionActivity;
 import com.example.android.findjoinsports.SessionManager;
@@ -46,9 +47,9 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoin_Creator.ReqjoinViewHolder> {
 
-    private static final String URL_DIA = "http://192.168.2.34/findjoinsport/request_joinact/update_req.php";
-    private static final String URL_numjoin = "http://192.168.2.34/findjoinsport/request_joinact/update_numberjoin.php";
-    String mUser_id,user_join,actid,reqid;
+    private static final String URL_DIA = "http://192.168.2.37/findjoinsport/request_joinact/update_req.php";
+    private static final String URL_numjoin = "http://192.168.2.37/findjoinsport/request_joinact/update_numberjoin.php";
+    String mUser_id,user_join,actid,reqid,user_id;
     int numjoin = 1;
 
     String status_id = "J02";
@@ -94,11 +95,13 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final Request_JoinData_Creator request_joinData_creator = request_joinData_creatorList.get(position);
-        String photo_user = "http://192.168.2.34/android_register_login/"+request_joinData_creator.getPhoto_user();
+        String photo_user = "http://192.168.2.37/android_register_login/"+request_joinData_creator.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }
         Picasso.with(mCtx).load(photo_user).placeholder(R.drawable.n).into(holder.imgUser);
+
+
 
         holder.textViewStadiumName.setText(request_joinData_creator.getStadium_name());
         holder.textViewName.setText(request_joinData_creator.getName());
@@ -137,7 +140,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
 
                 ImageView imgDialog = (ImageView)myDialog.findViewById(R.id.imgDialog);
                 dialog_tv.setText(request_joinData_creator.getName());
-                String photo_user = "http://192.168.2.34/android_register_login/"+request_joinData_creator.getPhoto_user();
+                String photo_user = "http://192.168.2.37/android_register_login/"+request_joinData_creator.getPhoto_user();
                 if (photo_user.equalsIgnoreCase("")){
                     photo_user = "Default";
                 }
@@ -169,6 +172,18 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
             }
 
 
+        });
+
+
+        holder.imgUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user_join = String.valueOf((request_joinData_creator.getUserid_join()));
+                Intent i = new Intent(mCtx,DetailsActivity.class);
+                i.putExtra("user_id",String.valueOf(user_join));
+                Toast.makeText(mCtx, String.valueOf(user_join), Toast.LENGTH_SHORT).show();
+                mCtx.startActivity(i);
+            }
         });
     }
 

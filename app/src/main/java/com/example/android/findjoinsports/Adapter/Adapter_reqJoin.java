@@ -52,7 +52,7 @@ public class Adapter_reqJoin extends RecyclerView.Adapter<Adapter_reqJoin.Reqjoi
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final Request_JoinData request_joinData = request_joinDataList.get(position);
-        String photo_user = "http://192.168.2.34/android_register_login/"+request_joinData.getPhoto_user();
+        String photo_user = "http://192.168.2.37/android_register_login/"+request_joinData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }

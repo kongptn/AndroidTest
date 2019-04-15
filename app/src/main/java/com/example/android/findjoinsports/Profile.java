@@ -66,7 +66,7 @@ public class Profile extends Fragment {
     private Button btn_photo_upload;
     private Bitmap bitmap;
     CircleImageView profile_image;
-    private static String URL_READ = "http://192.168.2.34/android_register_login/read_detail.php";
+    private static String URL_READ = "http://192.168.2.33/android_register_login/read_detail.php";
 
     private static String strSex;
 

@@ -31,7 +31,7 @@ import java.util.Map;
 public class Friends_List_Invite extends AppCompatActivity {
     //private static final String URL= "http://10.13.4.158/findjoinsport/friend/invite_joinact.php";
 
-    private static final String URL_REQfriend = "http://192.168.2.34/findjoinsport/friend/friend_list.php";
+    private static final String URL_REQfriend = "http://192.168.2.37/findjoinsport/friend/friend_list.php";
 
     //a list to store all the products
     List<Request_Invite_JoinactData> request_invite_joinactDataList;

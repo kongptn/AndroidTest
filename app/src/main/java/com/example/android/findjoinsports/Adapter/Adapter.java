@@ -50,13 +50,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
         final RecyclerSearch recyclerSearch = recyclerSearchList.get(position);
 
         //loading the image
-        String photo = "http://192.168.2.34/findjoinsport/football/"+recyclerSearch.getPhoto();
+        String photo = "http://192.168.2.37/findjoinsport/football/"+recyclerSearch.getPhoto();
         if (photo.equalsIgnoreCase("")){
             photo = "Default";
         }
         Picasso.with(mCtx).load(photo).placeholder(R.drawable.s).into(holder.imageView);
 
-        String photo_user = "http://192.168.2.34/android_register_login/"+recyclerSearch.getPhoto_user();
+        String photo_user = "http://192.168.2.37/android_register_login/"+recyclerSearch.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }

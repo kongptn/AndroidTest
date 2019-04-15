@@ -38,7 +38,7 @@ public class Adapter_ReqInvite_Joinact extends RecyclerView.Adapter<Adapter_ReqI
     private final String act_id,user_create;
     String mUser_id,rf_id,user_id,mName;
     String status_id = "J01";
-    private static final String URL_DIA = "http://192.168.2.34/findjoinsport/friend/invite_joinact.php";
+    private static final String URL_DIA = "http://192.168.2.37/findjoinsport/friend/invite_joinact.php";
     private Context mCtx;
     private List<Request_Invite_JoinactData> request_invite_joinactDataList;
     private OnItemClickListener listener_reqjoin;
@@ -85,7 +85,7 @@ public class Adapter_ReqInvite_Joinact extends RecyclerView.Adapter<Adapter_ReqI
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final Request_Invite_JoinactData request_invite_joinactData = request_invite_joinactDataList.get(position);
-        String photo_user = "http://192.168.2.34/android_register_login/"+request_invite_joinactData.getPhoto_user();
+        String photo_user = "http://192.168.2.37/android_register_login/"+request_invite_joinactData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }
@@ -125,7 +125,7 @@ public class Adapter_ReqInvite_Joinact extends RecyclerView.Adapter<Adapter_ReqI
 
                 ImageView imgDialog = (ImageView)myDialog.findViewById(R.id.imgDialog);
                 dialog_tv.setText(request_invite_joinactData.getName());
-                String photo_user = "http://192.168.2.34/android_register_login/"+request_invite_joinactData.getPhoto_user();
+                String photo_user = "http://192.168.2.37/android_register_login/"+request_invite_joinactData.getPhoto_user();
                 if (photo_user.equalsIgnoreCase("")){
                     photo_user = "Default";
                 }

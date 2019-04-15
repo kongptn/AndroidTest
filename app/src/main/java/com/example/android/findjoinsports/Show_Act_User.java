@@ -2,10 +2,16 @@ package com.example.android.findjoinsports;
 import com.android.volley.AuthFailureError;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,8 +25,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android.findjoinsports.Adapter.Recyclerview_Userjoinact;
 import com.example.android.findjoinsports.CreateActivity.CreateBasketball;
+import com.example.android.findjoinsports.DATA.Descrip_ActData;
 import com.example.android.findjoinsports.R;
+import com.example.android.findjoinsports.SearchActivity.DescriptionActivity;
+import com.example.android.findjoinsports.SearchActivity.SearchActivity;
 import com.example.android.findjoinsports.SessionManager;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -32,15 +42,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Show_Act_User extends AppCompatActivity {
 
-    private static final String URL_SHOW = "http://192.168.2.34/findjoinsport/search_activity/test.php";
-    private static final String URL_DEL = "http://192.168.2.34/findjoinsport/football/delete_act.php";
-
-    private static final String URL_DEL_REQ = " http://192.168.2.34/findjoinsport/football/delete_reqjoin.php";
+    private static final String URL_SHOW = "http://192.168.2.37/findjoinsport/search_activity/test.php";
+    private static final String URL_DEL = "http://192.168.2.37/findjoinsport/football/delete_act.php";
+    private static final String URL_SHOW_USER = "http://192.168.2.37/findjoinsport/football/show_userjoin.php";
+    private static final String URL_DEL_REQ = " http://192.168.2.37/findjoinsport/football/delete_reqjoin.php";
 
 
 
@@ -48,8 +60,14 @@ public class Show_Act_User extends AppCompatActivity {
     ImageView image,imgUser;
     TextView tvUserName, tvStadium, tvPlace, tvDate, tvTime, tvDescript, tvLocation, tvNumJoin;
     String userid, mUser_id, status_id,User_id;
-    Button btn_join;
+    Button btn_join,btn_edit;
     SessionManager sessionManager;
+
+    List<Descrip_ActData> descrip_actDataList;
+
+    //the recyclerview
+    RecyclerView recyclerView;
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +97,18 @@ public class Show_Act_User extends AppCompatActivity {
 
 
         onButtonClick(userid);
+        showUserjoin(userid);
+        btn_edit = findViewById(R.id.btn_edit);
+        btn_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Show_Act_User.this,Edit_Activity.class);
+                intent.putExtra("id",String.valueOf(userid));
+                Toast.makeText(Show_Act_User.this, String.valueOf(userid), Toast.LENGTH_SHORT).show();
+                startActivity(intent);
 
+            }
+        });
 
         btn_join = findViewById(R.id.btn_join);
         btn_join.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +119,19 @@ public class Show_Act_User extends AppCompatActivity {
                 Toast.makeText(Show_Act_User.this, "ลบกิจกรรมแล้ว", Toast.LENGTH_SHORT).show();
             }
         });
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+
+
+        recyclerView = findViewById(R.id.recyclerview_userjoin);
+//        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+
+
+        //initializing the productlist
+        descrip_actDataList = new ArrayList<>();
     }
 
     private void onButtonClick(final String userid) {
@@ -124,14 +166,14 @@ public class Show_Act_User extends AppCompatActivity {
                     tvLocation.setText(Location);
                     tvNumJoin.setText(numjoin);
 
-                    String photo = "http://192.168.2.34/findjoinsport/football/"+Photo;
+                    String photo = "http://192.168.2.37/findjoinsport/football/"+Photo;
                     if (photo.equalsIgnoreCase("")){
                         photo = "Default";
                     }
 
                     Picasso.with(Show_Act_User.this).load(photo).placeholder(R.drawable.s).into(image);
 
-                    String photo_user = "http://192.168.2.34/android_register_login/"+Photo_user;
+                    String photo_user = "http://192.168.2.37/android_register_login/"+Photo_user;
                     if (photo_user.equalsIgnoreCase("")){
                         photo_user = "Default";
                     }
@@ -166,6 +208,84 @@ public class Show_Act_User extends AppCompatActivity {
 
         };
         requestQueue.add(request);
+    }
+
+    private void showUserjoin(final String userid) {
+
+        /*
+         * Creating a String Request
+         * The request type is GET defined by first parameter
+         * The URL is defined in the second parameter
+         * Then we have a Response Listener and a Error Listener
+         * In response listener we will get the JSON response as a String
+         * */
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SHOW_USER,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //converting the string to json array object
+                            JSONArray array = new JSONArray(response);
+
+                            //traversing through all the object
+                            for (int i = 0; i < array.length(); i++) {
+
+                                //getting product object from json array
+                                JSONObject object = array.getJSONObject(i);
+
+                                //adding the product to product list
+                                int req_id = object.getInt("req_id");
+//                                int userid_add = object.getInt("userid_add");
+                                int id = object.getInt("id");
+                                int userid_join = object.getInt("userid_join");
+
+//
+                                String name = object.getString("name");
+                                Log.d("naaa",name);
+                                String photo_user = object.getString("photo_user");
+
+
+                                Descrip_ActData descrip_actData = new Descrip_ActData(req_id, id, userid_join , name, photo_user);
+                                descrip_actDataList.add(descrip_actData);
+                            }
+
+                            //creating adapter object and setting it to recyclerview
+                            Recyclerview_Userjoinact recyclerview_userjoinact = new Recyclerview_Userjoinact(Show_Act_User.this, descrip_actDataList, new Recyclerview_Userjoinact.OnItemClickListener() {
+
+                                @Override
+                                public void onItemClick(int id) {
+//                                    Intent intent = new Intent(getContext(),DescriptionActivity.class);
+//                                    intent.putExtra("id",String.valueOf(id));
+//                                    Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+//                                    startActivity(intent);
+                                }
+                            });
+                            recyclerView.setAdapter(recyclerview_userjoinact);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(Show_Act_User.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }){
+
+            protected Map<String, String> getParams() {
+                // Posting params to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", userid);
+
+                return params;
+            }
+
+        };
+
+        //adding our stringrequest to queue
+        Volley.newRequestQueue(Show_Act_User.this).add(stringRequest);
     }
 
     private void Delete_act() {
@@ -221,6 +341,40 @@ public class Show_Act_User extends AppCompatActivity {
         };
         requestQueue.add(request);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_action, menu);
+
+        Menu action = menu;
+        action.findItem(R.id.menu_save).setVisible(false);
+        action.findItem(R.id.menu_edit).setVisible(false);
+
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.menu_back:
+
+                Intent menu_back = new Intent(Show_Act_User.this, NavDrawer.class);
+                startActivity(menu_back);
+
+                return true;
+            default:
+
+                return super.onOptionsItemSelected(item);
+        }
+
+
+
+    }
+
 }
 
 

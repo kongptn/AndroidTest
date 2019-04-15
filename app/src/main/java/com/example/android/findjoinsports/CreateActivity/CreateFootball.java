@@ -55,7 +55,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
     String type_id = "1";
     private int user_id;
     private Bitmap bitmap;
-    private static final String URL = "http://192.168.2.34/findjoinsport/football/InsertData.php";
+    private static final String URL = "http://192.168.2.33/findjoinsport/football/InsertData.php";
     private String UploadUrl = "http://10.13.4.117/ImageUploadApp/updateinfo.php";
     SessionManager sessionManager;
 

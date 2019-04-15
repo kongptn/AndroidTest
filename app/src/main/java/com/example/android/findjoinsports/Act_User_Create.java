@@ -43,7 +43,7 @@ public class Act_User_Create extends Fragment {
     public Act_User_Create() {
         // Required empty public constructor
     }
-    private static final String URL_PRODUCTS = "http://192.168.2.34/findjoinsport/request_joinact/act_user_create.php";
+    private static final String URL_PRODUCTS = "http://192.168.2.37/findjoinsport/request_joinact/act_user_create.php";
 
     //a list to store all the products
     List<Act_User_CreateData> act_user_createDataList;

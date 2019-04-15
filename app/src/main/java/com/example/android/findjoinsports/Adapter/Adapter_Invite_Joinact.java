@@ -40,8 +40,8 @@ public class Adapter_Invite_Joinact extends RecyclerView.Adapter<Adapter_Invite_
     String status_id = "J02";
     int numjoin = 1;
 
-    private static final String URL_DIA = "http://192.168.2.34/findjoinsport/friend/update_inviteact.php";
-    private static final String URL_numjoin = "http://192.168.2.34/findjoinsport/request_joinact/update_numberjoin.php";
+    private static final String URL_DIA = "http://192.168.2.37/findjoinsport/friend/update_inviteact.php";
+    private static final String URL_numjoin = "http://192.168.2.37/findjoinsport/request_joinact/update_numberjoin.php";
     private Context mCtx;
     private List<Invite_JoinactData> invite_joinactDataList;
     private OnItemClickListener listener_reqjoin;
@@ -91,13 +91,13 @@ public class Adapter_Invite_Joinact extends RecyclerView.Adapter<Adapter_Invite_
 //        holder.name.setText(invite_joinactData.getName());
 
         //loading the image
-        String photo = "http://192.168.2.34/findjoinsport/football/"+invite_joinactData.getPhoto();
+        String photo = "http://192.168.2.37/findjoinsport/football/"+invite_joinactData.getPhoto();
         if (photo.equalsIgnoreCase("")){
             photo = "Default";
         }
         Picasso.with(mCtx).load(photo).placeholder(R.drawable.s).into(holder.imageView);
 
-        String photo_user = "http://192.168.2.34/android_register_login/"+invite_joinactData.getPhoto_user();
+        String photo_user = "http://192.168.2.37/android_register_login/"+invite_joinactData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }
@@ -109,69 +109,69 @@ public class Adapter_Invite_Joinact extends RecyclerView.Adapter<Adapter_Invite_
         holder.textViewTime.setText(invite_joinactData.getTime());
         holder.textViewStatus.setText(invite_joinactData.getStatus_name());
 
-        holder.tvn.setText(invite_joinactData.getName());
+      //  holder.tvn.setText(invite_joinactData.getName());
 
 
 
-        myDialog = new Dialog(mCtx);
-        myDialog.setContentView(R.layout.dialog_invitejoin);
+//        myDialog = new Dialog(mCtx);
+//        myDialog.setContentView(R.layout.dialog_invitejoin);
 
 
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                listener_reqjoin.onItemClick(request_friend.getId());
-                listener_reqjoin.onItemClick(invite_joinactData.getUser_id());
+                   listener_reqjoin.onItemClick(invite_joinactData.getId());
+                //listener_reqjoin.onItemClick(invite_joinactData.getUser_id());
                 //   listener_reqjoin.onItemClick(list_friendData.getUserid_add());
                 //   listener_reqjoin.onItemClick(Integer.parseInt(request_friend.getStatus_id()));
                // listener_reqjoin.onItemClick(invite_joinactData.getRf_id());
 //                listener_reqjoin.onItemClick(request_friend.getUser_create());
-                   invid = String.valueOf((invite_joinactData.getInvite_id()));
-                    actid = String.valueOf((invite_joinactData.getId()));
+//                   invid = String.valueOf((invite_joinactData.getInvite_id()));
+//                    actid = String.valueOf((invite_joinactData.getId()));
 //
-                numjoin = Integer.parseInt(String.valueOf((invite_joinactData.getNumber_join())));
+//                numjoin = Integer.parseInt(String.valueOf((invite_joinactData.getNumber_join())));
 //
                // rf_id = String.valueOf((invite_joinactData.getRf_id()));
 //
 //                user_join = String.valueOf((request_friend.getUserid_join()));
 //                Log.d("fdf", user_join);
 
-                TextView dialog_tv = (TextView) myDialog.findViewById(R.id.dialog_tv);
-                ImageButton bt_not_accept = (ImageButton)myDialog.findViewById(R.id.bt_not_accept);
-
-
-
-                ImageView imgDialog = (ImageView)myDialog.findViewById(R.id.imgDialog);
-                dialog_tv.setText(invite_joinactData.getName());
-                String photo_user = "http://192.168.2.34/android_register_login/"+invite_joinactData.getPhoto_user();
-                if (photo_user.equalsIgnoreCase("")){
-                    photo_user = "Default";
-                }
-                Picasso.with(mCtx).load(photo_user).placeholder(R.drawable.n).into(imgDialog);
-
-                ImageButton bt_accept = (ImageButton)myDialog.findViewById(R.id.bt_accept);
-                bt_accept.setOnClickListener(new View.OnClickListener() {
-
-                    // String act_id = String.valueOf((request_joinData_creator.getId()));
-
-
-                    @Override
-                    public void onClick(View v) {
-//                        Intent intent = new Intent(mCtx,DescriptionActivity.class);
-                        //  intent.putExtra("userid_join",request_joinData_creator.getUserid_join());
-                        Button_Accept();
-                        Update_numjoin();
+//                TextView dialog_tv = (TextView) myDialog.findViewById(R.id.dialog_tv);
+//                ImageButton bt_not_accept = (ImageButton)myDialog.findViewById(R.id.bt_not_accept);
+//
+//
+//
+//                ImageView imgDialog = (ImageView)myDialog.findViewById(R.id.imgDialog);
+//                dialog_tv.setText(invite_joinactData.getName());
+//                String photo_user = "http://192.168.2.34/android_register_login/"+invite_joinactData.getPhoto_user();
+//                if (photo_user.equalsIgnoreCase("")){
+//                    photo_user = "Default";
+//                }
+//                Picasso.with(mCtx).load(photo_user).placeholder(R.drawable.n).into(imgDialog);
+//
+//                ImageButton bt_accept = (ImageButton)myDialog.findViewById(R.id.bt_accept);
+//                bt_accept.setOnClickListener(new View.OnClickListener() {
+//
+//                    // String act_id = String.valueOf((request_joinData_creator.getId()));
+//
+//
+//                    @Override
+//                    public void onClick(View v) {
+////                        Intent intent = new Intent(mCtx,DescriptionActivity.class);
+//                        //  intent.putExtra("userid_join",request_joinData_creator.getUserid_join());
+//                        Button_Accept();
 //                        Update_numjoin();
-                        numjoin ++;
-//                        Intent intent = new Intent(mCtx,DescriptionActivity.class);
-//                        intent.putExtra("id",String.valueOf(id));
-                        // mCtx.startActivity(intent);
-                        Toast.makeText(mCtx, "เชิญเข้าร่วมแล้ว", Toast.LENGTH_SHORT).show();
-                        // Toast.makeText(mCtx, String.valueOf(id), Toast.LENGTH_SHORT).show();
-                    }
-
-                });
-                myDialog.show();
+////                        Update_numjoin();
+//                        numjoin ++;
+////                        Intent intent = new Intent(mCtx,DescriptionActivity.class);
+////                        intent.putExtra("id",String.valueOf(id));
+//                        // mCtx.startActivity(intent);
+//                        Toast.makeText(mCtx, "เชิญเข้าร่วมแล้ว", Toast.LENGTH_SHORT).show();
+//                        // Toast.makeText(mCtx, String.valueOf(id), Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                });
+//                myDialog.show();
 
 
             }
@@ -196,7 +196,7 @@ public class Adapter_Invite_Joinact extends RecyclerView.Adapter<Adapter_Invite_
             textViewName = itemView.findViewById(R.id.textViewName);
             textViewDate = itemView.findViewById(R.id.textViewDate);
             textViewTime = itemView.findViewById(R.id.textViewTime);
-            tvn = itemView.findViewById(R.id.tvn);
+           // tvn = itemView.findViewById(R.id.tvn);
             textViewStatus = itemView.findViewById(R.id.textViewStatus);
             imageView = itemView.findViewById(R.id.imageView1);
             parentLayout = itemView.findViewById(R.id.parentLayout);
