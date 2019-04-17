@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1096314010373",
+    "firebase_url": "https://findjoinsport.firebaseio.com",
+    "project_id": "findjoinsport",
+    "storage_bucket": "findjoinsport.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096314010373:android:5657f9b3501e49bf",
+        "android_client_info": {
+          "package_name": "com.example.android.findjoinsports"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1096314010373-qia91ilp7bs6g0o5falar3r8bs6klvkp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwi_jvKcHbsMW6-HMMCotdDsXna6kpK7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1096314010373-qia91ilp7bs6g0o5falar3r8bs6klvkp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

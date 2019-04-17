@@ -47,8 +47,9 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoin_Creator.ReqjoinViewHolder> {
 
-    private static final String URL_DIA = "http://192.168.2.37/findjoinsport/request_joinact/update_req.php";
-    private static final String URL_numjoin = "http://192.168.2.37/findjoinsport/request_joinact/update_numberjoin.php";
+    private static final String URL_DIA = "http://10.13.3.135/findjoinsport/request_joinact/update_req.php";
+    private static final String URL_numjoin = "http://10.13.3.135/findjoinsport/request_joinact/update_numberjoin.php";
+    private static final String URL_NOTI = "http://10.13.3.135/android_register_login/push_notification.php";
     String mUser_id,user_join,actid,reqid,user_id;
     int numjoin = 1;
 
@@ -95,7 +96,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final Request_JoinData_Creator request_joinData_creator = request_joinData_creatorList.get(position);
-        String photo_user = "http://192.168.2.37/android_register_login/"+request_joinData_creator.getPhoto_user();
+        String photo_user = "http://10.13.3.135/android_register_login/"+request_joinData_creator.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }
@@ -140,7 +141,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
 
                 ImageView imgDialog = (ImageView)myDialog.findViewById(R.id.imgDialog);
                 dialog_tv.setText(request_joinData_creator.getName());
-                String photo_user = "http://192.168.2.37/android_register_login/"+request_joinData_creator.getPhoto_user();
+                String photo_user = "http://10.13.3.135/android_register_login/"+request_joinData_creator.getPhoto_user();
                 if (photo_user.equalsIgnoreCase("")){
                     photo_user = "Default";
                 }
@@ -160,6 +161,8 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
                         Update_numjoin();
 
                          numjoin ++;
+
+                        sendNonti(user_join,"ตอบรับเข้าร่วมกิจกรรมแล้ว");
 //                        Intent intent = new Intent(mCtx,DescriptionActivity.class);
 //                        intent.putExtra("id",String.valueOf(id));
                         // mCtx.startActivity(intent);
@@ -287,6 +290,44 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
 
         //adding our stringrequest to queue
         requestQueue.add(stringRequest);
+    }
+
+    private void sendNonti(final String user_join,final String noti) {
+
+        RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
+        StringRequest request = new StringRequest(Request.Method.POST, URL_NOTI, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("log",response.toString());
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to login url
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user_create",user_join);
+                Log.d("sdadoo",user_join);
+
+                params.put("Notification", noti);
+                Log.d("lksll",noti);
+
+
+
+                return params;
+            }
+
+        };
+        requestQueue.add(request);
     }
 
 }

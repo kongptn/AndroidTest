@@ -55,9 +55,9 @@ public class Edit_Profile extends AppCompatActivity  {
     private Button btn_photo_upload;
     private Bitmap bitmap;
     CircleImageView profile_image;
-    private static String URL_READ = "http://192.168.2.33/android_register_login/read_detail.php";
-    private static String URL_EDIT = "http://192.168.2.33/android_register_login/edit_detail.php";
-    private static String URL_UPLOAD = "http://192.168.2.33/android_register_login/upload.php";
+    private static String URL_READ = "http://10.13.3.135/android_register_login/read_detail.php";
+    private static String URL_EDIT = "http://10.13.3.135/android_register_login/edit_detail.php";
+    private static String URL_UPLOAD = "http://10.13.3.135/android_register_login/upload.php";
 
 
     private static String strSex;

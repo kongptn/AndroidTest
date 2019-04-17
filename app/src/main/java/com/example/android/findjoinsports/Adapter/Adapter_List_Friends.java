@@ -76,7 +76,7 @@ public class Adapter_List_Friends extends RecyclerView.Adapter<Adapter_List_Frie
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final List_FriendData list_friendData = list_friendDataListi.get(position);
-        String photo_user = "http://192.168.2.37/android_register_login/"+list_friendData.getPhoto_user();
+        String photo_user = "http://10.13.3.135/android_register_login/"+list_friendData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }

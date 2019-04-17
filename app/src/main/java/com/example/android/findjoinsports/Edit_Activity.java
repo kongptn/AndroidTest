@@ -68,8 +68,8 @@ public class Edit_Activity extends AppCompatActivity implements View.OnClickList
     String type_id = "3";
     int id;
     private Bitmap bitmap;
-    private static final String URL_EDIT = "http://192.168.2.33/findjoinsport/football/update_act.php";
-    private static final String URL_SHOW = "http://192.168.2.33/findjoinsport/football/edit_act.php";
+    private static final String URL_EDIT = "http://10.13.3.135/findjoinsport/football/update_act.php";
+    private static final String URL_SHOW = "http://10.13.3.135/findjoinsport/football/edit_act.php";
     SessionManager sessionManager;
 
     @Override
@@ -215,7 +215,7 @@ public class Edit_Activity extends AppCompatActivity implements View.OnClickList
                     PHOTO.setText(Photo);
                     //Log.d("text",(textTime));
                     // --
-                    String photo = "http://192.168.1.6/findjoinsport/football/" + Photo;
+                    String photo = "http://10.13.3.135/findjoinsport/football/" + Photo;
                     if (photo.equalsIgnoreCase("")) {
                         photo = "Default";
                     }

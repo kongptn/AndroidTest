@@ -32,6 +32,12 @@
             android:id="@+id/nav_invite"
             android:icon="@drawable/ic_whatshot"
             android:title="คำเชิญเข้าร่วมกิจกรรม" />
+
+
+        <item
+            android:id="@+id/nav_admin"
+            android:icon="@drawable/ic_call"
+            android:title="ติดต่อผู้ดูแลระบบ" />
     </group>
 
 

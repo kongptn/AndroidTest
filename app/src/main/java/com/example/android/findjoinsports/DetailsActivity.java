@@ -30,8 +30,8 @@ public class DetailsActivity extends AppCompatActivity {
 
     String user_id, name, email, user_firstname, user_lastname, user_tel, user_age, user_sex,userid_add,user_join;
     TextView tvnameshow, tvemailshow, tvfirstnameshow, tvlastnameshow, tvtelshow, tvageshow, tvsexshow;
-    private static String URL_READSHOW = "http://192.168.2.37/android_register_login/ShowUsers.php";
-     static String URL_ADDFRIENDS = "http://192.168.2.37/findjoinsport/friend/request_friends.php";
+    private static String URL_READSHOW = "http://10.13.3.135/android_register_login/ShowUsers.php";
+     static String URL_ADDFRIENDS = "http://10.13.3.135/findjoinsport/friend/request_friends.php";
     ImageView profile_image;
     Button btn_addfriends;
     String getId;
@@ -108,7 +108,7 @@ public class DetailsActivity extends AppCompatActivity {
                     boolean matches = Pattern.matches(reg, temp);
                     if (matches)
                         ph = "https://graph.facebook.com/" +photo_user + "/picture?width=250&height=250";
-                    else ph = "http://192.168.2.37/android_register_login/"+photo_user;
+                    else ph = "http://10.13.3.135/android_register_login/"+photo_user;
 
 
                     if (ph.equalsIgnoreCase("")){

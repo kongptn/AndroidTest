@@ -35,6 +35,8 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,6 +53,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     CallbackManager callbackManager;
+    String token;
     TextView txtEmail, txtBirthday, txtFriends, btn_regis_page;
     ProgressDialog mDialog;
     ImageView imaAvatar;
@@ -58,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText email, password;
     private ProgressBar loading;
     SessionManager sessionManager;
-    private static String URL_LOGIN = "http://192.168.2.37/android_register_login/login.php";
+    private static String URL_LOGIN = "http://10.13.3.135/android_register_login/login.php";
+
+    private static String URL_UPDATE_TOKEN = "http://10.13.3.135/android_register_login/register_token.php";
 
 
 
@@ -102,7 +107,11 @@ public class MainActivity extends AppCompatActivity {
                     password.setError("Please insert password");
                 }
 
+                token = String.valueOf(FirebaseMessaging.getInstance().subscribeToTopic("test"));
+                token = FirebaseInstanceId.getInstance().getToken();
 
+                Log.d("toto",token);
+                updateToken(email.getText().toString(),token);
             }
         });
 
@@ -191,7 +200,43 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+
+
     }
+
+    private void updateToken(final String email, final String token) {
+        // Tag used to cancel the request
+        StringRequest strReq = new StringRequest(Request.Method.POST,URL_UPDATE_TOKEN,
+                new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("Token Response update: ", response.toString());
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("email", email);
+                params.put("token", token);
+                return params;
+            }
+        };
+        // Adding request to request queue
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(strReq);
+
+    }
+
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
 
@@ -209,6 +254,11 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(String response) {
+                        token = String.valueOf(FirebaseMessaging.getInstance().subscribeToTopic("test"));
+                        token = FirebaseInstanceId.getInstance().getToken();
+
+                        Log.d("toto",token);
+                        updateToken(email,token);
                         try {
 
                             JSONObject jsonObject = new JSONObject(response);

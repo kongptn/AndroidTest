@@ -42,7 +42,7 @@ public class Request_Join extends Fragment {
     public Request_Join() {
         // Required empty public constructor
     }
-   private static final String URL_REQJOIN = "http://192.168.2.37/findjoinsport/request_joinact/reqjoin_show.php";
+   private static final String URL_REQJOIN = "http://10.13.3.135/findjoinsport/request_joinact/reqjoin_show.php";
     //private static final String URL_sendREQJOIN = "http://192.168.2.35/findjoinsport/request_joinact/alert_reqjoin.php";
 
 

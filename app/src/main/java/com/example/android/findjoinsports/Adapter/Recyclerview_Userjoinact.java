@@ -80,7 +80,7 @@ public class Recyclerview_Userjoinact extends RecyclerView.Adapter<Recyclerview_
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final Descrip_ActData descrip_actData = descrip_actDataList.get(position);
-        String photo_user = "http://192.168.2.37/android_register_login/"+descrip_actData.getPhoto_user();
+        String photo_user = "http://10.13.3.135/android_register_login/"+descrip_actData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }

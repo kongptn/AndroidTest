@@ -35,7 +35,7 @@ import java.util.Map;
 public class Adapter_ReqFriend extends RecyclerView.Adapter<Adapter_ReqFriend.ReqjoinViewHolder> {
     String mUser_id,rf_id;
     String status_id = "F02";
-    private static final String URL_DIA = "http://192.168.2.37/findjoinsport/friend/update_reqfriend.php";
+    private static final String URL_DIA = "http://10.13.3.135/findjoinsport/friend/update_reqfriend.php";
     private Context mCtx;
     private List<Request_FriendData> request_friendList;
     private OnItemClickListener listener_reqjoin;
@@ -75,7 +75,7 @@ public class Adapter_ReqFriend extends RecyclerView.Adapter<Adapter_ReqFriend.Re
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final Request_FriendData request_friend = request_friendList.get(position);
-        String photo_user = "http://192.168.2.37/android_register_login/"+request_friend.getPhoto_user();
+        String photo_user = "http://10.13.3.135/android_register_login/"+request_friend.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }
@@ -116,7 +116,7 @@ public class Adapter_ReqFriend extends RecyclerView.Adapter<Adapter_ReqFriend.Re
 
                 ImageView imgDialog = (ImageView)myDialog.findViewById(R.id.imgDialog);
                 dialog_tv.setText(request_friend.getName());
-                String photo_user = "http://192.168.2.37/android_register_login/"+request_friend.getPhoto_user();
+                String photo_user = "http://10.13.3.135/android_register_login/"+request_friend.getPhoto_user();
                 if (photo_user.equalsIgnoreCase("")){
                     photo_user = "Default";
                 }

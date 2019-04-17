@@ -46,7 +46,7 @@ public class Invite_Joinact extends Fragment {
         // Required empty public constructor
     }
 
-    private static final String URL_sendREQJOIN = "http://192.168.2.37/findjoinsport/friend/show_invite_joinact.php";
+    private static final String URL_sendREQJOIN = "http://10.13.3.135/findjoinsport/friend/show_invite_joinact.php";
     //private static final String URL_REQJOIN = "http://192.168.2.35/findjoinsport/request_joinact/reqjoin_show.php";
 
     //a list to store all the products

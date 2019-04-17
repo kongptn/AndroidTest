@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,10 +33,13 @@ import com.example.android.findjoinsports.DATA.Descrip_ActData;
 import com.example.android.findjoinsports.DATA.RecyclerSearch;
 import com.example.android.findjoinsports.DATA.Request_Invite_JoinactData;
 import com.example.android.findjoinsports.DATA.Request_JoinData_Creator;
+import com.example.android.findjoinsports.Edit_Activity;
 import com.example.android.findjoinsports.Friends_List;
 import com.example.android.findjoinsports.Friends_List_Invite;
+import com.example.android.findjoinsports.NavDrawer;
 import com.example.android.findjoinsports.R;
 import com.example.android.findjoinsports.SessionManager;
+import com.example.android.findjoinsports.Show_Act_User;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -51,17 +57,21 @@ import java.util.Map;
 
 public class DescriptionActivity extends AppCompatActivity {
 
-    private static final String URL_SHOW = "http://192.168.2.37/findjoinsport/search_activity/test.php";
-    private static final String URL_REQ = "http://192.168.2.37/findjoinsport/request_joinact/request_joinact.php";
+    private static final String URL_SHOW = "http://10.13.3.135/findjoinsport/search_activity/test.php";
+    private static final String URL_REQ = "http://10.13.3.135/findjoinsport/request_joinact/request_joinact.php";
 
-    private static final String URL_SHOW_USER = "http://192.168.2.37/findjoinsport/football/show_userjoin.php";
+    private static final String URL_SHOW_USER = "http://10.13.3.135/findjoinsport/football/show_userjoin.php";
+
+    private static final String URL_NOTI = "http://10.13.3.135/android_register_login/push_notification.php";
+
+
 
 
 
     ImageView image,imgUser;
     TextView tvUserName, tvStadium, tvPlace, tvDate, tvTime, tvDescript, tvLocation, tvNumJoin;
     String userid, mUser_id, status_id,User_id;
-    Button btn_join,btn_invite;
+    Button btn_join,btn_invite,back;
     SessionManager sessionManager;
 
     List<Descrip_ActData> descrip_actDataList;
@@ -104,6 +114,7 @@ public class DescriptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 sendRequestJoin();
+                sendNonti(User_id,"มีผู้ใช้ขอเข้าร่วมกิจกรรม");
                 btn_join.setEnabled(false);
             }
         });
@@ -133,6 +144,8 @@ public class DescriptionActivity extends AppCompatActivity {
 
         //initializing the productlist
         descrip_actDataList = new ArrayList<>();
+
+        back = findViewById(R.id.back);
     }
 
     private void onButtonClick(final String userid) {
@@ -167,14 +180,14 @@ public class DescriptionActivity extends AppCompatActivity {
                         tvLocation.setText(Location);
                         tvNumJoin.setText(numjoin);
 
-                        String photo = "http://192.168.2.37/findjoinsport/football/"+Photo;
+                        String photo = "http://10.13.3.135/findjoinsport/football/"+Photo;
                         if (photo.equalsIgnoreCase("")){
                             photo = "Default";
                         }
 
                         Picasso.with(DescriptionActivity.this).load(photo).placeholder(R.drawable.s).into(image);
 
-                        String photo_user = "http://192.168.2.37/android_register_login/"+Photo_user;
+                        String photo_user = "http://10.13.3.135/android_register_login/"+Photo_user;
                         if (photo_user.equalsIgnoreCase("")){
                             photo_user = "Default";
                         }
@@ -357,80 +370,80 @@ public class DescriptionActivity extends AppCompatActivity {
         };
         requestQueue.add(request);
     }
+
+    private void sendNonti(final String User_id,final String noti) {
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(Request.Method.POST, URL_NOTI, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("log",response.toString());
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to login url
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user_create",User_id);
+                Log.d("sdadoo",User_id);
+
+                params.put("Notification", noti);
+                Log.d("lksll",noti);
+
+
+
+                return params;
+            }
+
+        };
+        requestQueue.add(request);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_action, menu);
+
+        Menu action = menu;
+        action.findItem(R.id.menu_save).setVisible(false);
+        action.findItem(R.id.menu_edit).setVisible(false);
+
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.menu_back:
+
+                Intent back = new Intent(DescriptionActivity.this, NavDrawer.class);
+                startActivity(back);
+
+                return true;
+            default:
+
+                return super.onOptionsItemSelected(item);
+        }
+
+
+    }
+
     }
 
 
 
 
-
-
-//    private void onButtonClick() {
-//
-//        /*
-//         * Creating a String Request
-//         * The request type is GET defined by first parameter
-//         * The URL is defined in the second parameter
-//         * Then we have a Response Listener and a Error Listener
-//         * In response listener we will get the JSON response as a String
-//         * */
-////        if (!userid.isEmpty()) {
-////            RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_SHOW,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        try {
-//                            //converting the string to json array object
-//                            JSONArray array = new JSONArray(response);
-//
-//                            //traversing through all the object
-//                            for (int i = 0; i < array.length(); i++) {
-//
-//                                //getting product object from json array
-//                                JSONObject object = array.getJSONObject(i);
-//
-//                                //adding the product to product list
-//                                userid = object.getInt("id");
-////
-//////                                String stadiumname = object.getString("stadium_name");
-//                                Stadium_name = object.getString("stadium_name");
-//
-////                                Photo = Integer.parseInt(object.getString("photo"));
-//                                Date = object.getString("date");
-//                                Time = object.getString("time");
-//                                Name = object.getString("name");
-//                                Location = object.getString("location");
-//                                Description = object.getString("description");
-//
-//                                tvStadium.setText(Stadium_name);
-//                                Log.d("wddddw", String.valueOf((tvStadium)));
-//                                tvDate.setText(Date);
-//                                tvTime.setText(Time);
-//                                tvUserName.setText(Name);
-////                                tvPlace.setText(Location);
-//                                tvDescript.setText(Description);
-//
-////
-////                                RecyclerSearch recyclerSearch = new RecyclerSearch(id, stadiumname, photo, date, time, name, location, description);
-////                                recyclerSearchList.add(recyclerSearch);
-//                            }
-//
-//                            //creating adapter object and setting it to recyclerview
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-////                        Toast.makeText(DescriptionActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                });
-//
-//        //adding our stringrequest to queue
-//        Volley.newRequestQueue(this).add(stringRequest);
-//    }
 

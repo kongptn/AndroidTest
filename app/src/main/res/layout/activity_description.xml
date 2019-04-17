@@ -213,11 +213,11 @@
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@+id/btn_invite"
             android:background="#c72a2a"
-            android:text="join" />
+            android:text="เข้าร่วม" />
 
     <Button
         android:id="@+id/btn_invite"
-        android:text="invite"
+        android:text="เชิญเพื่อน"
         android:background="#44be7d"
         android:layout_marginLeft="100dp"
         android:layout_below="@+id/tvTime"

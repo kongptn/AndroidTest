@@ -38,7 +38,7 @@ public class SearchBasketball extends Fragment {
     public SearchBasketball() {
         // Required empty public constructor
     }
-    private static final String URL_PRODUCTS = "http://192.168.2.37/findjoinsport/search_activity/basketball_search.php";
+    private static final String URL_PRODUCTS = "http://10.13.3.135/findjoinsport/search_activity/basketball_search.php";
 
     //a list to store all the products
     List<RecyclerSearch> recyclerSearchList;

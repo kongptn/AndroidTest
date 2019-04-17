@@ -40,8 +40,8 @@ public class Adapter_Invite_Joinact extends RecyclerView.Adapter<Adapter_Invite_
     String status_id = "J02";
     int numjoin = 1;
 
-    private static final String URL_DIA = "http://192.168.2.37/findjoinsport/friend/update_inviteact.php";
-    private static final String URL_numjoin = "http://192.168.2.37/findjoinsport/request_joinact/update_numberjoin.php";
+    private static final String URL_DIA = "http://10.13.3.135/findjoinsport/friend/update_inviteact.php";
+    private static final String URL_numjoin = "http://10.13.3.135/findjoinsport/request_joinact/update_numberjoin.php";
     private Context mCtx;
     private List<Invite_JoinactData> invite_joinactDataList;
     private OnItemClickListener listener_reqjoin;
@@ -91,13 +91,13 @@ public class Adapter_Invite_Joinact extends RecyclerView.Adapter<Adapter_Invite_
 //        holder.name.setText(invite_joinactData.getName());
 
         //loading the image
-        String photo = "http://192.168.2.37/findjoinsport/football/"+invite_joinactData.getPhoto();
+        String photo = "http://10.13.3.135/findjoinsport/football/"+invite_joinactData.getPhoto();
         if (photo.equalsIgnoreCase("")){
             photo = "Default";
         }
         Picasso.with(mCtx).load(photo).placeholder(R.drawable.s).into(holder.imageView);
 
-        String photo_user = "http://192.168.2.37/android_register_login/"+invite_joinactData.getPhoto_user();
+        String photo_user = "http://10.13.3.135/android_register_login/"+invite_joinactData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }

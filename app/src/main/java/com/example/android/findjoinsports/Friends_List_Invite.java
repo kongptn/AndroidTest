@@ -31,7 +31,7 @@ import java.util.Map;
 public class Friends_List_Invite extends AppCompatActivity {
     //private static final String URL= "http://10.13.4.158/findjoinsport/friend/invite_joinact.php";
 
-    private static final String URL_REQfriend = "http://192.168.2.37/findjoinsport/friend/friend_list.php";
+    private static final String URL_REQfriend = "http://10.13.3.135/findjoinsport/friend/friend_list.php";
 
     //a list to store all the products
     List<Request_Invite_JoinactData> request_invite_joinactDataList;
@@ -84,7 +84,7 @@ public class Friends_List_Invite extends AppCompatActivity {
          * Then we have a Response Listener and a Error Listener
          * In response listener we will get the JSON response as a String
          * */
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_REQfriend,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REQfriend,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -149,7 +149,7 @@ public class Friends_List_Invite extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 // Posting params to login url
                 Map<String, String> params = new HashMap<String, String>();
-//                params.put("user_id", getId);
+                params.put("user_id", getId);
 //                Log.d("ssss",getId);
 
 //                params.put("rf_id", String.valueOf(rf_id));
