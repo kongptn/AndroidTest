@@ -18,6 +18,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import com.example.android.findjoinsports.Adapter.Adapter;
+import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.DATA.RecyclerSearch;
 import com.example.android.findjoinsports.R;
 
@@ -38,7 +39,7 @@ public class SearchBasketball extends Fragment {
     public SearchBasketball() {
         // Required empty public constructor
     }
-    private static final String URL_PRODUCTS = "http://10.13.3.135/findjoinsport/search_activity/basketball_search.php";
+
 
     //a list to store all the products
     List<RecyclerSearch> recyclerSearchList;
@@ -76,7 +77,7 @@ public class SearchBasketball extends Fragment {
          * Then we have a Response Listener and a Error Listener
          * In response listener we will get the JSON response as a String
          * */
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_PRODUCTS,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, getString(R.string.Host)+"/findjoinsport/search_activity/basketball_search.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

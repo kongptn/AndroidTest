@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.DATA.List_FriendData;
 import com.example.android.findjoinsports.DATA.Request_FriendData;
 import com.example.android.findjoinsports.DATA.Request_Invite_JoinactData;
@@ -38,7 +39,9 @@ public class Adapter_ReqInvite_Joinact extends RecyclerView.Adapter<Adapter_ReqI
     private final String act_id,user_create;
     String mUser_id,rf_id,user_id,mName;
     String status_id = "J01";
-    private static final String URL_DIA = "http://10.13.3.135/findjoinsport/friend/invite_joinact.php";
+
+    String status_noti = "N03";
+
     private Context mCtx;
     private List<Request_Invite_JoinactData> request_invite_joinactDataList;
     private OnItemClickListener listener_reqjoin;
@@ -85,7 +88,7 @@ public class Adapter_ReqInvite_Joinact extends RecyclerView.Adapter<Adapter_ReqI
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final Request_Invite_JoinactData request_invite_joinactData = request_invite_joinactDataList.get(position);
-        String photo_user = "http://10.13.3.135/android_register_login/"+request_invite_joinactData.getPhoto_user();
+        String photo_user = ConstansAPI.URL_PHOTO_USER+request_invite_joinactData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }
@@ -125,7 +128,7 @@ public class Adapter_ReqInvite_Joinact extends RecyclerView.Adapter<Adapter_ReqI
 
                 ImageView imgDialog = (ImageView)myDialog.findViewById(R.id.imgDialog);
                 dialog_tv.setText(request_invite_joinactData.getName());
-                String photo_user = "http://10.13.3.135/android_register_login/"+request_invite_joinactData.getPhoto_user();
+                String photo_user = ConstansAPI.URL_PHOTO_USER+request_invite_joinactData.getPhoto_user();
                 if (photo_user.equalsIgnoreCase("")){
                     photo_user = "Default";
                 }
@@ -142,6 +145,8 @@ public class Adapter_ReqInvite_Joinact extends RecyclerView.Adapter<Adapter_ReqI
 //                        Intent intent = new Intent(mCtx,DescriptionActivity.class);
                         //  intent.putExtra("userid_join",request_joinData_creator.getUserid_join());
                         Button_Accept();
+                        sendNonti(user_id,mName+" เชิญให้เข้าร่วมกิจกรรม");
+                        put_noti_sql(user_id,mUser_id);
 //                        Update_numjoin();
                         //numjoin ++;
 //                        Intent intent = new Intent(mCtx,DescriptionActivity.class);
@@ -183,7 +188,7 @@ public class Adapter_ReqInvite_Joinact extends RecyclerView.Adapter<Adapter_ReqI
     private void Button_Accept() {
 
         RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DIA,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ConstansAPI.URL_DIA_INV_JOIN,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -223,6 +228,84 @@ public class Adapter_ReqInvite_Joinact extends RecyclerView.Adapter<Adapter_ReqI
 
         //adding our stringrequest to queue
         requestQueue.add(stringRequest);
+    }
+
+    private void sendNonti(final String user_id,final String noti) {
+
+        RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
+        StringRequest request = new StringRequest(Request.Method.POST, ConstansAPI.URL_NOTI, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("log",response.toString());
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to login url
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user_create",user_id);
+                Log.d("sdadoo",user_id);
+
+                params.put("Notification", noti);
+                Log.d("lksll",noti);
+
+
+
+                return params;
+            }
+
+        };
+        requestQueue.add(request);
+    }
+
+    private void put_noti_sql(final String user_id,final String mUser_id) {
+
+        RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
+        StringRequest request = new StringRequest(Request.Method.POST, ConstansAPI.URL_DIA_PUT_NOTI_SQL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("log",response.toString());
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to login url
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user_create",user_id);
+                Log.d("sdadoo",user_id);
+
+                params.put("userid_join", mUser_id);
+                Log.d("last",mUser_id);
+
+                params.put("status_noti", status_noti);
+
+
+
+                return params;
+            }
+
+        };
+        requestQueue.add(request);
     }
 
 

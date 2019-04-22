@@ -1,6 +1,11 @@
 package com.example.android.findjoinsports.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,24 +16,25 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.android.findjoinsports.Constants.ConstansAPI;
+import com.example.android.findjoinsports.DATA.Notification_Data;
+import com.example.android.findjoinsports.DATA.Request_JoinData_Creator;
 import com.example.android.findjoinsports.DATA.User_Data;
 import com.example.android.findjoinsports.R;
+import com.example.android.findjoinsports.Request_Join_Creator;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+public class Adapter_Notification extends RecyclerView.Adapter<Adapter_Notification.MyViewHolder> {
 
-public class Adapter_Friend extends RecyclerView.Adapter<Adapter_Friend.MyViewHolder> {
-
-    private List<User_Data> user_dataList;
+    private List<Notification_Data> notification_dataList;
     private Context context;
     private OnItemClickListener listener;
 
 
-    public Adapter_Friend(List<User_Data> user_dataList, Context context, OnItemClickListener listener) {
-        this.user_dataList = user_dataList;
+    public Adapter_Notification(List<Notification_Data> notification_dataList, Context context, OnItemClickListener listener) {
+        this.notification_dataList = notification_dataList;
         this.context = context;
         this.listener = listener;
     }
@@ -36,35 +42,32 @@ public class Adapter_Friend extends RecyclerView.Adapter<Adapter_Friend.MyViewHo
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_notification, parent, false);
         return new MyViewHolder(view);
     }
 
     public interface OnItemClickListener {
-        void listener(int uesr_id, String name, String email, String user_firstname, String user_lastname, String user_tel, String user_age, String user_sex, String photo_user);
 
+
+        void onItemClick(String status_id);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        final User_Data user_data = user_dataList.get(position);
+        final Notification_Data notification_data = notification_dataList.get(position);
 
 
-        holder.name.setText(user_data.getName());
-        holder.email.setText(user_data.getEmail());
+        holder.name.setText(notification_data.getName());
+        holder.tv_noti.setText(notification_data.getStatus_name());
 
-        String photo_user = ConstansAPI.URL_PHOTO_USER+user_data.getPhoto_user();
-        if (photo_user.equalsIgnoreCase("")){
-            photo_user = "Default";
+
+        String ph = ConstansAPI.URL_PHOTO_USER +notification_data.getPhoto_user();
+
+        if (ph.equalsIgnoreCase("")){
+            ph = "default";
         }
-        Picasso.with(context).load(photo_user).placeholder(R.drawable.n).into(holder.images);
+        Picasso.with(context).load(ph).placeholder(R.drawable.n).into(holder.images);
 
-//        String ph = ConstansAPI.URL_PHOTO_ACT +user_data.getPhoto_user();
-//
-//        if (ph.equalsIgnoreCase("")) {
-//            ph = "default";
-//        }
-//        Picasso.with(context).load(ph).placeholder(R.drawable.se_ball).into(holder.images);
 
 //        String reg = "[0-9]{16}";
 //        String temp = user_data.getPhoto_user();
@@ -85,20 +88,29 @@ public class Adapter_Friend extends RecyclerView.Adapter<Adapter_Friend.MyViewHo
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.listener(user_dataList.get(position).getId(), user_dataList.get(position).getName(), user_dataList.get(position).getEmail(), user_dataList.get(position).getUser_firstname(), user_dataList.get(position).getUser_lastname(), user_dataList.get(position).getUser_tel(), user_dataList.get(position).getUser_age(), user_dataList.get(position).getUser_sex(), user_dataList.get(position).getPhoto_user());
+                listener.onItemClick((notification_data.getStatus_id()));
+//                listener.onItemClick(Integer.parseInt(notification_data.getStatus_id()));
 
-            }
+
+
+
+                }
+
+
+                // listener.listener(user_dataList.get(position).getId(), user_dataList.get(position).getName(), user_dataList.get(position).getEmail(), user_dataList.get(position).getUser_firstname(), user_dataList.get(position).getUser_lastname(), user_dataList.get(position).getUser_tel(), user_dataList.get(position).getUser_age(), user_dataList.get(position).getUser_sex(), user_dataList.get(position).getPhoto_user());
+
+
         });
     }
 
     @Override
     public int getItemCount() {
-        return user_dataList.size();
+        return notification_dataList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name, email, user_tel, user_sex, user_age, user_firstname, user_lastname;
+        TextView name, tv_noti, user_tel, user_sex, user_age, user_firstname, user_lastname;
         ImageView images;
         LinearLayout rootView;
 
@@ -106,7 +118,7 @@ public class Adapter_Friend extends RecyclerView.Adapter<Adapter_Friend.MyViewHo
         public MyViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            email = itemView.findViewById(R.id.email);
+            tv_noti = itemView.findViewById(R.id.tv_noti);
             images = itemView.findViewById(R.id.images);
             rootView = itemView.findViewById(R.id.rootView);
         }

@@ -42,7 +42,7 @@ public class Request_Join extends Fragment {
     public Request_Join() {
         // Required empty public constructor
     }
-   private static final String URL_REQJOIN = "http://10.13.3.135/findjoinsport/request_joinact/reqjoin_show.php";
+   private static final String URL_REQJOIN = "http://10.13.3.103/findjoinsport/request_joinact/reqjoin_show.php";
     //private static final String URL_sendREQJOIN = "http://192.168.2.35/findjoinsport/request_joinact/alert_reqjoin.php";
 
 
@@ -90,7 +90,7 @@ public class Request_Join extends Fragment {
          * Then we have a Response Listener and a Error Listener
          * In response listener we will get the JSON response as a String
          * */
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REQJOIN,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/request_joinact/reqjoin_show.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -127,10 +127,10 @@ public class Request_Join extends Fragment {
 
                                 @Override
                                 public void onItemClick(int id) {
-//                                    Intent intent = new Intent(getContext(),DescriptionActivity.class);
-//                                    intent.putExtra("id",String.valueOf(id));
-//                                    Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
-//                                    startActivity(intent);
+                                    Intent intent = new Intent(getContext(),DescriptionActivity.class);
+                                    intent.putExtra("id",String.valueOf(id));
+                                    Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+                                    startActivity(intent);
                                 }
                             });
                             recyclerView.setAdapter(adapter_reqJoin);

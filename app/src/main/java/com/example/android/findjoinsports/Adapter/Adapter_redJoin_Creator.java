@@ -28,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.DATA.Request_JoinData_Creator;
 import com.example.android.findjoinsports.DetailsActivity;
 import com.example.android.findjoinsports.R;
@@ -47,12 +48,12 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoin_Creator.ReqjoinViewHolder> {
 
-    private static final String URL_DIA = "http://10.13.3.135/findjoinsport/request_joinact/update_req.php";
-    private static final String URL_numjoin = "http://10.13.3.135/findjoinsport/request_joinact/update_numberjoin.php";
-    private static final String URL_NOTI = "http://10.13.3.135/android_register_login/push_notification.php";
-    String mUser_id,user_join,actid,reqid,user_id;
+    private static final String URL_DIA = "http://10.13.3.103/findjoinsport/request_joinact/update_req.php";
+    private static final String URL_numjoin = "http://10.13.3.103/findjoinsport/request_joinact/update_numberjoin.php";
+    private static final String URL_NOTI = "http://10.13.3.103/android_register_login/push_notification.php";
+    String mUser_id,user_join,actid,reqid,user_id,mName;
     int numjoin = 1;
-
+    String status_noti = "N02";
     String status_id = "J02";
 
     private Context mCtx;
@@ -86,6 +87,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
         sessionManager.checkLogin();
         HashMap<String, String> user = sessionManager.getUserDetail();
         mUser_id = user.get(sessionManager.USER_ID);
+        mName = user.get(sessionManager.NAME);
         Log.d("id",mUser_id);
 
 
@@ -96,7 +98,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final Request_JoinData_Creator request_joinData_creator = request_joinData_creatorList.get(position);
-        String photo_user = "http://10.13.3.135/android_register_login/"+request_joinData_creator.getPhoto_user();
+        String photo_user = ConstansAPI.URL_PHOTO_USER+request_joinData_creator.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }
@@ -141,7 +143,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
 
                 ImageView imgDialog = (ImageView)myDialog.findViewById(R.id.imgDialog);
                 dialog_tv.setText(request_joinData_creator.getName());
-                String photo_user = "http://10.13.3.135/android_register_login/"+request_joinData_creator.getPhoto_user();
+                String photo_user = ConstansAPI.URL_PHOTO_USER+request_joinData_creator.getPhoto_user();
                 if (photo_user.equalsIgnoreCase("")){
                     photo_user = "Default";
                 }
@@ -162,7 +164,8 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
 
                          numjoin ++;
 
-                        sendNonti(user_join,"ตอบรับเข้าร่วมกิจกรรมแล้ว");
+                        sendNonti(user_join,mName+" ตอบรับเข้าร่วมกิจกรรม");
+                        put_noti_sql(user_join,mUser_id);
 //                        Intent intent = new Intent(mCtx,DescriptionActivity.class);
 //                        intent.putExtra("id",String.valueOf(id));
                         // mCtx.startActivity(intent);
@@ -220,7 +223,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
     private void Button_Accept() {
 
         RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DIA,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ConstansAPI.URL_DIA_UPDATE_REQ,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -258,7 +261,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
     private void Update_numjoin() {
 
         RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_numjoin,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ConstansAPI.URL_UPDATE_numjoin,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -295,7 +298,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
     private void sendNonti(final String user_join,final String noti) {
 
         RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
-        StringRequest request = new StringRequest(Request.Method.POST, URL_NOTI, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, ConstansAPI.URL_NOTI, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("log",response.toString());
@@ -320,6 +323,46 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
 
                 params.put("Notification", noti);
                 Log.d("lksll",noti);
+
+
+
+                return params;
+            }
+
+        };
+        requestQueue.add(request);
+    }
+
+    private void put_noti_sql(final String user_join,final String mUser_id) {
+
+        RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
+        StringRequest request = new StringRequest(Request.Method.POST, ConstansAPI.URL_DIA_PUT_NOTI_SQL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("log",response.toString());
+
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to login url
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("user_create",user_join);
+                Log.d("sdadoo",user_join);
+
+                params.put("userid_join", mUser_id);
+                Log.d("last",mUser_id);
+
+                params.put("status_noti", status_noti);
 
 
 

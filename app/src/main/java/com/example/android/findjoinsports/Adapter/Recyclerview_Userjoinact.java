@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.DATA.Descrip_ActData;
 import com.example.android.findjoinsports.DATA.List_FriendData;
 import com.example.android.findjoinsports.DATA.Request_FriendData;
@@ -80,7 +81,7 @@ public class Recyclerview_Userjoinact extends RecyclerView.Adapter<Recyclerview_
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final Descrip_ActData descrip_actData = descrip_actDataList.get(position);
-        String photo_user = "http://10.13.3.135/android_register_login/"+descrip_actData.getPhoto_user();
+        String photo_user = ConstansAPI.URL_PHOTO_USER +descrip_actData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }

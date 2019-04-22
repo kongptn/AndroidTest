@@ -56,6 +56,8 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="76dp"
         android:layout_marginEnd="30dp"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:hint="Email"
         android:inputType="textEmailAddress"
         />
@@ -63,18 +65,20 @@
 
     <EditText
         android:layout_below="@+id/email"
-        android:id="@+id/telephone"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:hint="Password"
         android:inputType="textPassword"
         />
 
     <ProgressBar
         android:id="@+id/loading"
-        android:layout_below="@+id/telephone"
+        android:layout_below="@+id/password"
         android:layout_width="match_parent"
 
         android:layout_height="wrap_content"
@@ -87,17 +91,14 @@
 
     <Button
         android:id="@+id/login_button_facebook"
-        android:layout_below="@+id/btn_regis_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_below="@+id/forget_password"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/ooo"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="83dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btn_login"
-        app:layout_constraintStart_toStartOf="@+id/btn_regis_page"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+        android:layout_marginBottom="83dp" />
 
     <TextView
         android:id="@+id/btn_regis_page"
@@ -105,7 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_login"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:text="Register"
         android:textColor="#FFFFFF" />
 
@@ -114,7 +115,7 @@
         android:id="@+id/btn_login"
         android:layout_width="178dp"
         android:layout_height="25dp"
-        android:layout_below="@+id/telephone"
+        android:layout_below="@+id/loading"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="45dp"
         android:layout_marginEnd="91dp"
@@ -127,24 +128,14 @@
         android:id="@+id/forget_password"
         android:layout_width="178dp"
         android:layout_height="25dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/btn_regis_page"
         android:layout_centerHorizontal="true"
         android:background="#FFFFFF"
         android:text="Forget Password"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#ff0000"
         />
 
-    <Button
-        android:id="@+id/bbb"
-        android:layout_width="178dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/forget_password"
-        android:layout_centerHorizontal="true"
-        android:background="#FFFFFF"
-        android:text="sdfsfd"
-        android:textColor="@color/colorPrimary"
-        />
+
 
 </RelativeLayout>

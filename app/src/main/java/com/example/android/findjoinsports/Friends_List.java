@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Friends_List extends AppCompatActivity {
-    private static final String URL_REQfriend = "http://10.13.3.135/findjoinsport/friend/friend_list.php";
+    private static final String URL_REQfriend = "http://10.13.3.103/findjoinsport/friend/friend_list.php";
    // private static final String URL_friend = "http://192.168.2.34/findjoinsport/friend/friend_list_2.php";
 
     //a list to store all the products
@@ -75,7 +75,7 @@ public class Friends_List extends AppCompatActivity {
          * Then we have a Response Listener and a Error Listener
          * In response listener we will get the JSON response as a String
          * */
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REQfriend,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/friend/friend_list.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

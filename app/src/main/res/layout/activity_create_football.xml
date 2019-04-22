@@ -5,127 +5,139 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back"
+    android:orientation="vertical"
     tools:context=".CreateActivity.CreateFootball"
     tools:layout_editor_absoluteY="81dp">
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
 
-    <Button
-        android:id="@+id/chooseBT"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/photo"
-        android:layout_marginTop="25dp"
-        android:text="Choose Image" />
+            <Button
+                android:id="@+id/chooseBT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView"
+                android:layout_marginTop="25dp"
+                android:text="Choose Image" />
 
-    <EditText
-        android:id="@+id/editStad_name"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/chooseBT"
-        android:layout_marginTop="25dp"
-        android:textColor="#FFFFFF"
-        android:background="#03324c"
-        android:textColorHint="#FFFFFF"
-        android:hint="ชื่อสถานที่" />
+            <EditText
+                android:id="@+id/editStad_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/chooseBT"
+                android:layout_marginTop="25dp"
+                android:textColor="#FFFFFF"
+                android:background="#03324c"
+                android:textColorHint="#FFFFFF"
+                android:hint="ชื่อสถานที่" />
 
-    <TextView
-        android:id="@+id/textDate"
-        android:text="วันที่"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="15dp"
-        android:textSize="18dp"
-        android:layout_below="@+id/editStad_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/textDate"
+                android:text="วันที่"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="15dp"
+                android:textSize="18dp"
+                android:layout_below="@+id/editStad_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btnDate"
-        android:layout_toRightOf="@id/textDate"
-        android:text="เลือกวันที่"
-        android:layout_below="@+id/editStad_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btnDate"
+                android:layout_toRightOf="@id/textDate"
+                android:text="เลือกวันที่"
+                android:layout_below="@+id/editStad_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/textTime"
-        android:text="เวลา"
-        android:layout_marginTop="5dp"
-        android:textColor="#FFFFFF"
-        android:textSize="18dp"
-        android:layout_below="@+id/btnDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/textTime"
+                android:text="เวลา"
+                android:layout_marginTop="5dp"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:layout_below="@+id/btnDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btnTime"
-        android:layout_toRightOf="@id/textTime"
-        android:text="เลือกวันที่"
-        android:layout_below="@+id/btnDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-
-
-        <EditText
-            android:id="@+id/editlocation"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_below="@+id/btnTime"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:layout_marginTop="25dp"
-            android:background="#002d33"
-            android:hint="กรอกที่อยู่" />
+            <Button
+                android:id="@+id/btnTime"
+                android:layout_toRightOf="@id/textTime"
+                android:text="เลือกวันที่"
+                android:layout_below="@+id/btnDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
 
-    <EditText
-        android:id="@+id/editdescrip"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_below="@+id/editlocation"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:layout_marginTop="25dp"
-        android:background="#002d33"
-        android:hint="รายละเอียดกิจกรรม" />
 
-        <Button
-        android:id="@+id/btn_create"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#de692f"
-        android:text="CREATE ACTIVITY"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/editdescrip"
-        android:textColor="#ffffff" />
+            <EditText
+                android:id="@+id/editlocation"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/btnTime"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:layout_marginTop="25dp"
+                android:background="#002d33"
+                android:hint="กรอกที่อยู่" />
 
-    <EditText
-        android:id="@+id/photo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:layout_marginTop="20dp"
-        android:hint="Enter a Name"
-        android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:visibility="gone" />
+            <EditText
+                android:id="@+id/editdescrip"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_below="@+id/editlocation"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
+                android:layout_marginTop="25dp"
+                android:background="#002d33"
+                android:hint="รายละเอียดกิจกรรม" />
 
-    </RelativeLayout>
+            <Button
+                android:id="@+id/btn_create"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#de692f"
+                android:text="CREATE ACTIVITY"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/map"
+                android:textColor="#ffffff" />
+
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:visibility="gone" />
+
+            <fragment
+                android:id="@+id/place_autocomplete"
+                android:layout_below="@+id/editdescrip"
+                android:layout_marginTop="20dp"
+                android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <fragment
+                android:id="@+id/map"
+                android:layout_below="@+id/place_autocomplete"
+                class="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp" />
+
+        </RelativeLayout>
 
     </ScrollView>
 

@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.DATA.Invite_JoinactData;
 import com.example.android.findjoinsports.DATA.List_FriendData;
 import com.example.android.findjoinsports.DATA.Request_FriendData;
@@ -40,8 +41,8 @@ public class Adapter_Invite_Joinact extends RecyclerView.Adapter<Adapter_Invite_
     String status_id = "J02";
     int numjoin = 1;
 
-    private static final String URL_DIA = "http://10.13.3.135/findjoinsport/friend/update_inviteact.php";
-    private static final String URL_numjoin = "http://10.13.3.135/findjoinsport/request_joinact/update_numberjoin.php";
+    private static final String URL_DIA = "http://10.13.3.103/findjoinsport/friend/update_inviteact.php";
+    private static final String URL_numjoin = "http://10.13.3.103/findjoinsport/request_joinact/update_numberjoin.php";
     private Context mCtx;
     private List<Invite_JoinactData> invite_joinactDataList;
     private OnItemClickListener listener_reqjoin;
@@ -91,13 +92,13 @@ public class Adapter_Invite_Joinact extends RecyclerView.Adapter<Adapter_Invite_
 //        holder.name.setText(invite_joinactData.getName());
 
         //loading the image
-        String photo = "http://10.13.3.135/findjoinsport/football/"+invite_joinactData.getPhoto();
+        String photo = ConstansAPI.URL_PHOTO_ACT+invite_joinactData.getPhoto();
         if (photo.equalsIgnoreCase("")){
             photo = "Default";
         }
         Picasso.with(mCtx).load(photo).placeholder(R.drawable.s).into(holder.imageView);
 
-        String photo_user = "http://10.13.3.135/android_register_login/"+invite_joinactData.getPhoto_user();
+        String photo_user = ConstansAPI.URL_PHOTO_USER+invite_joinactData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }
@@ -208,7 +209,7 @@ public class Adapter_Invite_Joinact extends RecyclerView.Adapter<Adapter_Invite_
     private void Button_Accept() {
 
         RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DIA,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ConstansAPI.URL_DIA_UPDATE_INVITE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -246,7 +247,7 @@ public class Adapter_Invite_Joinact extends RecyclerView.Adapter<Adapter_Invite_
     private void Update_numjoin() {
 
         RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_numjoin,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ConstansAPI.URL_UPDATE_numjoin,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

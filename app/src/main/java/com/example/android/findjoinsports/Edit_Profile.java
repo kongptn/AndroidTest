@@ -29,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -55,9 +56,9 @@ public class Edit_Profile extends AppCompatActivity  {
     private Button btn_photo_upload;
     private Bitmap bitmap;
     CircleImageView profile_image;
-    private static String URL_READ = "http://10.13.3.135/android_register_login/read_detail.php";
-    private static String URL_EDIT = "http://10.13.3.135/android_register_login/edit_detail.php";
-    private static String URL_UPLOAD = "http://10.13.3.135/android_register_login/upload.php";
+    private static String URL_READ = "http://10.13.3.103/findjoinsport/android_register_login/read_detail.php";
+    private static String URL_EDIT = "http://10.13.3.103/findjoinsport/android_register_login/edit_detail.php";
+    private static String URL_UPLOAD = "http://10.13.3.103/findjoinsport/android_register_login/upload.php";
 
 
     private static String strSex;
@@ -121,7 +122,7 @@ public class Edit_Profile extends AppCompatActivity  {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_READ,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/android_register_login/read_detail.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -167,11 +168,11 @@ public class Edit_Profile extends AppCompatActivity  {
                                     user_tel.setText(strUser_tel);
                                     user_sex.setText(strSex);
 
-                                    String ph = "http://192.168.2.33/android_register_login/"+strImgUrl;
+                                    String ph = ConstansAPI.URL_PHOTO_USER+strImgUrl;
                                     if (ph.equalsIgnoreCase("")){
                                         ph = "default";
                                     }
-                                    Picasso.with(Edit_Profile.this).load(ph).into(profile_image);
+                                    Picasso.with(Edit_Profile.this).load(ph).placeholder(R.drawable.n).into(profile_image);
 //
                                     //loading the image
 //                                    String getPhoto = "http://10.13.4.64/android_register_login/profile_image/"+object.getString();
@@ -234,6 +235,11 @@ public class Edit_Profile extends AppCompatActivity  {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
+
+            case R.id.menu_back:
+
+                Intent menu_back = new Intent(Edit_Profile.this, NavDrawer.class);
+                startActivity(menu_back);
 
             case R.id.menu_edit:
 
@@ -309,7 +315,7 @@ public class Edit_Profile extends AppCompatActivity  {
         progressDialog.setMessage("Saving...");
         progressDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_EDIT,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/android_register_login/edit_detail.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -398,7 +404,7 @@ public class Edit_Profile extends AppCompatActivity  {
         progressDialog.setMessage("Uploading...");
         progressDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UPLOAD,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/android_register_login/upload.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

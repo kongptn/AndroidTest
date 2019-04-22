@@ -43,7 +43,7 @@ public class Act_User_Create extends Fragment {
     public Act_User_Create() {
         // Required empty public constructor
     }
-    private static final String URL_PRODUCTS = "http://10.13.3.135/findjoinsport/request_joinact/act_user_create.php";
+    private static final String URL_PRODUCTS = "http://192.168.2.34/findjoinsport/request_joinact/act_user_create.php";
 
     //a list to store all the products
     List<Act_User_CreateData> act_user_createDataList;
@@ -89,7 +89,7 @@ public class Act_User_Create extends Fragment {
          * Then we have a Response Listener and a Error Listener
          * In response listener we will get the JSON response as a String
          * */
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_PRODUCTS,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/request_joinact/act_user_create.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

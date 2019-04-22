@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.DATA.Request_JoinData;
 import com.example.android.findjoinsports.R;
 import com.squareup.picasso.Picasso;
@@ -52,7 +53,7 @@ public class Adapter_reqJoin extends RecyclerView.Adapter<Adapter_reqJoin.Reqjoi
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final Request_JoinData request_joinData = request_joinDataList.get(position);
-        String photo_user = "http://10.13.3.135/android_register_login/"+request_joinData.getPhoto_user();
+        String photo_user = ConstansAPI.URL_PHOTO_USER +request_joinData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }
@@ -68,10 +69,10 @@ public class Adapter_reqJoin extends RecyclerView.Adapter<Adapter_reqJoin.Reqjoi
             @Override
             public void onClick(View v) {
                 listener_reqjoin.onItemClick(request_joinData.getId());
-                listener_reqjoin.onItemClick(request_joinData.getUser_id());
-                listener_reqjoin.onItemClick(Integer.parseInt(request_joinData.getStatus_id()));
-                listener_reqjoin.onItemClick(request_joinData.getReq_id());
-                listener_reqjoin.onItemClick(request_joinData.getUser_create());
+//                listener_reqjoin.onItemClick(request_joinData.getUser_id());
+//                listener_reqjoin.onItemClick(Integer.parseInt(request_joinData.getStatus_id()));
+//                listener_reqjoin.onItemClick(request_joinData.getReq_id());
+//                listener_reqjoin.onItemClick(request_joinData.getUser_create());
 
             }
         });

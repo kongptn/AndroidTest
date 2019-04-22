@@ -5,10 +5,14 @@
     android:orientation="vertical"
     android:background="#FFFFFF"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="8dp">
 
 
     <RelativeLayout
+        android:paddingTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.R;
 import com.example.android.findjoinsports.DATA.RecyclerSearch;
 import com.squareup.picasso.Picasso;
@@ -50,13 +51,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
         final RecyclerSearch recyclerSearch = recyclerSearchList.get(position);
 
         //loading the image
-        String photo = "http://10.13.3.135/findjoinsport/football/"+recyclerSearch.getPhoto();
+        String photo = ConstansAPI.URL_PHOTO_ACT+recyclerSearch.getPhoto();
         if (photo.equalsIgnoreCase("")){
             photo = "Default";
         }
         Picasso.with(mCtx).load(photo).placeholder(R.drawable.s).into(holder.imageView);
 
-        String photo_user = "http://10.13.3.135/android_register_login/"+recyclerSearch.getPhoto_user();
+        String photo_user = ConstansAPI.URL_PHOTO_USER+recyclerSearch.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }

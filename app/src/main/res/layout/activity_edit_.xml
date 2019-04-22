@@ -5,8 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back"
-    tools:context=".CreateActivity.CreateBasketball"
+    android:orientation="vertical"
+    tools:context=".CreateActivity.CreateFootball"
     tools:layout_editor_absoluteY="81dp">
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,9 +24,16 @@
                 android:id="@+id/chooseBT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/photo"
+                android:layout_below="@+id/imageView"
                 android:layout_marginTop="25dp"
-                android:text="เลือกรูปภาพ" />
+                android:text="Choose Image" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"/>
 
             <EditText
                 android:id="@+id/editStad_name"
@@ -98,41 +107,38 @@
                 android:background="#002d33"
                 android:hint="รายละเอียดกิจกรรม" />
 
+
+
             <Button
                 android:id="@+id/btn_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#debe2f"
+                android:background="#bcd228"
                 android:text="แก้ไขกิจกรรม"
-                android:layout_marginTop="25dp"
-                android:layout_below="@+id/editdescrip"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/map"
                 android:textColor="#000000" />
 
-            <EditText
-                android:id="@+id/photo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imageView"
-                android:layout_marginTop="20dp"
-                android:hint="Enter a Name" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="250dp"
+            <fragment
+                android:id="@+id/place_autocomplete"
+                android:layout_below="@+id/editdescrip"
+                android:layout_marginTop="20dp"
+                android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <fragment
+                android:id="@+id/map"
+                android:layout_below="@+id/place_autocomplete"
+                class="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="15dp" />
+                android:layout_marginTop="20dp" />
 
         </RelativeLayout>
 
     </ScrollView>
-
-    <Button
-        android:id="@+id/back"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5000dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="กลับสู่หน้าหลัก" />
 
 </RelativeLayout>

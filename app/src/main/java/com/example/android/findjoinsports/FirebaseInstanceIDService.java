@@ -27,7 +27,7 @@ public class FirebaseInstanceIDService extends FirebaseInstanceIdService {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://10.13.3.135/android_register_login/register_token.php")
+                .url(getString(R.string.Host)+"/findjoinsport/android_register_login/register_token.php")
                 .post(body)
                 .build();
 

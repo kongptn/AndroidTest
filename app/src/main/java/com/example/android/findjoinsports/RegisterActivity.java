@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     private RadioGroup sex;
     private RadioButton mSex;
     private ProgressBar loading;
-    private static String URL_REGIST = "http://192.168.2.37/android_register_login/register.php";
+    private static String URL_REGIST = "http://192.168.2.37/findjoinsport/android_register_login/register.php";
 
     private static String strSex;
     private RadioButton rb_male,rb_female;
@@ -148,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REGIST,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/android_register_login/register.php",
 
                 new Response.Listener<String>() {
                     @Override

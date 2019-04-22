@@ -1,8 +1,13 @@
 package com.example.android.findjoinsports;
 import com.android.volley.AuthFailureError;
+
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,15 +31,22 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.android.findjoinsports.Adapter.Recyclerview_Userjoinact;
+import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.CreateActivity.CreateBasketball;
 import com.example.android.findjoinsports.DATA.Descrip_ActData;
 import com.example.android.findjoinsports.R;
 import com.example.android.findjoinsports.SearchActivity.DescriptionActivity;
 import com.example.android.findjoinsports.SearchActivity.SearchActivity;
 import com.example.android.findjoinsports.SessionManager;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
@@ -47,13 +59,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Show_Act_User extends AppCompatActivity {
+public class Show_Act_User extends AppCompatActivity implements OnMapReadyCallback {
 
-    private static final String URL_SHOW = "http://10.13.3.135/findjoinsport/search_activity/test.php";
-    private static final String URL_DEL = "http://10.13.3.135/findjoinsport/football/delete_act.php";
-    private static final String URL_SHOW_USER = "http://10.13.3.135/findjoinsport/football/show_userjoin.php";
-    private static final String URL_DEL_REQ = " http://10.13.3.135/findjoinsport/football/delete_reqjoin.php";
+    private static final String URL_SHOW = "http://192.168.2.34/findjoinsport/search_activity/test.php";
+    private static final String URL_DEL = "http://192.168.2.34/findjoinsport/football/delete_act.php";
+    private static final String URL_SHOW_USER = "http://192.168.2.34/findjoinsport/football/show_userjoin.php";
+    private static final String URL_DEL_REQ = " http://192.168.2.34/findjoinsport/football/delete_reqjoin.php";
 
+    String Latitude;
+    private GoogleMap mMap;
+    String Longitude;
+    double lat;
+    double lng;
+
+    PlaceAutocompleteFragment placeAutoComplete;
+    private LocationManager locationManager;
+    private LocationListener listener;
+    double locationLong;
+    double locationLat;
+    String local;
+    String id;
+    private Button btFinish;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
+    private static final String TAG = "MapActivity";
+    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
+    private Boolean mLocationPermissionsGranted = false;
 
 
 
@@ -73,6 +105,10 @@ public class Show_Act_User extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show__act__user);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
 
         sessionManager = new SessionManager(this);
         sessionManager.checkLogin();
@@ -137,7 +173,7 @@ public class Show_Act_User extends AppCompatActivity {
     private void onButtonClick(final String userid) {
 //        if (!stadium_name.isEmpty() && !description.isEmpty()) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(Request.Method.POST, URL_SHOW, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/search_activity/test.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -156,6 +192,21 @@ public class Show_Act_User extends AppCompatActivity {
 //                        if(jObj.getString("Photo_user") != null){String Photo_user = jObj.getString("Photo_user") ;}
                     String Photo_user = jObj.getString("photo_user");
                     // Log.d("pppphhhh",Photo_user);
+                    String Latitude = jObj.getString("Latitude");
+                    String Longitude = jObj.getString("Longitude");
+
+                    double lat = Double.parseDouble(Latitude);
+                    double lng = Double.parseDouble(Longitude);
+                    LatLng LLgarage = new LatLng(lat, lng);
+                    mMap.addMarker(new MarkerOptions().position(LLgarage));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(LLgarage));
+                    CameraUpdate update = CameraUpdateFactory.newLatLngZoom(LLgarage, 14);
+                    mMap.moveCamera(update);
+                    mMap.getUiSettings().setScrollGesturesEnabled(true);
+                    mMap.getUiSettings().setZoomGesturesEnabled(true);
+                    // Log.d("pppphhhh",Photo_user);
+
+
 
 
                     tvUserName.setText(Name);
@@ -166,14 +217,14 @@ public class Show_Act_User extends AppCompatActivity {
                     tvLocation.setText(Location);
                     tvNumJoin.setText(numjoin);
 
-                    String photo = "http://10.13.3.135/findjoinsport/football/"+Photo;
+                    String photo = ConstansAPI.URL_PHOTO_ACT+Photo;
                     if (photo.equalsIgnoreCase("")){
                         photo = "Default";
                     }
 
                     Picasso.with(Show_Act_User.this).load(photo).placeholder(R.drawable.s).into(image);
 
-                    String photo_user = "http://10.13.3.135/android_register_login/"+Photo_user;
+                    String photo_user = ConstansAPI.URL_PHOTO_USER+Photo_user;
                     if (photo_user.equalsIgnoreCase("")){
                         photo_user = "Default";
                     }
@@ -219,7 +270,7 @@ public class Show_Act_User extends AppCompatActivity {
          * Then we have a Response Listener and a Error Listener
          * In response listener we will get the JSON response as a String
          * */
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SHOW_USER,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/football/show_userjoin.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -290,7 +341,7 @@ public class Show_Act_User extends AppCompatActivity {
 
     private void Delete_act() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(Request.Method.POST, URL_DEL, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/football/delete_act.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("log",response.toString());
@@ -317,7 +368,7 @@ public class Show_Act_User extends AppCompatActivity {
 
     private void Delete_req() {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(Request.Method.POST, URL_DEL_REQ, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/football/delete_reqjoin.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("log",response.toString());
@@ -375,6 +426,21 @@ public class Show_Act_User extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        try {
+            boolean success = googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                            getApplicationContext(), R.raw.style_json));
+
+            if (!success) {
+                Log.e("test", "Style parsing failed.");
+            }
+        } catch (Resources.NotFoundException e) {
+            Log.e("test", "Can't find style. Error: ", e);
+        }
+    }
 }
 
 

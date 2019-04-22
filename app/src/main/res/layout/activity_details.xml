@@ -223,8 +223,29 @@
                             android:layout_marginTop="30dp"
                             android:layout_marginLeft="80dp"
                             android:background="#228B22"
-                            android:text="Add Friends"
+                            android:text="เพิ่มเพื่อน"
                             android:layout_height="50dp" />
+
+                        <Button
+                            android:id="@+id/btn_delfriends"
+                            android:layout_width="200dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginLeft="80dp"
+                            android:background="#c12f0a"
+                            android:text="ลบเพื่อน"
+                            android:layout_height="50dp"
+                            android:visibility="gone"/>
+
+                        <Button
+                            android:id="@+id/btn_wait"
+                            android:layout_width="200dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginLeft="80dp"
+                            android:background="#d3e627"
+                            android:text="ยกเลิกคำขอ"
+                            android:layout_height="50dp"
+                            android:visibility="gone"/>
+
 
 
                     </LinearLayout>

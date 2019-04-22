@@ -5,10 +5,14 @@
     android:orientation="vertical"
     android:background="#FFFFFF"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="8dp">
 
 
     <RelativeLayout
+        android:paddingTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -18,15 +22,14 @@
             android:id="@+id/images"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/army" />
 
         <TextView
             android:id="@+id/textViewStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="250dp"
+            android:layout_marginLeft="170dp"
             android:layout_marginTop="5dp"
             android:background="#ff0000"
             android:paddingRight="15dp"
@@ -38,11 +41,9 @@
 
         <TextView
             android:id="@+id/name"
-            android:paddingTop="10dp"
-            android:paddingLeft="15dp"
-            android:layout_marginLeft="150dp"
-            android:paddingRight="15dp"
-            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@+id/images"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
             android:textSize="20sp"
             android:textColor="#111"
             android:text="Nmae"

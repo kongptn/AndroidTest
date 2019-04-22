@@ -35,7 +35,7 @@ public class Contact_Admin extends Fragment {
     Button bt_req;
     SessionManager sessionManager;
 
-    private static final String URL_ADMIN = "http://10.13.3.135/findjoinsport/football/req_admin.php";
+    private static final String URL_ADMIN = "http://10.13.3.103/findjoinsport/football/req_admin.php";
     public Contact_Admin() {
         // Required empty public constructor
     }
@@ -80,7 +80,7 @@ public class Contact_Admin extends Fragment {
     }
     private void onButtonClick() {
             RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-            StringRequest request = new StringRequest(Request.Method.POST, URL_ADMIN, new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/football/req_admin.php", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.d("onResponse", response);

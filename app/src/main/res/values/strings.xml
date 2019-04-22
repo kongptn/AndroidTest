@@ -23,5 +23,13 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps2">Map</string>
 
+    <string name="channel_name">FINDJOINSPORT</string>
+    <string name="channel_description">kongkongkongkong</string>
+
+    <!--Online-->
+    <string name="Host">"http://192.168.2.35"</string>
+
+
+    <!--<string name="Host">"http://10.13.4.212"</string>-->
 
 </resources>

@@ -46,7 +46,7 @@ public class Request_Friend extends Fragment {
         // Required empty public constructor
     }
 
-    private static final String URL_REQfriend = "http://10.13.3.135/findjoinsport/friend/show_req_friend.php";
+    private static final String URL_REQfriend = "http://10.13.3.103/findjoinsport/friend/show_req_friend.php";
 
     //a list to store all the products
     List<Request_FriendData> request_friendDataList;
@@ -94,7 +94,7 @@ public class Request_Friend extends Fragment {
          * Then we have a Response Listener and a Error Listener
          * In response listener we will get the JSON response as a String
          * */
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REQfriend,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/friend/show_req_friend.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

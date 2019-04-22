@@ -63,7 +63,7 @@
 
         <View
             android:id="@+id/view1"
-            android:layout_below="@+id/imgPlace"
+            android:layout_below="@+id/map"
             android:layout_width="325dp"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
@@ -79,11 +79,19 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 
+        <fragment
+            android:id="@+id/map"
+            class="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_below="@id/tvLocation"
+            android:layout_marginTop="22dp" />
+
         <ImageView
             android:id="@+id/imgpro"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/imgPlace"
+            android:layout_below="@+id/view1"
             android:background="@drawable/profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -105,7 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-           android:layout_below="@+id/imgPlace"
+           android:layout_below="@+id/view1"
             android:text="0" />
         <TextView
             android:id="@+id/tvPreplo"
@@ -116,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/imgPlace"
+            android:layout_below="@+id/view1"
             android:text="ผู้เข้าร่วม" />
 
         <ImageView
@@ -212,13 +220,37 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@+id/btn_invite"
-            android:background="#c72a2a"
+            android:background="#30d26e"
             android:text="เข้าร่วม" />
+
+        <Button
+            android:id="@+id/btn_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTime"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/btn_invite"
+            android:background="#c72a2a"
+            android:text="ถอนตัวออก"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/btn_wait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTime"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/btn_invite"
+            android:background="#f4d227"
+            android:text="ยกเลิกคำขอ"
+            android:visibility="gone"/>
 
     <Button
         android:id="@+id/btn_invite"
         android:text="เชิญเพื่อน"
-        android:background="#44be7d"
+        android:background="#2dc3f1"
         android:layout_marginLeft="100dp"
         android:layout_below="@+id/tvTime"
         android:layout_marginTop="20dp"

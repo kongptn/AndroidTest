@@ -27,7 +27,7 @@ public class ResetPassword extends AppCompatActivity {
     SessionManager sessionManager;
     //private TextView code;
     private Button change;
-    public String URL_SELECT_PASSWORD = "http://10.13.4.53/android_register_login/select-password.php";
+    public String URL_SELECT_PASSWORD = "http://10.13.4.53/findjoinsport/android_register_login/select-password.php";
     private EditText user_tel, security_code;
 
     @Override
@@ -55,7 +55,7 @@ public class ResetPassword extends AppCompatActivity {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SELECT_PASSWORD,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/android_register_login/select-password.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

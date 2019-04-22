@@ -46,7 +46,7 @@ public class Invite_Joinact extends Fragment {
         // Required empty public constructor
     }
 
-    private static final String URL_sendREQJOIN = "http://10.13.3.135/findjoinsport/friend/show_invite_joinact.php";
+    private static final String URL_sendREQJOIN = "http://10.13.3.103/findjoinsport/friend/show_invite_joinact.php";
     //private static final String URL_REQJOIN = "http://192.168.2.35/findjoinsport/request_joinact/reqjoin_show.php";
 
     //a list to store all the products
@@ -97,7 +97,7 @@ public class Invite_Joinact extends Fragment {
          * Then we have a Response Listener and a Error Listener
          * In response listener we will get the JSON response as a String
          * */
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_sendREQJOIN,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/friend/show_invite_joinact.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

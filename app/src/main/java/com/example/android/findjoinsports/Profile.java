@@ -33,6 +33,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -66,7 +67,7 @@ public class Profile extends Fragment {
     private Button btn_photo_upload;
     private Bitmap bitmap;
     CircleImageView profile_image;
-    private static String URL_READ = "http://10.13.3.135/android_register_login/read_detail.php";
+
 
     private static String strSex;
 
@@ -90,6 +91,7 @@ public class Profile extends Fragment {
         //password = findViewById(R.id.password);
         user_firstname = view.findViewById(R.id.user_firstname);
         user_lastname = view.findViewById(R.id.user_lastname);
+        profile_image = view.findViewById(R.id.photo);
         user_age = view.findViewById(R.id.user_age);
         user_tel = view.findViewById(R.id.telephone);
         user_sex = view.findViewById(R.id.user_sex);
@@ -153,7 +155,7 @@ public class Profile extends Fragment {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_READ,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/android_register_login/read_detail.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -196,7 +198,14 @@ public class Profile extends Fragment {
                                     user_lastname.setText(strUser_lastname);
                                     user_age.setText(strUser_age);
                                     user_tel.setText(strUser_tel);
-                                    user_sex.setText(strSex);
+//                                    user_sex.setText(strSex);
+
+                                    String ph = ConstansAPI.URL_PHOTO_USER+strImgUrl;
+                                    if (ph.equalsIgnoreCase("")){
+                                        ph = "default";
+                                    }
+                                    Picasso.with(getContext()).load(ph).placeholder(R.drawable.n).into(profile_image);
+//
 
 
                                 }

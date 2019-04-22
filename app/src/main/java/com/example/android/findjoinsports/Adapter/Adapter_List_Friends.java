@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.DATA.List_FriendData;
 import com.example.android.findjoinsports.DATA.Request_FriendData;
 import com.example.android.findjoinsports.R;
@@ -76,7 +77,7 @@ public class Adapter_List_Friends extends RecyclerView.Adapter<Adapter_List_Frie
     @Override
     public void onBindViewHolder(ReqjoinViewHolder holder, final int position) {
         final List_FriendData list_friendData = list_friendDataListi.get(position);
-        String photo_user = "http://10.13.3.135/android_register_login/"+list_friendData.getPhoto_user();
+        String photo_user = ConstansAPI.URL_PHOTO_USER+list_friendData.getPhoto_user();
         if (photo_user.equalsIgnoreCase("")){
             photo_user = "Default";
         }
