@@ -12,8 +12,6 @@ public interface ApiInterface {
     @GET("getUsers.php")
     Call<List<User_Data>> getUsers (@Query("key") String keyword );
 
-//    @GET("getUsers.php")
-//    Call<List<FriendsData>> getUsers1 (@Query("key") String keyword );
 
 
 

@@ -3,7 +3,6 @@
     android:id="@+id/rootView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="#FFFFFF"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="24dp"
@@ -13,6 +12,7 @@
 
     <RelativeLayout
         android:paddingTop="8dp"
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,9 +22,7 @@
             android:id="@+id/images"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="25dp"
-            android:src="@drawable/army" />
+            android:layout_marginLeft="50dp" />
 
 
         <TextView
@@ -33,7 +31,7 @@
             android:paddingLeft="15dp"
             android:layout_marginLeft="150dp"
             android:paddingRight="15dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="15dp"
             android:textSize="20sp"
             android:textColor="#111"
             android:text="Name"

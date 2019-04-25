@@ -107,6 +107,7 @@ public class Adapter_ReqFriend extends RecyclerView.Adapter<Adapter_ReqFriend.Re
 //                numjoin = Integer.parseInt(String.valueOf((request_friend.getNumber_join())));
 //
                 rf_id = String.valueOf((request_friend.getRf_id()));
+                Log.d("rfid",rf_id);
 
                 userid_add= String.valueOf((request_friend.getUserid_add()));
 //
@@ -115,6 +116,14 @@ public class Adapter_ReqFriend extends RecyclerView.Adapter<Adapter_ReqFriend.Re
 
                 TextView dialog_tv = (TextView) myDialog.findViewById(R.id.dialog_tv);
                 ImageButton bt_not_accept = (ImageButton)myDialog.findViewById(R.id.bt_not_accept);
+
+                bt_not_accept.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        del_friend();
+                        Toast.makeText(mCtx, "ลบคำขอแล้ว", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
 
@@ -214,6 +223,38 @@ public class Adapter_ReqFriend extends RecyclerView.Adapter<Adapter_ReqFriend.Re
 
         //adding our stringrequest to queue
         requestQueue.add(stringRequest);
+    }
+
+    private void del_friend() {
+
+        RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
+        StringRequest request = new StringRequest(Request.Method.POST,ConstansAPI.URL_DIA_DEL_REQ_FRIEND, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("log",response.toString());
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to login url
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("rf_id", String.valueOf(rf_id));
+                Log.d("dell", String.valueOf(rf_id));
+
+
+
+
+                return params;
+            }
+
+        };
+        requestQueue.add(request);
     }
 
     private void sendNonti(final String userid_add,final String noti) {

@@ -2,7 +2,6 @@ package com.example.android.findjoinsports.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,6 @@ import com.example.android.findjoinsports.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-import java.util.regex.Pattern;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Adapter_Friend extends RecyclerView.Adapter<Adapter_Friend.MyViewHolder> {
 
@@ -53,33 +49,28 @@ public class Adapter_Friend extends RecyclerView.Adapter<Adapter_Friend.MyViewHo
         holder.name.setText(user_data.getName());
         holder.email.setText(user_data.getEmail());
 
-        String photo_user = ConstansAPI.URL_PHOTO_USER+user_data.getPhoto_user();
-        if (photo_user.equalsIgnoreCase("")){
-            photo_user = "Default";
+
+        String ph = ConstansAPI.URL_PHOTO_USER+user_data.getPhoto_user();
+
+        if (ph.equalsIgnoreCase("")) {
+            ph = "default";
         }
-        Picasso.with(context).load(photo_user).placeholder(R.drawable.n).into(holder.images);
+        Picasso.with(context).load(ph).placeholder(R.drawable.se_ball).into(holder.images);
 
-//        String ph = ConstansAPI.URL_PHOTO_ACT +user_data.getPhoto_user();
-//
-//        if (ph.equalsIgnoreCase("")) {
-//            ph = "default";
-//        }
-//        Picasso.with(context).load(ph).placeholder(R.drawable.se_ball).into(holder.images);
+        /* String reg = "[0-9]{16}";
+        String temp = us.getPhoto_user();
+        String ph = "";
+        boolean matches = Pattern.matches(reg, temp);
+        if (matches)
+            ph = "https://graph.facebook.com/" + us.getPhoto_user() + "/picture?width=250&height=250";
+    else ph = "http://192.168.1.3/android_register_login/"+us.getPhoto_user();
 
-//        String reg = "[0-9]{16}";
-//        String temp = user_data.getPhoto_user();
-//        String ph = "";
-//        boolean matches = Pattern.matches(reg, temp);
-//        if (matches)
-//            ph = "https://graph.facebook.com/" + user_data.getPhoto_user() + "/picture?width=250&height=250";
-//        else ph = "http://192.168.1.3/android_register_login/"+user_data.getPhoto_user();
-//
-//
-//        if (ph.equalsIgnoreCase("")){
-//            ph = "default";
-//        }
-//        Picasso.with(context).load(ph).placeholder(R.drawable.se_ball).into(holder.images);
-//        Log.d("pp", ph);
+
+        if (ph.equalsIgnoreCase("")){
+            ph = "default";
+        }
+        Picasso.with(context).load(ph).placeholder(R.drawable.se_ball).into(holder.images);
+        Log.d("pp", ph);*/
 
 
         holder.rootView.setOnClickListener(new View.OnClickListener() {

@@ -3,6 +3,7 @@ import com.android.volley.AuthFailureError;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -18,7 +19,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,10 +34,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.android.findjoinsports.Adapter.Adapter;
+import com.example.android.findjoinsports.Adapter.Adapter_Comment;
 import com.example.android.findjoinsports.Adapter.Adapter_ReqInvite_Joinact;
 import com.example.android.findjoinsports.Adapter.Recyclerview_Userjoinact;
 import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.CreateActivity.CreateBasketball;
+import com.example.android.findjoinsports.DATA.Comment_Data;
 import com.example.android.findjoinsports.DATA.Descrip_ActData;
 import com.example.android.findjoinsports.DATA.RecyclerSearch;
 import com.example.android.findjoinsports.DATA.Request_Invite_JoinactData;
@@ -61,6 +66,7 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Comment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,6 +95,7 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
     int id;
     int req_id;
     private Button btFinish;
+    private String comment;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private static final String TAG = "MapActivity";
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -98,17 +105,18 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
 
 
 
-
-    ImageView image,imgUser;
+    EditText edit_comment;
+    ImageView image,imgUser,img;
     TextView tvUserName, tvStadium, tvPlace, tvDate, tvTime, tvDescript, tvLocation, tvNumJoin;
     String userid, mUser_id, status_id,User_id,mName,status_noti,numjoin,numjoindel;
-    Button btn_join,btn_invite,back,btn_del,btn_wait;
+    Button btn_join,btn_invite,back,btn_del,btn_wait,btn_comment;
     SessionManager sessionManager;
 
     List<Descrip_ActData> descrip_actDataList;
-
+    List<Comment_Data> comment_dataList;
     //the recyclerview
     RecyclerView recyclerView;
+    RecyclerView recyclerView_comment;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,9 +132,10 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
         mUser_id = user.get(sessionManager.USER_ID);
         mName = user.get(sessionManager.NAME);
         Log.d("id",mUser_id);
-
+        edit_comment = findViewById(R.id.edit_comment);
         imgUser = findViewById(R.id.imgUser);
         image = findViewById(R.id.image);
+        img = findViewById(R.id.img);
         tvUserName = findViewById(R.id.tvUserName);
         tvStadium = findViewById(R.id.tvStadium);
         tvPlace = findViewById(R.id.tvPlace);
@@ -138,15 +147,31 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
         userid = getIntent().getExtras().getString("id","");
         status_id = "J01";
         status_noti= "N01";
+        btn_comment = findViewById(R.id.btn_comment);
         btn_del = findViewById(R.id.btn_del);
         btn_wait = findViewById(R.id.btn_wait);
         Log.d("sss", String.valueOf(userid));
 
 
+
+
+
+
         onButtonClick(userid);
         showUserjoin(userid);
-
+        showComment();
         check_friend();
+        getUserDetail();
+
+        btn_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditText();
+                insertcomment();
+
+
+            }
+        });
 
         btn_wait.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,12 +215,21 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
             }
         });
 
+
+
+        recyclerView_comment = findViewById(R.id.recyclerview_comment);
+        recyclerView_comment.setHasFixedSize(true);
+        recyclerView_comment.setLayoutManager(new LinearLayoutManager(DescriptionActivity.this));
+        comment_dataList = new ArrayList<>();
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
 
 
         recyclerView = findViewById(R.id.recyclerview_userjoin);
 //        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
+
+
 
 
 
@@ -293,6 +327,50 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
             requestQueue.add(request);
         }
 
+    private void onEditText() {
+         comment = edit_comment.getText().toString();
+    }
+
+    private void insertcomment() {
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host) + "/findjoinsport/search_activity/insert_comment.php", new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.d("onResponse", response);
+                    edit_comment.setText("");
+
+                    Toast.makeText(DescriptionActivity.this, "โพสต์แล้ว", Toast.LENGTH_SHORT).show();
+                }
+
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                    Log.d("Create Error", error.toString());
+//                    Toast.makeText(CreateFootball.this, "เกิดข้อผิดพลาดโปรดลองอีกครั้ง", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DescriptionActivity.this, "กรอกผิดแล้ว", Toast.LENGTH_SHORT).show();
+                }
+
+//                private Context getContext() {
+//                    return null;
+//                }
+            }) {
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+
+                    params.put("cm_data", comment);
+                    params.put("id", userid);
+                    params.put("user_id", mUser_id);
+
+                    Log.d("pppd",comment + userid + mUser_id);
+
+                    return params;
+                }
+            };
+            requestQueue.add(request);
+        }
+
+
     private void showUserjoin(final String userid) {
 
         /*
@@ -361,6 +439,83 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
                 // Posting params to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("id", userid);
+
+                return params;
+            }
+
+        };
+
+        //adding our stringrequest to queue
+        Volley.newRequestQueue(DescriptionActivity.this).add(stringRequest);
+    }
+
+    private void showComment() {
+
+        /*
+         * Creating a String Request
+         * The request type is GET defined by first parameter
+         * The URL is defined in the second parameter
+         * Then we have a Response Listener and a Error Listener
+         * In response listener we will get the JSON response as a String
+         * */
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/search_activity/show_comment.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            //converting the string to json array object
+                            JSONArray array = new JSONArray(response);
+
+                            //traversing through all the object
+                            for (int i = 0; i < array.length(); i++) {
+
+                                //getting product object from json array
+                                JSONObject object = array.getJSONObject(i);
+
+                                //adding the product to product list
+                                int cm_id = object.getInt("cm_id");
+                                int id = object.getInt("id");
+                                int user_id = object.getInt("user_id");
+                                String name = object.getString("name");
+                                String photo_user = object.getString("photo_user");
+                                String cm_data = object.getString("cm_data");
+                                Log.d("comme",cm_data);
+
+
+                                Comment_Data comment_data = new Comment_Data(cm_id, id, user_id, name, photo_user, cm_data);
+                                comment_dataList.add(comment_data);
+                            }
+
+                            //creating adapter object and setting it to recyclerview
+                            Adapter_Comment adapter_comment = new Adapter_Comment(comment_dataList, DescriptionActivity.this, new Adapter_Comment.OnItemClickListener() {
+
+                                                            @Override
+                                                            public void onItemClick(int id) {
+                            //                                    Intent intent = new Intent(getContext(),DescriptionActivity.class);
+                            //                                    intent.putExtra("id",String.valueOf(id));
+                            //                                    Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+                            //                                    startActivity(intent);
+                                                            }
+                                                        });
+                            recyclerView_comment.setAdapter(adapter_comment);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(DescriptionActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }){
+
+            protected Map<String, String> getParams() {
+                // Posting params to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", userid);
+                Log.d("popi",userid);
 
                 return params;
             }
@@ -628,6 +783,99 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
         };
 
         //adding our stringrequest to queue
+        requestQueue.add(stringRequest);
+    }
+
+    private void getUserDetail(){
+
+//        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+//        progressDialog.setMessage("Loading...");
+//        progressDialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/android_register_login/read_detail.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+//                        progressDialog.dismiss();
+//                        Log.i(TAG,"response"+ response.toString());
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            //สร้างตัวแปนที่ชื่อตรงกับ array list ที่สางมา
+                            String success = jsonObject.getString("success");
+                            JSONArray jsonArray = jsonObject.getJSONArray("read");
+
+                            // เช็คว่า success มรค่าเป็น 1 หรือเปล่าถ้าเป็นก็ทำตามเงื่อนไข
+                            if (success.equals("1")){
+                                // เอาตัว array มา for เพื่อเอาค่าเเก็บไว้ใน String
+                                for (int i =0; i < jsonArray.length(); i++) {
+
+                                    JSONObject object = jsonArray.getJSONObject(i);
+                                    // มันคือค่าที่ ตัว arry วนเก็บไว้ใน string
+                                    String strName = object.getString("name").trim();
+                                    String strEmail = object.getString("email").trim();
+                                    String strUser_firstname = object.getString("user_firstname").trim();
+                                    String strUser_lastname = object.getString("user_lastname").trim();
+                                    String strUser_age = object.getString("user_age").trim();
+                                    String strUser_tel = object.getString("user_tel").trim();
+                                    String strSex = object.getString("user_sex").trim();
+                                    String strImgUrl = object.getString("photo_user").trim();
+
+
+//                                    if (strSex.equalsIgnoreCase("Male")) {
+//                                        mSexMale.setChecked(true);
+//                                    } else if (strSex.equalsIgnoreCase("Female")) {
+//                                        mSexFemale.setChecked(true);
+//                                    }
+//
+//                                    // เอาค่าที่ได้ settext
+//                                    name.setText(strName);
+//                                    email.setText(strEmail);
+//                                    user_firstname.setText(strUser_firstname);
+//                                    user_lastname.setText(strUser_lastname);
+//                                    user_age.setText(strUser_age);
+//                                    user_tel.setText(strUser_tel);
+////                                    user_sex.setText(strSex);
+
+                                    String ph = ConstansAPI.URL_PHOTO_USER+strImgUrl;
+                                    if (ph.equalsIgnoreCase("")){
+                                        ph = "default";
+                                    }
+                                    Picasso.with(DescriptionActivity.this).load(ph).placeholder(R.drawable.n).into(img);
+//
+
+
+                                }
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+//                            progressDialog.dismiss();
+
+
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+//                        progressDialog.dismiss();
+
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                //ตัวหน้าตรงกับใน php ที่ีรับค่า ตัวหลังคือค่าที่ส่งไป
+                params.put("user_id", mUser_id);
+
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(DescriptionActivity.this);
         requestQueue.add(stringRequest);
     }
 

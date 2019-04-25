@@ -27,7 +27,7 @@
                 android:layout_below="@+id/photo"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="40dp"
-                android:hint="Name :"
+                android:hint="ชื่อผู้ใช้ :"
                 android:textColorHint="#ffffff" />
 
 
@@ -39,7 +39,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/photo"
                 android:textColor="#FFFFFF"
-                android:hint="Name" />
+                android:hint="ชื่อผู้ใช้" />
 
 
             <TextView
@@ -49,7 +49,7 @@
                 android:layout_below="@+id/name"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="40dp"
-                android:hint="Email :"
+                android:hint="อีเมลล์ :"
                 android:textColorHint="#ffffff" />
 
             <TextView
@@ -60,7 +60,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/name"
                 android:textColor="#ffffff"
-                android:hint="Email" />
+                android:hint="อีเมลล์" />
 
             <TextView
                 android:id="@+id/tvuser_firstname"
@@ -69,7 +69,7 @@
                 android:layout_below="@+id/email"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="40dp"
-                android:hint="FirstName :"
+                android:hint="ชื่อ :"
                 android:textColorHint="#ffffff" />
 
             <TextView
@@ -80,7 +80,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/email"
                 android:textColor="#ffffff"
-                android:hint="Username" />
+                android:hint="ชื่อ" />
 
             <TextView
                 android:id="@+id/tvuser_lastname"
@@ -89,7 +89,7 @@
                 android:layout_below="@+id/user_firstname"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="40dp"
-                android:hint="LastName :"
+                android:hint="นามสกุล :"
                 android:textColorHint="#ffffff" />
 
             <TextView
@@ -99,7 +99,7 @@
                 android:layout_below="@+id/user_firstname"
                 android:layout_marginLeft="150dp"
                 android:layout_marginTop="20dp"
-                android:hint="Username_lastname"
+                android:hint="นามสกุล"
                 android:textColor="#ffffff" />
 
             <TextView
@@ -109,7 +109,7 @@
                 android:layout_below="@+id/user_lastname"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="40dp"
-                android:hint="Age :"
+                android:hint="อายุ :"
                 android:textColorHint="#ffffff" />
 
             <TextView
@@ -120,7 +120,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/user_lastname"
                 android:textColor="#ffffff"
-                android:hint="age" />
+                android:hint="อายุ" />
 
             <TextView
                 android:id="@+id/tvtelephone"
@@ -129,7 +129,7 @@
                 android:layout_below="@+id/tvuser_age"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="40dp"
-                android:hint="Telephone :"
+                android:hint="เบอร์ติดต่อ :"
                 android:textColorHint="#ffffff" />
 
             <TextView
@@ -140,7 +140,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/tvuser_age"
                 android:textColor="#ffffff"
-                android:hint="telephone" />
+                android:hint="เบอร์ติดต่อ" />
 
 
 
@@ -160,14 +160,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
-                    android:text="Male" />
+                    android:text="ชาย" />
 
                 <RadioButton
                     android:id="@+id/rb_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
-                    android:text="Female" />
+                    android:text="หญิง" />
 
             </RadioGroup>
 

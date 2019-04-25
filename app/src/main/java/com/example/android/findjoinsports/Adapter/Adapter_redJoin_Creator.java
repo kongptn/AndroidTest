@@ -138,6 +138,13 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
 
                 TextView dialog_tv = (TextView) myDialog.findViewById(R.id.dialog_tv);
                 ImageButton bt_not_accept = (ImageButton)myDialog.findViewById(R.id.bt_not_accept);
+                bt_not_accept.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Delete_Userreq();
+                        Toast.makeText(mCtx, "ลบคำขอแล้ว", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
 
@@ -174,6 +181,10 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
                     }
 
                 });
+
+
+
+
                 myDialog.show();
             }
 
@@ -256,6 +267,36 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
 
         //adding our stringrequest to queue
         requestQueue.add(stringRequest);
+    }
+
+    private void Delete_Userreq() {
+        RequestQueue requestQueue = Volley.newRequestQueue(mCtx);
+        StringRequest request = new StringRequest(Request.Method.POST,ConstansAPI.URL_DIA_DEL_USER_REQ, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("log",response.toString());
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", actid);
+                Log.d("dddd", actid);
+
+                params.put("userid_join", user_join);
+
+
+                return params;
+            }
+        };
+        requestQueue.add(request);
     }
 
     private void Update_numjoin() {

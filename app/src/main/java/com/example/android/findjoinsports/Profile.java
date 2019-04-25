@@ -34,6 +34,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.android.findjoinsports.Constants.ConstansAPI;
+import com.facebook.login.LoginManager;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -137,6 +138,7 @@ public class Profile extends Fragment {
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                LoginManager.getInstance().logOut();
                 Intent in = new Intent(getActivity(), MainActivity.class);
                 in.putExtra("some", "some data");
                 startActivity(in);
