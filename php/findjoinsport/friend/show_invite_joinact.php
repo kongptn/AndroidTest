@@ -28,7 +28,7 @@
 	//SELECT rq.req_id ,rq.userid_join, a.id , a.stadium_name , a.date , a.time , a.user_id , s.status_id , s.status_name , u.user_id , u.name , u.photo_user FROM football_activity as a INNER JOIN request_joinact rq ON a.id = rq.id INNER JOIN users u ON a.user_id = u.user_id INNER JOIN status s ON rq.status_id = s.status_id  WHERE a.user_id=33
 	$stmt = $conn->prepare("SELECT i.invite_id, i.userid_invite, a.id, a.stadium_name, a.photo, a.date, a.time, a.number_join, u.user_id, u.name, u.photo_user, s.status_id, 
 	s.status_name FROM invite_joinact as i INNER JOIN activity a ON i.id = a.id INNER JOIN users u ON i.user_create = u.user_id 
-	INNER JOIN status s ON i.status_id = s.status_id WHERE i.user_get = '$user_id'");
+	INNER JOIN status s ON i.status_id = s.status_id WHERE i.user_get = '$user_id' ORDER BY i.invite_id DESC");
 	
 	//executing the query 
 	$stmt->execute();

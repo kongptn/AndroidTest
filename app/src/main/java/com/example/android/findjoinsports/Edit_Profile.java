@@ -1,7 +1,6 @@
 package com.example.android.findjoinsports;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -14,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -162,6 +160,7 @@ public class Edit_Profile extends AppCompatActivity  {
                                     // เอาค่าที่ได้ settext
                                     name.setText(strName);
                                     email.setText(strEmail);
+                                    email.setEnabled(false);
                                     user_firstname.setText(strUser_firstname);
                                     user_lastname.setText(strUser_lastname);
                                     user_age.setText(strUser_age);
@@ -226,7 +225,8 @@ public class Edit_Profile extends AppCompatActivity  {
         menuInflater.inflate(R.menu.menu_action, menu);
 
         action = menu;
-        action.findItem(R.id.menu_save).setVisible(false);
+        action.findItem(R.id.menu_save).setVisible(true);
+        action.findItem(R.id.menu_edit).setVisible(false);
 
         return true;
     }
@@ -241,7 +241,12 @@ public class Edit_Profile extends AppCompatActivity  {
                 Intent menu_back = new Intent(Edit_Profile.this, NavDrawer.class);
                 startActivity(menu_back);
 
-            case R.id.menu_edit:
+
+            case R.id.menu_save:
+
+                SaveEditDetail();
+
+
 
                 name.setFocusableInTouchMode(true);
                 email.setFocusableInTouchMode(true);
@@ -252,39 +257,14 @@ public class Edit_Profile extends AppCompatActivity  {
                 user_sex.setFocusableInTouchMode(true);
 
 
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.showSoftInput(name, InputMethodManager.SHOW_IMPLICIT);
 
-                action.findItem(R.id.menu_edit).setVisible(false);
-                action.findItem(R.id.menu_save).setVisible(true);
-
-                return true;
-
-            case R.id.menu_save:
-
-                SaveEditDetail();
-
-                action.findItem(R.id.menu_edit).setVisible(true);
-                action.findItem(R.id.menu_save).setVisible(false);
-
-
-                name.setFocusableInTouchMode(false);
-                email.setFocusableInTouchMode(false);
-                user_firstname.setFocusableInTouchMode(false);
-                user_lastname.setFocusableInTouchMode(false);
-                user_age.setFocusableInTouchMode(false);
-                user_tel.setFocusableInTouchMode(false);
-                user_sex.setFocusableInTouchMode(false);
-
-
-
-                name.setFocusable(false);
-                email.setFocusable(false);
-                user_firstname.setFocusable(false);
-                user_lastname.setFocusable(false);
-                user_age.setFocusable(false);
-                user_tel.setFocusable(false);
-                user_sex.setFocusable(false);
+                name.setFocusable(true);
+                email.setFocusable(true);
+                user_firstname.setFocusable(true);
+                user_lastname.setFocusable(true);
+                user_age.setFocusable(true);
+                user_tel.setFocusable(true);
+                user_sex.setFocusable(true);
 
 
                 return true;
@@ -297,7 +277,7 @@ public class Edit_Profile extends AppCompatActivity  {
     }
 
     //save
-    private void SaveEditDetail() {
+    private boolean SaveEditDetail() {
 
         final String name = this.name.getText().toString().trim();
         final String email = this.email.getText().toString().trim();
@@ -305,11 +285,33 @@ public class Edit_Profile extends AppCompatActivity  {
         final String user_lastname = this.user_lastname.getText().toString().trim();
         final String user_age = this.user_age.getText().toString().trim();
         final String user_tel = this.user_tel.getText().toString().trim();
-
-
         final String user_sex = strSex;
-
         final String user_id = getId;
+
+        if (name.isEmpty()) {
+            this.name.requestFocus();
+            Toast.makeText(this, "กรุณาใส่ชื่อผู้ใช้งาน", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (user_firstname.isEmpty()) {
+            this.user_firstname.requestFocus();
+            Toast.makeText(this, "กรุณาใส่ชื่อจริง", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (user_lastname.isEmpty()) {
+            this.user_lastname.requestFocus();
+            Toast.makeText(this, "กรุณาใส่นามสกุล", Toast.LENGTH_SHORT).show();
+            return false;
+
+        } else if (user_age.isEmpty()) {
+            this.user_age.requestFocus();
+            Toast.makeText(this, "กรุณาระบุอายุ", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (user_tel.length() < 10) {
+            this.user_tel.requestFocus();
+            Toast.makeText(this, "กรอกเบอร์โทรศัพท์ให้ถูกต้องและครบถ้วน", Toast.LENGTH_SHORT).show();
+            return false;
+
+
+        }
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Saving...");
@@ -367,6 +369,7 @@ public class Edit_Profile extends AppCompatActivity  {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 
+        return false;
     }
 
     private void chooseFile() {

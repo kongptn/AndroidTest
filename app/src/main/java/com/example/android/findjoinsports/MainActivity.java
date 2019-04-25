@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void onResponse(String response) {
 
-                                        Toast.makeText(MainActivity.this, "su", Toast.LENGTH_SHORT).show();
+                                     //   Toast.makeText(MainActivity.this, "su", Toast.LENGTH_SHORT).show();
                                         select_datafacebook(finalEmail);
 
 
@@ -230,9 +230,9 @@ public class MainActivity extends AppCompatActivity {
                 request.executeAsync();
 
 
-                Intent login_facebook = new Intent(MainActivity.this, NavDrawer.class); //login to page home
-
-                startActivity(login_facebook);
+//                Intent login_facebook = new Intent(MainActivity.this, Edit_Profile.class); //login to page home
+//
+//                startActivity(login_facebook);
             }
 
 
@@ -477,7 +477,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     sessionManager.createSession(name, email, user_id, user_firstname, user_lastname, user_age, user_tel, password, user_sex, security_code);
 
-                                    Intent intent = new Intent(MainActivity.this, NavDrawer.class);
+                                    Intent intent = new Intent(MainActivity.this, Edit_Profile.class);
                                     intent.putExtra("name", name);
                                     intent.putExtra("email", email);
                                     //intent.putExtra("password", password);

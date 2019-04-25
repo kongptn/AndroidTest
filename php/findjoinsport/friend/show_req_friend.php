@@ -26,7 +26,7 @@
 	//creating a query
 	//SELECT rq.req_id ,rq.userid_join, a.id , a.stadium_name , a.date , a.time , a.user_id , s.status_id , s.status_name , u.user_id , u.name , u.photo_user FROM football_activity as a INNER JOIN request_joinact rq ON a.id = rq.id INNER JOIN users u ON a.user_id = u.user_id INNER JOIN status s ON rq.status_id = s.status_id  WHERE a.user_id=33
 	$stmt = $conn->prepare("SELECT rf.rf_id ,rf.userid_add, s.status_id , s.status_name , u.user_id , u.name , u.photo_user 
-	FROM request_friend rf INNER JOIN status s on rf.status_id = s.status_id INNER JOIN users u on rf.userid_add = u.user_id WHERE rf.user_id = '$user_id'");
+	FROM request_friend rf INNER JOIN status s on rf.status_id = s.status_id INNER JOIN users u on rf.userid_add = u.user_id WHERE rf.user_id = '$user_id' ORDER BY rf.rf_id DESC");
 	
 	//executing the query 
 	$stmt->execute();

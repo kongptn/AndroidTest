@@ -22,11 +22,11 @@
 	}else{
 		mysqli_set_charset($conn, "utf8");
 	}
-	//$rf_id = isset($_POST['rf_id']) ? $_POST['rf_id'] : '';
+	$user_id = isset($_POST['user_id']) ? $_POST['user_id'] : '';
 	//creating a query
 	//SELECT rq.req_id ,rq.userid_join, a.id , a.stadium_name , a.date , a.time , a.user_id , s.status_id , s.status_name , u.user_id , u.name , u.photo_user FROM football_activity as a INNER JOIN request_joinact rq ON a.id = rq.id INNER JOIN users u ON a.user_id = u.user_id INNER JOIN status s ON rq.status_id = s.status_id  WHERE a.user_id=33
 	$stmt = $conn->prepare("SELECT rf.rf_id , u.user_id , u.name , u.photo_user , s.status_id , s.status_name FROM request_friend as rf 
-	INNER JOIN users u ON rf.user_id = u.user_id OR rf.userid_add = u.user_id INNER JOIN status s ON rf.status_id = s.status_id WHERE rf.status_id = 'F02' AND rf.userid_add = 36 OR rf.user_id = 36");
+	INNER JOIN users u ON rf.user_id = u.user_id OR rf.userid_add = u.user_id INNER JOIN status s ON rf.status_id = s.status_id WHERE s.status_id = 'F02'  AND  ((rf.user_id = '$user_id' OR rf.userid_add = '$user_id') AND u.user_id != '$user_id')");
 
 	
 	
