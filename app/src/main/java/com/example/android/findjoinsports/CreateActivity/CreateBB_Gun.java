@@ -516,7 +516,7 @@ public class CreateBB_Gun extends AppCompatActivity implements View.OnClickListe
 
                     Log.d("Create Error", error.toString());
 //                    Toast.makeText(CreateFootball.this, "เกิดข้อผิดพลาดโปรดลองอีกครั้ง", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(CreateBB_Gun.this,"กรอกผิดแล้ว",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateBB_Gun.this,"ใส่ข้อมูลไม่ครบถ้วน",Toast.LENGTH_SHORT).show();
                 }
                 private Context getContext() {
                     return null;

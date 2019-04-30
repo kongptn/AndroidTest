@@ -42,8 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="ชื่อผู้ใช้"
-        android:textColor="@color/colorPrimary"
+        android:hint="ชื่อผู้ใช้"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="15dp"
         android:textStyle="bold" />
 
@@ -63,8 +63,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/name"
         android:gravity="center"
-        android:text="อีเมลล์"
-        android:textColor="@color/colorPrimary"
+        android:hint="อีเมลล์"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="15dp"
         android:textStyle="bold" />
 
@@ -85,8 +85,8 @@
         android:layout_below="@id/email"
 
         android:gravity="center"
-        android:text="ชื่อ"
-        android:textColor="@color/colorPrimary"
+        android:hint="ชื่อ"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="15dp"
         android:textStyle="bold" />
 
@@ -106,8 +106,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/user_firstname"
         android:gravity="center"
-        android:text="นามสกุล"
-        android:textColor="@color/colorPrimary"
+        android:hint="นามสกุล"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="15dp"
         android:textStyle="bold" />
 
@@ -127,8 +127,8 @@
 
         android:layout_below="@id/user_lastname"
         android:gravity="center"
-        android:text="อายุ"
-        android:textColor="@color/colorPrimary"
+        android:hint="อายุ"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="15dp"
         android:textStyle="bold" />
 
@@ -148,8 +148,8 @@
 
         android:layout_below="@id/user_age"
         android:gravity="center"
-        android:text="เบอร์ติดต่อ"
-        android:textColor="@color/colorPrimary"
+        android:hint="เบอร์ติดต่อ"
+        android:textColorHint="@color/colorPrimary"
         android:textSize="15dp"
         android:textStyle="bold" />
 

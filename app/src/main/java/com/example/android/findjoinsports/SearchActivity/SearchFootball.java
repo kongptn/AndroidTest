@@ -47,7 +47,7 @@ public class SearchFootball extends Fragment {
     //the recyclerview
     RecyclerView recyclerView;
     String status_id;
-
+    int id;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -92,7 +92,7 @@ public class SearchFootball extends Fragment {
                                 JSONObject object = array.getJSONObject(i);
 
                                 //adding the product to product list
-                                int id = object.getInt("id");
+                                 id = object.getInt("id");
                                 String stadiumname = object.getString("stadium_name");
                                 String photo = object.getString("photo");
                                 String date = object.getString("date");
@@ -110,7 +110,7 @@ public class SearchFootball extends Fragment {
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            Adapter adapter = new Adapter(getContext(), recyclerSearchList,status_id, new Adapter.OnItemClickListener() {
+                            Adapter adapter = new Adapter(getContext(), recyclerSearchList,status_id,id, new Adapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(int id) {
                                     Intent intent = new Intent(getContext(),DescriptionActivity.class);

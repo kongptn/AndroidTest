@@ -95,7 +95,7 @@ public class Show_Act_User extends AppCompatActivity implements OnMapReadyCallba
     ImageView image,imgUser,img;
     TextView tvUserName, tvStadium, tvPlace, tvDate, tvTime, tvDescript, tvLocation, tvNumJoin;
     String userid, mUser_id, status_id,User_id;
-    Button btn_join,btn_edit,btn_comment,btn_close;
+    Button btn_join,btn_edit,btn_comment,btn_close,btn_open;
     SessionManager sessionManager;
 
     List<Descrip_ActData> descrip_actDataList;
@@ -123,6 +123,7 @@ public class Show_Act_User extends AppCompatActivity implements OnMapReadyCallba
         img = findViewById(R.id.img);
         btn_comment = findViewById(R.id.btn_comment);
         btn_close = findViewById(R.id.btn_close);
+        btn_open = findViewById(R.id.btn_open);
         imgUser = findViewById(R.id.imgUser);
         image = findViewById(R.id.image);
         tvUserName = findViewById(R.id.tvUserName);
@@ -142,6 +143,14 @@ public class Show_Act_User extends AppCompatActivity implements OnMapReadyCallba
         getUserDetail();
         onButtonClick(userid);
         showUserjoin(userid);
+
+        btn_open.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Update_Status_Open();
+                Toast.makeText(Show_Act_User.this,"เลิกปิดกิจกรรม", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -580,6 +589,33 @@ public class Show_Act_User extends AppCompatActivity implements OnMapReadyCallba
 
         //adding our stringrequest to queue
         Volley.newRequestQueue(Show_Act_User.this).add(stringRequest);
+    }
+
+    private void Update_Status_Open() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/football/update_status_open.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("log",response.toString());
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", userid);
+                Log.d("dddd", userid);
+
+                return params;
+            }
+        };
+        requestQueue.add(request);
     }
 
     private void Update_Status() {

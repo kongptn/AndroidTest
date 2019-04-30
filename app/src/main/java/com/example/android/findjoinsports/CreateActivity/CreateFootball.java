@@ -511,7 +511,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
 
                     Log.d("Create Error", error.toString());
 //                    Toast.makeText(CreateFootball.this, "เกิดข้อผิดพลาดโปรดลองอีกครั้ง", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(CreateFootball.this,"กรอกผิดแล้ว",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateFootball.this,"ใส่ข้อมูลไม่ครบถ้วน",Toast.LENGTH_SHORT).show();
                 }
                 private Context getContext() {
                     return null;

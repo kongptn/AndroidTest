@@ -158,14 +158,26 @@ public class Edit_Profile extends AppCompatActivity  {
                                         mSexFemale.setChecked(true);
                                     }
 
-                                    // เอาค่าที่ได้ settext
-                                    name.setText(strName);
+                                    if (strName != "null"){
+                                        name.setText(strName);
+                                    }
                                     email.setText(strEmail);
                                     email.setEnabled(false);
-                                    user_firstname.setText(strUser_firstname);
-                                    user_lastname.setText(strUser_lastname);
-                                    user_age.setText(strUser_age);
-                                    user_tel.setText(strUser_tel);
+                                    if (strUser_firstname != "null"){
+                                        user_firstname.setText(strUser_firstname);
+                                    }
+                                    if (strUser_lastname != "null") {
+                                        user_lastname.setText(strUser_lastname);
+                                    }
+                                    if (strUser_age != "null"){
+                                        user_age.setText(strUser_age);
+                                    }
+
+
+                                    if (strUser_tel != "null"){
+                                        user_tel.setText(strUser_tel);
+                                    }
+
 
                                     String ph = ConstansAPI.URL_PHOTO_USER+strImgUrl;
                                     if (ph.equalsIgnoreCase("")){

@@ -30,14 +30,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
     private OnItemClickListener listener;
   private final String status_id;
 
+     int actid;
     String status_close;
 
-    public Adapter(Context mCtx, List<RecyclerSearch> recyclerSearchList,String status_id,OnItemClickListener listener) {
+    public Adapter(Context mCtx, List<RecyclerSearch> recyclerSearchList,String status_id,int id,OnItemClickListener listener) {
         this.mCtx = mCtx;
         this.recyclerSearchList = recyclerSearchList;
         this.listener = listener;
         this.status_id = status_id;
-        Log.d("dddd",status_id);
+        this.actid = id;
+        Log.d("dddssdd",status_id + actid);
     }
 
     public interface OnItemClickListener {
@@ -76,10 +78,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
         holder.textViewTime.setText(recyclerSearch.getTime());
         holder.status_close.setText(recyclerSearch.getStatus_id());
 
-       if (status_id.isEmpty()){
-           Log.d("ppopoo",status_id);
-           holder.status_close.setVisibility(View.GONE);
-       }
+
 
 
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class SearchBB_GUN extends Fragment {
 
     //the recyclerview
     RecyclerView recyclerView;
-
+    int id;
     String status_id;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -92,7 +93,7 @@ public class SearchBB_GUN extends Fragment {
                                 JSONObject object = array.getJSONObject(i);
 
                                 //adding the product to product list
-                                int id = object.getInt("id");
+                                id = object.getInt("id");
                                 String stadiumname = object.getString("stadium_name");
                                 String photo = object.getString("photo");
                                 String date = object.getString("date");
@@ -103,13 +104,14 @@ public class SearchBB_GUN extends Fragment {
                                 int userid = object.getInt("user_id");
                                 String photo_user = object.getString("photo_user");
                                 status_id = object.getString("status_id");
+                                Log.d("sda",status_id);
 
                                 RecyclerSearch recyclerSearch = new RecyclerSearch(id, userid, stadiumname, photo, photo_user, date, time, name, location, description, status_id);
                                 recyclerSearchList.add(recyclerSearch);
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            Adapter adapter = new Adapter(getContext(), recyclerSearchList,status_id, new Adapter.OnItemClickListener() {
+                            Adapter adapter = new Adapter(getContext(), recyclerSearchList,status_id,id, new Adapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(int id) {
                                     Intent intent = new Intent(getContext(),DescriptionActivity.class);

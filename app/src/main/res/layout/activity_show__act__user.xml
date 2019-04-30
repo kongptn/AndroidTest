@@ -253,22 +253,32 @@
 
             <Button
                 android:id="@+id/btn_close"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recyclerview_comment"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="40dp"
-                android:background="#1ba2fc"
+                android:layout_marginLeft="60dp"
+                android:background="#FFFFFF"
                 android:text="ปิดกิจกรรม" />
 
             <Button
-                android:id="@+id/btn_join"
-                android:layout_width="wrap_content"
+                android:id="@+id/btn_open"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recyclerview_comment"
-                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/btn_close"
                 android:layout_marginTop="20dp"
-                android:layout_toRightOf="@+id/btn_edit"
+                android:layout_marginLeft="40dp"
+                android:background="#d001ff"
+                android:text="เลิกปิดกิจกรรม" />
+
+
+            <Button
+                android:id="@+id/btn_join"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_edit"
+                android:layout_marginTop="20dp"
                 android:background="#c72a2a"
                 android:text="ลบกิจกรรม" />
 
@@ -276,11 +286,9 @@
                 android:id="@+id/btn_edit"
                 android:text="แก้ไข"
                 android:background="#dfd80c"
-                android:layout_marginLeft="20dp"
-                android:layout_below="@+id/recyclerview_comment"
-                android:layout_toRightOf="@+id/btn_close"
+                android:layout_below="@+id/btn_open"
                 android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </RelativeLayout>

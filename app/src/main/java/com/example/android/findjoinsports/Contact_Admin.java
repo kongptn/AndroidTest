@@ -22,7 +22,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.android.findjoinsports.CreateActivity.CreateBB_Gun;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -92,7 +91,7 @@ public class Contact_Admin extends Fragment implements AdapterView.OnItemSelecte
 
 
                 if (req_admin_name != ""){
-                    onEditText();
+                    //onEditText();
                     onButtonClick();
                 }else {
                     Toast.makeText(getContext(), "กรุณาเลือกประเภทคำร้อง", Toast.LENGTH_SHORT).show();
@@ -104,23 +103,32 @@ public class Contact_Admin extends Fragment implements AdapterView.OnItemSelecte
         return view;
     }
 
-    private void onEditText() {
+//    private boolean onEditText() {
+//
+//
+//
+//        return false;
+//    }
+    private boolean onButtonClick() {
         info_req = et_req.getText().toString();
+        if (info_req.isEmpty()){
+            et_req.requestFocus();
+            Toast.makeText(getContext(), "กรุณากรอกคำร้อง", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
-
-
-    }
-    private void onButtonClick() {
-            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-            StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/football/req_admin.php", new Response.Listener<String>() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+            StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host) + "/findjoinsport/football/req_admin.php", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.d("onResponse", response);
-                    et_req.setText("");
+                        et_req.setText("");
+                        Toast.makeText(getContext(), "ส่งคำร้องแล้ว", Toast.LENGTH_SHORT).show();
+
+                    }
 
 
-                    Toast.makeText(getContext(), "ส่งคำร้องแล้ว", Toast.LENGTH_SHORT).show();
-                }
+
 
             }, new Response.ErrorListener() {
                 @Override
@@ -128,7 +136,7 @@ public class Contact_Admin extends Fragment implements AdapterView.OnItemSelecte
 
                     Log.d("Create Error", error.toString());
 //                    Toast.makeText(CreateFootball.this, "เกิดข้อผิดพลาดโปรดลองอีกครั้ง", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getContext(),"กรอกผิดแล้ว",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "กรอกผิดแล้ว", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -139,13 +147,15 @@ public class Contact_Admin extends Fragment implements AdapterView.OnItemSelecte
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("info", info_req);
-                    params.put("user_id",mUser);
-                    params.put("req_admin_name",req_admin_name);
+                    params.put("user_id", mUser);
+                    params.put("req_admin_name", req_admin_name);
                     return params;
                 }
             };
             requestQueue.add(request);
-        }
+        return true;
+    }
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

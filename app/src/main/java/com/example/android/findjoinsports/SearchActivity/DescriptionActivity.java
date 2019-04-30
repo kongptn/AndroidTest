@@ -3,13 +3,10 @@ import com.android.volley.AuthFailureError;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,38 +16,27 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.android.findjoinsports.Adapter.Adapter;
 import com.example.android.findjoinsports.Adapter.Adapter_Comment;
-import com.example.android.findjoinsports.Adapter.Adapter_ReqInvite_Joinact;
 import com.example.android.findjoinsports.Adapter.Recyclerview_Userjoinact;
 import com.example.android.findjoinsports.Constants.ConstansAPI;
-import com.example.android.findjoinsports.CreateActivity.CreateBasketball;
 import com.example.android.findjoinsports.DATA.Comment_Data;
 import com.example.android.findjoinsports.DATA.Descrip_ActData;
-import com.example.android.findjoinsports.DATA.RecyclerSearch;
-import com.example.android.findjoinsports.DATA.Request_Invite_JoinactData;
-import com.example.android.findjoinsports.DATA.Request_JoinData_Creator;
-import com.example.android.findjoinsports.Edit_Activity;
-import com.example.android.findjoinsports.Friends_List;
 import com.example.android.findjoinsports.Friends_List_Invite;
 import com.example.android.findjoinsports.NavDrawer;
 import com.example.android.findjoinsports.R;
 import com.example.android.findjoinsports.SessionManager;
-import com.example.android.findjoinsports.Show_Act_User;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.maps.CameraUpdate;
@@ -66,7 +52,6 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Comment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -339,10 +324,16 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
         }
 
     private void onEditText() {
-         comment = edit_comment.getText().toString();
+
     }
 
-    private void insertcomment() {
+    private boolean insertcomment() {
+        comment = edit_comment.getText().toString();
+        if (comment.isEmpty()){
+            edit_comment.requestFocus();
+            Toast.makeText(DescriptionActivity.this, "กรุณาใส่ข้อความ", Toast.LENGTH_SHORT).show();
+            return false;
+        }
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host) + "/findjoinsport/search_activity/insert_comment.php", new Response.Listener<String>() {
                 @Override
@@ -379,7 +370,8 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
                 }
             };
             requestQueue.add(request);
-        }
+        return true;
+    }
 
 
     private void showUserjoin(final String userid) {

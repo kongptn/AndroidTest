@@ -124,7 +124,7 @@ public class Act_User_Create extends Fragment {
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            Adapter_Act_User_Craete adapter_act_user_craete = new Adapter_Act_User_Craete(getContext(), act_user_createDataList, new Adapter_Act_User_Craete.OnItemClickListener() {
+                            Adapter_Act_User_Craete adapter_act_user_craete = new Adapter_Act_User_Craete(getContext(), act_user_createDataList,status_id, new Adapter_Act_User_Craete.OnItemClickListener() {
                                                             @Override
                                                             public void onItemClick(int id) {
                                                                 Intent intent = new Intent(getContext(),Show_Act_User.class);

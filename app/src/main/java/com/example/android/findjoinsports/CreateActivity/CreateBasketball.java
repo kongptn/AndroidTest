@@ -139,6 +139,7 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
             public void onClick(View v) {
                 DialogFragment timePicker = new TimePickerFragment();
                 timePicker.show(getSupportFragmentManager(), "time picker");
+
             }
         });
 
@@ -150,6 +151,8 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
             public void onClick(View v) {
                 DialogFragment datePicker = new DatePickerFragment();
                 datePicker.show(getSupportFragmentManager(),"date picker");
+
+
             }
         });
         textDate = (TextView)findViewById(R.id.textDate);
@@ -240,6 +243,8 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
             }
         });
         getLocationPermission();
+
+
     }
 
 
@@ -470,6 +475,7 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
         textTime.setText(hourOfDay + " นาฬิกา " + minute +" นาที");
     }
 
+
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar c = Calendar.getInstance();
@@ -531,7 +537,7 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
 
                     Log.d("Create Error", error.toString());
 //                    Toast.makeText(CreateFootball.this, "เกิดข้อผิดพลาดโปรดลองอีกครั้ง", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(CreateBasketball.this,"กรอกผิดแล้ว",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateBasketball.this,"ใส่ข้อมูลไม่ครบถ้วน",Toast.LENGTH_SHORT).show();
                 }
                 private Context getContext() {
                     return null;

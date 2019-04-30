@@ -29,14 +29,14 @@ public class Adapter_Act_User_Craete extends RecyclerView.Adapter<Adapter_Act_Us
     private Context mCtx;
     private List<Act_User_CreateData> act_user_createDataList;
     private OnItemClickListener listener;
-   // private final String status_id;
+    private final String status_create;
 
-    public Adapter_Act_User_Craete(Context mCtx, List<Act_User_CreateData> act_user_createDataList, OnItemClickListener listener) {
+    public Adapter_Act_User_Craete(Context mCtx, List<Act_User_CreateData> act_user_createDataList, String status_id, OnItemClickListener listener) {
         this.mCtx = mCtx;
         this.act_user_createDataList = act_user_createDataList;
         this.listener = listener;
-      //  this.status_id = status_id;
-      //  Log.d("sda",status_id);
+        this.status_create = status_id;
+        Log.d("sdahh",status_id);
     }
 
     public interface OnItemClickListener {
@@ -76,10 +76,7 @@ public class Adapter_Act_User_Craete extends RecyclerView.Adapter<Adapter_Act_Us
         holder.status_close.setText(act_user_createData.getStatus_id());
 
 
-//        if (status_id.equals("เปิดรับ")){
-//            Log.d("ppopoo",status_id);
-//            holder.status_close.setVisibility(View.GONE);
-//        }
+
 
 
 
