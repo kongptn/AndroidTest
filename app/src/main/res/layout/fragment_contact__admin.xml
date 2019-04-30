@@ -24,10 +24,19 @@
 
     </RelativeLayout>
 
-    <EditText
-       android:id="@+id/et_req"
+
+    <Spinner
+        android:id="@+id/spinner"
         android:layout_below="@+id/rtlayout"
         android:layout_marginTop="210dp"
+        android:background="#54e7cf"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"></Spinner>
+
+    <EditText
+       android:id="@+id/et_req"
+        android:layout_below="@+id/spinner"
+        android:layout_marginTop="20dp"
         android:layout_centerInParent="true"
         android:hint="กรอกคำร้องขอ"
         android:textColorHint="#000000"

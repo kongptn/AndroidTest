@@ -137,12 +137,13 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
                  Log.d("fdf", user_join);
 
                 TextView dialog_tv = (TextView) myDialog.findViewById(R.id.dialog_tv);
-                ImageButton bt_not_accept = (ImageButton)myDialog.findViewById(R.id.bt_not_accept);
+                Button bt_not_accept = (Button)myDialog.findViewById(R.id.bt_not_accept);
                 bt_not_accept.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Delete_Userreq();
                         Toast.makeText(mCtx, "ลบคำขอแล้ว", Toast.LENGTH_SHORT).show();
+                        myDialog.dismiss();
                     }
                 });
 
@@ -156,7 +157,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
                 }
                 Picasso.with(mCtx).load(photo_user).placeholder(R.drawable.n).into(imgDialog);
 
-                ImageButton bt_accept = (ImageButton)myDialog.findViewById(R.id.bt_accept);
+                Button bt_accept = (Button)myDialog.findViewById(R.id.bt_accept);
                 bt_accept.setOnClickListener(new View.OnClickListener() {
 
                    // String act_id = String.valueOf((request_joinData_creator.getId()));
@@ -177,6 +178,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
 //                        intent.putExtra("id",String.valueOf(id));
                         // mCtx.startActivity(intent);
                         Toast.makeText(mCtx, "success", Toast.LENGTH_SHORT).show();
+                        myDialog.dismiss();
                        // Toast.makeText(mCtx, String.valueOf(id), Toast.LENGTH_SHORT).show();
                     }
 

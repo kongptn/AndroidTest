@@ -15,12 +15,20 @@
         android:background="#d8e0e3"
         android:padding="8dp">
 
+        <TextView
+            android:id="@+id/status_close"
+            android:text="ปิดรับแล้ว"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:background="#ffae00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="400dp"
             android:layout_height="150dp"
-
+            android:layout_below="@+id/status_close"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="9dp" />
 
@@ -32,27 +40,35 @@
             android:layout_height="wrap_content"
             android:background="@drawable/req">
 
+            <RelativeLayout
+                android:id="@+id/rt"
+                android:layout_marginLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/textViewName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/imgUser"
-                android:layout_marginLeft="25dp"
+                android:layout_centerHorizontal="true"
                 android:text="ชื่อผู้ใช้"
                 android:textColor="#ffffff"
                 android:textStyle="bold" />
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgUser"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_centerHorizontal="true"
                 android:layout_width="60dp"
                 android:layout_height="60dp" />
+
+            </RelativeLayout>
 
             <View
                 android:id="@+id/view2"
                 android:layout_below="@+id/textViewStadiumName"
-                android:layout_toRightOf="@+id/imgUser"
+                android:layout_toRightOf="@+id/rt"
                 android:layout_marginLeft="8dp"
                 android:layout_width="325dp"
                 android:layout_height="1dp"
@@ -63,7 +79,7 @@
                 android:id="@+id/textViewStadiumName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/imgUser"
+                android:layout_toRightOf="@+id/rt"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="8dp"
                 android:text="ชื่อสนาม"
@@ -75,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/view2"
-                android:layout_toRightOf="@+id/imgUser"
+                android:layout_toRightOf="@+id/rt"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="8dp"
                 android:text="วันที่"
@@ -88,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textViewDate"
-                android:layout_toRightOf="@+id/imgUser"
+                android:layout_toRightOf="@+id/rt"
                 android:layout_marginTop="4dp"
                 android:layout_marginLeft="8dp"
                 android:text="เวลา"

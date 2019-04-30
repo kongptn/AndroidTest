@@ -91,6 +91,7 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
     private String stadium_name, description ,date, time, mUser,location, mName;
     private final int IMG_REQUEST = 1;
     String type_id = "3";
+    String numberjoin = "0";
     private Bitmap bitmap;
     private static final String URL = "http://10.13.3.103/findjoinsport/football/InsertData.php";
    // private String UploadUrl = "http://10.13.4.53/ImageUploadApp/updateinfo.php";
@@ -107,6 +108,7 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
     double locationLong;
     double locationLat;
     String local;
+    String status_create = "เปิดรับ";
     private Button btFinish;
     private static final String TAG = "MapActivity";
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -465,7 +467,7 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         TextView textTime = (TextView)findViewById(R.id.textTime);
-        textTime.setText("Hour: " + hourOfDay + " Minute: " + minute);
+        textTime.setText(hourOfDay + " นาฬิกา " + minute +" นาที");
     }
 
     @Override
@@ -497,20 +499,30 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
     private void onButtonClick() {
         if (!stadium_name.isEmpty() && !description.isEmpty()) {
             RequestQueue requestQueue = Volley.newRequestQueue(this);
-            StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/football/InsertData.php", new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.POST,getString(R.string.Host)+"/findjoinsport/football/insert_act.php", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    Log.d("onResponse", response);
-                    editStad_name.setText("");
-                    editdescrip.setText("");
 
-                    editlocation.setText("");
-                    textDate.setText("");
-                    textTime.setText("");
-                    // --
-                    imgView.setImageResource(0);
-                    imgView.setVisibility(View.GONE);
-                    Toast.makeText(CreateBasketball.this, "สร้างกิจกรรมแล้ว", Toast.LENGTH_SHORT).show();
+
+                        Log.d("onResponse", response);
+
+                        if (response.equals("true")){
+
+                            editStad_name.setText("");
+                            editdescrip.setText("");
+
+                            editlocation.setText("");
+                            textDate.setText("");
+                            textTime.setText("");
+                            // --
+                            imgView.setImageResource(0);
+                            imgView.setVisibility(View.GONE);
+                            Toast.makeText(CreateBasketball.this, "สร้างกิจกรรมแล้ว", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(CreateBasketball.this, "เกิดข้อผิดพลาด", Toast.LENGTH_SHORT).show();
+                        }
+
                 }
 
             }, new Response.ErrorListener() {
@@ -539,6 +551,8 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
                     params.put("type_id", type_id);
                     params.put("user_id", mUser);
                     params.put("name", mName);
+                    params.put("number_join", numberjoin);
+                    params.put("status_id", status_create);
 
                     return params;
                 }

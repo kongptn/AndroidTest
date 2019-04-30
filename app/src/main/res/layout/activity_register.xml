@@ -148,13 +148,13 @@
                         android:id="@+id/rb_male"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Male" />
+                        android:text="ชาย" />
 
                     <RadioButton
                         android:id="@+id/rb_female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Female" />
+                        android:text="หญิง" />
 
                 </RadioGroup>
             </android.support.design.widget.TextInputLayout>

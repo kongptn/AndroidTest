@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.DATA.Act_User_CreateData;
@@ -28,11 +29,14 @@ public class Adapter_Act_User_Craete extends RecyclerView.Adapter<Adapter_Act_Us
     private Context mCtx;
     private List<Act_User_CreateData> act_user_createDataList;
     private OnItemClickListener listener;
+   // private final String status_id;
 
     public Adapter_Act_User_Craete(Context mCtx, List<Act_User_CreateData> act_user_createDataList, OnItemClickListener listener) {
         this.mCtx = mCtx;
         this.act_user_createDataList = act_user_createDataList;
         this.listener = listener;
+      //  this.status_id = status_id;
+      //  Log.d("sda",status_id);
     }
 
     public interface OnItemClickListener {
@@ -69,11 +73,22 @@ public class Adapter_Act_User_Craete extends RecyclerView.Adapter<Adapter_Act_Us
         holder.textViewDate.setText(act_user_createData.getDate());
         holder.textViewTime.setText(act_user_createData.getTime());
 
+        holder.status_close.setText(act_user_createData.getStatus_id());
+
+
+//        if (status_id.equals("เปิดรับ")){
+//            Log.d("ppopoo",status_id);
+//            holder.status_close.setVisibility(View.GONE);
+//        }
+
+
 
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.onItemClick(act_user_createData.getId());
+                //Toast.makeText(mCtx, status_id, Toast.LENGTH_SHORT).show();
+
             }
         });
         // holder.id.setText(recyclerSearch.getId());
@@ -116,7 +131,7 @@ public class Adapter_Act_User_Craete extends RecyclerView.Adapter<Adapter_Act_Us
         TextView textViewStadiumName, textViewName, textViewDate, textViewTime, textViewLocation, textViewDescriptrion;
         ImageView imageView, imgUser;
         LinearLayout rootView;
-
+        TextView status_close;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
@@ -126,6 +141,7 @@ public class Adapter_Act_User_Craete extends RecyclerView.Adapter<Adapter_Act_Us
             textViewDate = itemView.findViewById(R.id.textViewDate);
             textViewTime = itemView.findViewById(R.id.textViewTime);
             imageView = itemView.findViewById(R.id.imageView1);
+            status_close = itemView.findViewById(R.id.status_close);
             parentLayout = itemView.findViewById(R.id.parentLayout);
             imgUser = itemView.findViewById(R.id.imgUser);
             rootView = itemView.findViewById(R.id.rootView);

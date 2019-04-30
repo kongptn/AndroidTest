@@ -26,10 +26,24 @@
     <string name="channel_name">FINDJOINSPORT</string>
     <string name="channel_description">kongkongkongkong</string>
 
+
+    <string-array name="choice_req">
+        <item>เลือกประเภทคำร้อง</item>
+        <item>คำร้องเพิ่มชนิดกีฬา</item>
+        <item>คำร้องกิจกรรม</item>
+        <item>คำร้องผู้ใช้งาน</item>
+        <item>อื่นๆ</item>
+    </string-array>
+
+
     <!--Online-->
-    <!--<string name="Host">"http://192.168.2.35"</string>-->
+    <!--<string name="Host">"http://192.168.2.34"</string>-->
+    <!--<string name="Host">"http://10.13.3.97"</string>-->
 
 
-    <string name="Host">"http://10.13.3.222"</string>
+    <!--<string name="Host">"http://10.10.100.67/~Findjoinsport"</string>-->
+
+    <string name="Host">"http://203.158.131.67/~Findjoinsport"</string>
+
 
 </resources>

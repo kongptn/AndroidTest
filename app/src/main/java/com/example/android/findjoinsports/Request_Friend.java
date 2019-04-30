@@ -56,7 +56,7 @@ public class Request_Friend extends Fragment {
     SessionManager sessionManager;
     //    String userid_join;
 
-
+    int userid_add;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -110,7 +110,7 @@ public class Request_Friend extends Fragment {
 
                                 //adding the product to product list
                                 int rf_id = object.getInt("rf_id");
-                                int userid_add = object.getInt("userid_add");
+                                userid_add = object.getInt("userid_add");
                                 int user_id = object.getInt("user_id");
 //                                int userid_join = object.getInt("userid_join");
                                 // int user_create = object.getInt("user_create");
@@ -136,10 +136,11 @@ public class Request_Friend extends Fragment {
 
                                 @Override
                                 public void onItemClick(int id) {
-//                                    Intent intent = new Intent(getContext(),DescriptionActivity.class);
-//                                    intent.putExtra("id",String.valueOf(id));
-//                                    Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
-//                                    startActivity(intent);
+//                                    Bundle bundle=new Bundle();
+//                                    bundle.putString("message", "From Activity");
+//                                    //set Fragmentclass Arguments
+//                                    Request_Friend fragobj=new Request_Friend();
+//                                    fragobj.setArguments(bundle);
                                 }
                             });
                             recyclerView.setAdapter(adapter_reqFriend);
@@ -173,89 +174,6 @@ public class Request_Friend extends Fragment {
         Volley.newRequestQueue(getContext()).add(stringRequest);
     }
 
-//    private void Requst() {
-//
-//        /*
-//         * Creating a String Request
-//         * The request type is GET defined by first parameter
-//         * The URL is defined in the second parameter
-//         * Then we have a Response Listener and a Error Listener
-//         * In response listener we will get the JSON response as a String
-//         * */
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REQJOIN,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        try {
-//                            //converting the string to json array object
-//                            JSONArray array = new JSONArray(response);
-//
-//                            //traversing through all the object
-//                            for (int i = 0; i < array.length(); i++) {
-//
-//                                //getting product object from json array
-//                                JSONObject object = array.getJSONObject(i);
-//
-//                                //adding the product to product list
-//                                int req_id = object.getInt("req_id");
-//                                int id = object.getInt("id");
-//                                int user_id = object.getInt("user_id");
-//                                int userid_join = object.getInt("userid_join");
-//                                int user_create = object.getInt("user_create");
-//                                Log.d("eeee", String.valueOf(userid_join));
-//                                String stadium_name = object.getString("stadium_name");
-//                                Log.d("kpkp",stadium_name);
-//                                String date = object.getString("date");
-//                                String time = object.getString("time");
-//                                String name = object.getString("name");
-//                                String status_id = object.getString("status_id");
-//                                String photo_user = object.getString("photo_user");
-//                                String status_name = object.getString("status_name");
-//                                Request_JoinData request_joinData = new Request_JoinData(req_id,id,user_id,userid_join,user_create,stadium_name, date,  time,  status_id,  status_name,  name, photo_user);
-//                                request_joinDataList.add(request_joinData);
-//                            }
-//
-//                            //creating adapter object and setting it to recyclerview
-//                            Adapter_reqJoin adapter_reqJoin = new Adapter_reqJoin(getContext(), request_joinDataList, new Adapter_reqJoin.OnItemClickListener() {
-//
-//                                @Override
-//                                public void onItemClick(int id) {
-////                                    Intent intent = new Intent(getContext(),DescriptionActivity.class);
-////                                    intent.putExtra("id",String.valueOf(id));
-////                                    Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
-////                                    startActivity(intent);
-//                                }
-//                            });
-//                            recyclerView.setAdapter(adapter_reqJoin);
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                }){
-//
-//            protected Map<String, String> getParams() {
-//                // Posting params to login url
-//                Map<String, String> params = new HashMap<String, String>();
-//                params.put("user_create", getId);
-//                Log.d("sd",getId);
-//
-//
-//
-//
-//                return params;
-//            }
-//
-//        };
-//
-//        //adding our stringrequest to queue
-//        Volley.newRequestQueue(getContext()).add(stringRequest);
-//    }
+
 
 }

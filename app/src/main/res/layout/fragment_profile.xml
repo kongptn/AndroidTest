@@ -180,16 +180,26 @@
                 android:layout_below="@+id/sex"
                 android:layout_marginTop="30dp"
                 android:background="#6495ED"
-                android:text="แก้ไขโปร์ฟล์"
+                android:text="แก้ไขโปร์ไฟล์"
                 android:layout_centerHorizontal="true"
                 android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/edit_pass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="เปลี่ยนรหัสผ่าน"
+                android:layout_centerHorizontal="true"
+                android:textColor="#FFFFFF"
+                android:layout_below="@+id/btn_edit"/>
 
             <Button
                 android:id="@+id/btn_logout"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/btn_edit"
-                android:layout_marginTop="10dp"
+                android:layout_below="@+id/edit_pass"
+                android:layout_marginTop="20dp"
                 android:background="#9b0d0d"
                 android:text="ออกจากระบบ"
                 android:layout_centerHorizontal="true"

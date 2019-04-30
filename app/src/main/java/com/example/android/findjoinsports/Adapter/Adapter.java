@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.R;
@@ -27,11 +28,16 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
     private Context mCtx;
     private List<RecyclerSearch> recyclerSearchList;
     private OnItemClickListener listener;
+  private final String status_id;
 
-    public Adapter(Context mCtx, List<RecyclerSearch> recyclerSearchList,OnItemClickListener listener) {
+    String status_close;
+
+    public Adapter(Context mCtx, List<RecyclerSearch> recyclerSearchList,String status_id,OnItemClickListener listener) {
         this.mCtx = mCtx;
         this.recyclerSearchList = recyclerSearchList;
         this.listener = listener;
+        this.status_id = status_id;
+        Log.d("dddd",status_id);
     }
 
     public interface OnItemClickListener {
@@ -43,6 +49,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.list_layout, null);
+
         return new ProductViewHolder(view);
     }
 
@@ -67,12 +74,23 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
         holder.textViewName.setText(recyclerSearch.getName());
         holder.textViewDate.setText(recyclerSearch.getDate());
         holder.textViewTime.setText(recyclerSearch.getTime());
+        holder.status_close.setText(recyclerSearch.getStatus_id());
+
+       if (status_id.isEmpty()){
+           Log.d("ppopoo",status_id);
+           holder.status_close.setVisibility(View.GONE);
+       }
+
+
+
+
 
 
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.onItemClick(recyclerSearch.getId());
+               // Toast.makeText(mCtx, status_id, Toast.LENGTH_SHORT).show();
             }
         });
        // holder.id.setText(recyclerSearch.getId());
@@ -115,6 +133,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
         TextView textViewStadiumName, textViewName, textViewDate, textViewTime, textViewLocation, textViewDescriptrion;
         ImageView imageView, imgUser;
         LinearLayout rootView;
+        TextView status_close;
 
 
         public ProductViewHolder(View itemView) {
@@ -126,6 +145,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
             textViewTime = itemView.findViewById(R.id.textViewTime);
             imageView = itemView.findViewById(R.id.imageView1);
             parentLayout = itemView.findViewById(R.id.parentLayout);
+            status_close = itemView.findViewById(R.id.status_close);
             imgUser = itemView.findViewById(R.id.imgUser);
             rootView = itemView.findViewById(R.id.rootView);
         }

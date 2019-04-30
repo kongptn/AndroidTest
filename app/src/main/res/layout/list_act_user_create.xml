@@ -15,14 +15,22 @@
         android:background="#d8e0e3"
         android:padding="8dp">
 
+        <TextView
+            android:id="@+id/status_close"
+            android:text="ปิดรับแล้ว"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:background="#ffae00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="400dp"
             android:layout_height="150dp"
-
+            android:layout_below="@+id/status_close"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="9dp" />
+            android:layout_marginTop="8dp" />
 
         <RelativeLayout
             android:id="@+id/rtlayout"

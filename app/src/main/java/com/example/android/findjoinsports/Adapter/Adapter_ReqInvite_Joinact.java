@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -122,7 +123,13 @@ public class Adapter_ReqInvite_Joinact extends RecyclerView.Adapter<Adapter_ReqI
 //                user_join = String.valueOf((request_friend.getUserid_join()));
 //                Log.d("fdf", user_join);
                 TextView dialog_tv = (TextView) myDialog.findViewById(R.id.dialog_tv);
-                ImageButton bt_not_accept = (ImageButton)myDialog.findViewById(R.id.bt_not_accept);
+                Button bt_not_accept = (Button)myDialog.findViewById(R.id.bt_not_accept);
+                bt_not_accept.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        myDialog.dismiss();
+                    }
+                });
 
 
 
@@ -134,7 +141,7 @@ public class Adapter_ReqInvite_Joinact extends RecyclerView.Adapter<Adapter_ReqI
                 }
                 Picasso.with(mCtx).load(photo_user).placeholder(R.drawable.n).into(imgDialog);
 
-                ImageButton bt_accept = (ImageButton)myDialog.findViewById(R.id.bt_accept);
+                Button bt_accept = (Button)myDialog.findViewById(R.id.bt_accept);
                 bt_accept.setOnClickListener(new View.OnClickListener() {
 
                     // String act_id = String.valueOf((request_joinData_creator.getId()));
@@ -153,6 +160,7 @@ public class Adapter_ReqInvite_Joinact extends RecyclerView.Adapter<Adapter_ReqI
 //                        intent.putExtra("id",String.valueOf(id));
                         // mCtx.startActivity(intent);
                         Toast.makeText(mCtx, "เชิญเข้าร่วมแล้ว", Toast.LENGTH_SHORT).show();
+                        myDialog.dismiss();
                         // Toast.makeText(mCtx, String.valueOf(id), Toast.LENGTH_SHORT).show();
                     }
 

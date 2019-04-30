@@ -67,11 +67,11 @@
 
             <Button
                 android:id="@+id/btnTime"
-                android:layout_toRightOf="@id/textTime"
-                android:text="เลือกวันที่"
-                android:layout_below="@+id/btnDate"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnDate"
+                android:layout_toRightOf="@id/textTime"
+                android:text="เลือกเวลา" />
 
 
 

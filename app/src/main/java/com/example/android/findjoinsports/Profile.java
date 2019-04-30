@@ -58,7 +58,7 @@ public class Profile extends Fragment {
 
 
     private static final String TAG = Profile.class.getSimpleName();
-    private TextView name, email, user_firstname,user_lastname,user_age,user_tel, user_sex;
+    private TextView name, email, user_firstname,user_lastname,user_age,user_tel, user_sex,bt_edit_pass;
     SessionManager sessionManager;
     String getId;
     private String user_id;
@@ -97,7 +97,7 @@ public class Profile extends Fragment {
         user_tel = view.findViewById(R.id.telephone);
         user_sex = view.findViewById(R.id.user_sex);
         sex = view.findViewById(R.id.sex);
-
+        bt_edit_pass = view.findViewById(R.id.edit_pass);
         mSexMale = view.findViewById(R.id.rb_male);
         mSexFemale = view.findViewById(R.id.rb_female);
 
@@ -121,6 +121,15 @@ public class Profile extends Fragment {
                         strSex = mSex.getText().toString();
                         break;
                 }
+            }
+        });
+
+        bt_edit_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), Edit_Password.class);
+                startActivity(in);
+
             }
         });
 
@@ -186,11 +195,12 @@ public class Profile extends Fragment {
                                     String strSex = object.getString("user_sex").trim();
                                     String strImgUrl = object.getString("photo_user").trim();
 
-
-                                    if (strSex.equalsIgnoreCase("Male")) {
+                                    if (strSex.equalsIgnoreCase("ชาย")) {
                                         mSexMale.setChecked(true);
-                                    } else if (strSex.equalsIgnoreCase("Female")) {
+                                        mSexFemale.setEnabled(false);
+                                    } else if (strSex.equalsIgnoreCase("หญิง")) {
                                         mSexFemale.setChecked(true);
+                                        mSexMale.setEnabled(false);
                                     }
 
                                     // เอาค่าที่ได้ settext

@@ -3,7 +3,6 @@
     android:id="@+id/rootView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="#FFFFFF"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="24dp"
@@ -13,6 +12,7 @@
 
     <RelativeLayout
         android:paddingTop="8dp"
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

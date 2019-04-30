@@ -79,9 +79,9 @@ public class Edit_Profile extends AppCompatActivity  {
         user_tel = findViewById(R.id.telephone);
         user_sex = findViewById(R.id.user_sex);
         sex = findViewById(R.id.sex);
-
         mSexMale = findViewById(R.id.rb_male);
         mSexFemale = findViewById(R.id.rb_female);
+
 
 
 
@@ -149,11 +149,12 @@ public class Edit_Profile extends AppCompatActivity  {
                                     String strSex = object.getString("user_sex").trim();
                                     String strImgUrl = object.getString("photo_user").trim();
                                     Log.d("ph",strImgUrl);
+                                    Bundle bundle = getIntent().getExtras();
 
 
-                                    if (strSex.equalsIgnoreCase("Male")){
+                                    if (strSex.equalsIgnoreCase("ชาย")){
                                         mSexMale.setChecked(true);
-                                    }else if (strSex.equalsIgnoreCase("Female")){
+                                    }else if (strSex.equalsIgnoreCase("หญิง")){
                                         mSexFemale.setChecked(true);
                                     }
 
@@ -165,7 +166,6 @@ public class Edit_Profile extends AppCompatActivity  {
                                     user_lastname.setText(strUser_lastname);
                                     user_age.setText(strUser_age);
                                     user_tel.setText(strUser_tel);
-                                    user_sex.setText(strSex);
 
                                     String ph = ConstansAPI.URL_PHOTO_USER+strImgUrl;
                                     if (ph.equalsIgnoreCase("")){
@@ -411,23 +411,25 @@ public class Edit_Profile extends AppCompatActivity  {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.d("res",response);
 
                         progressDialog.dismiss();
-                        Log.i(TAG, response.toString());
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String success = jsonObject.getString("success");
-
-                            if (success.equals("1")){
-                                Toast.makeText(Edit_Profile.this, "Success!", Toast.LENGTH_SHORT).show();
-
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            progressDialog.dismiss();
-                            Toast.makeText(Edit_Profile.this, "Try Again!"+ e.toString(), Toast.LENGTH_SHORT).show();
-                        }
+//                        Log.i(TAG, response.toString());
+//
+//                        try {
+//                            JSONObject jsonObject = new JSONObject(response);
+//                            String success = jsonObject.getString("read");
+//
+//                            if (success.equals("1")){
+//                                Toast.makeText(Edit_Profile.this, "Success!", Toast.LENGTH_SHORT).show();
+//
+//                            }
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                            progressDialog.dismiss();
+//                            Toast.makeText(Edit_Profile.this, "Try Again!"+ e.toString(), Toast.LENGTH_SHORT).show();
+//                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -467,4 +469,3 @@ public class Edit_Profile extends AppCompatActivity  {
 
 
 }
-

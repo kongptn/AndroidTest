@@ -36,7 +36,7 @@ public class DetailsActivity extends AppCompatActivity {
     String user_id, name, email, user_firstname, user_lastname, user_tel, user_age, user_sex,userid_add,user_join;
     TextView tvnameshow, tvemailshow, tvfirstnameshow, tvlastnameshow, tvtelshow, tvageshow, tvsexshow;
     private static String URL_READSHOW = "http://10.13.3.103/findjoinsport/android_register_login/ShowUsers.php";
-     static String URL_ADDFRIENDS = "http://10.13.3.103/findjoinsport/friend/request_friends.php";
+    static String URL_ADDFRIENDS = "http://10.13.3.103/findjoinsport/friend/request_friends.php";
     ImageView profile_image;
     Button btn_addfriends,btn_delfriends,btn_wait;
     String getId,mName;
@@ -73,7 +73,14 @@ public class DetailsActivity extends AppCompatActivity {
 
         user_id = getIntent().getExtras().getString("user_id", "");
         //user_id = getIntent().getExtras().getString("userid_join", "");
-        Log.d("ppp", user_id);
+        Log.d("ppp", user_id + getId);
+
+        if (getId.equals(user_id)){
+            btn_addfriends.setVisibility(View.GONE);
+            btn_wait.setVisibility(View.GONE);
+            btn_delfriends.setVisibility(View.GONE);
+        }
+
 
         btn_addfriends.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,23 +88,29 @@ public class DetailsActivity extends AppCompatActivity {
                 sendRequestAdd();
                 sendNonti(user_id,mName+"ขอเป็นเพื่อน");
                 put_noti_sql(user_id,getId);
-              //  sendRequestAdd_2();
-                btn_addfriends.setEnabled(false);
+                //  sendRequestAdd_2();
+                btn_addfriends.setVisibility(View.GONE);
+                btn_wait.setVisibility(View.VISIBLE);
                 Toast.makeText(DetailsActivity.this,"ส่งคำขอแล้ว", Toast.LENGTH_SHORT).show();
-
-              //  btn_addfriends.setVisibility(View.GONE);
-               // btn_delfriends.setVisibility(View.VISIBLE);
-               // btn_delfriends.setVisibility(View.GONE);
-               // btn_delfriends.setVisibility(View.INVISIBLE);
+                finish();
+                startActivity(getIntent());
+                //  btn_addfriends.setVisibility(View.GONE);
+                // btn_delfriends.setVisibility(View.VISIBLE);
+                // btn_delfriends.setVisibility(View.GONE);
+                // btn_delfriends.setVisibility(View.INVISIBLE);
             }
         });
 
         btn_wait.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                del_friend();
-                btn_wait.setEnabled(false);
+                del_friend(rf_id);
+                btn_wait.setVisibility(View.GONE);
+                Log.d("checkValue", String.valueOf(rf_id));
+                btn_addfriends.setVisibility(View.VISIBLE);
+
                 Toast.makeText(DetailsActivity.this,"ยกเลิกคำขอแล้ว", Toast.LENGTH_SHORT).show();
+
 
             }
         });
@@ -105,7 +118,7 @@ public class DetailsActivity extends AppCompatActivity {
         btn_delfriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                del_friend();
+                del_friend(rf_id);
                 btn_delfriends.setEnabled(false);
                 Toast.makeText(DetailsActivity.this,"ลบเพื่อนแล้ว", Toast.LENGTH_SHORT).show();
 
@@ -194,7 +207,7 @@ public class DetailsActivity extends AppCompatActivity {
                 try {
                     JSONObject jObj = new JSONObject(response);
                     rf_id = Integer.parseInt(jObj.getString("rf_id"));
-                    int user_id = Integer.parseInt(jObj.getString("user_id"));
+                    int userid = Integer.parseInt(jObj.getString("user_id"));
                     String status_id = jObj.getString("status_id");
                     Log.d("sdjosdf",status_id);
                     String status_name = jObj.getString("status_name");
@@ -209,6 +222,17 @@ public class DetailsActivity extends AppCompatActivity {
                         //Log.d("sdjosdf",status_id);
                         btn_addfriends.setVisibility(View.GONE);
                         btn_wait.setVisibility(View.VISIBLE);
+                    }
+
+//                    if (user_id == Integer.parseInt(getId)){
+//                        btn_addfriends.setVisibility(View.GONE);
+//                        btn_wait.setVisibility(View.GONE);
+//                        btn_delfriends.setVisibility(View.GONE);
+//                    }
+                    if (getId.equals(user_id)){
+                        btn_addfriends.setVisibility(View.GONE);
+                        btn_wait.setVisibility(View.GONE);
+                        btn_delfriends.setVisibility(View.GONE);
                     }
 
 
@@ -245,6 +269,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         };
         requestQueue.add(request);
+
     }
 
     private void sendRequestAdd() {
@@ -285,7 +310,7 @@ public class DetailsActivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
-    private void del_friend() {
+    private void del_friend(final int rf_id) {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/friend/delete_friend.php", new Response.Listener<String>() {
@@ -315,6 +340,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         };
         requestQueue.add(request);
+
     }
 
     private void sendNonti(final String user_id,final String noti) {

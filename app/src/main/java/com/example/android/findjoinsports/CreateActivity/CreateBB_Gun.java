@@ -88,6 +88,7 @@ public class CreateBB_Gun extends AppCompatActivity implements View.OnClickListe
     private String stadium_name, description ,date, time, mName,location, mUser;
     private final int IMG_REQUEST = 1;
     String type_id = "2";
+    String numberjoin = "0";
     private int user_id;
     private Bitmap bitmap;
     private static final String URL = "http://10.13.3.103/findjoinsport/football/InsertData.php";
@@ -458,7 +459,7 @@ public class CreateBB_Gun extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         TextView textTime = (TextView)findViewById(R.id.textTime);
-        textTime.setText("Hour: " + hourOfDay + " Minute: " + minute);
+        textTime.setText(hourOfDay + " นาฬิกา " + minute +" นาที");
     }
 
     @Override
@@ -493,7 +494,7 @@ public class CreateBB_Gun extends AppCompatActivity implements View.OnClickListe
     private void onButtonClick() {
         if (!stadium_name.isEmpty() && !description.isEmpty()) {
             RequestQueue requestQueue = Volley.newRequestQueue(this);
-            StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/football/InsertData.php", new Response.Listener<String>() {
+            StringRequest request = new StringRequest(Request.Method.POST, getString(R.string.Host)+"/findjoinsport/football/insert_act.php", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     Log.d("onResponse", response);
@@ -536,6 +537,8 @@ public class CreateBB_Gun extends AppCompatActivity implements View.OnClickListe
                     params.put("type_id", type_id);
                     params.put("user_id", mUser);
                     params.put("name", mName);
+                    params.put("number_join", numberjoin);
+
 
                     return params;
                 }

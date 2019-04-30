@@ -46,6 +46,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.CreateActivity.CreateBasketball;
 import com.example.android.findjoinsports.DatePickerFragment;
 import com.example.android.findjoinsports.R;
@@ -321,7 +322,7 @@ public class Edit_Activity extends AppCompatActivity implements View.OnClickList
                     //photoName.setText(Photo);
                     //Log.d("text",(textTime));
                     // --
-                    photo = "http://192.168.2.34/findjoinsport/football/" + Photo;
+                    photo = ConstansAPI.URL_PHOTO_ACT+ Photo;
                     if (photo.equalsIgnoreCase("")) {
                         photo = "Default";
                     }

@@ -153,10 +153,6 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
         Log.d("sss", String.valueOf(userid));
 
 
-
-
-
-
         onButtonClick(userid);
         showUserjoin(userid);
         showComment();
@@ -168,8 +164,8 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 onEditText();
                 insertcomment();
-
-
+                finish();
+                startActivity(getIntent());
             }
         });
 
@@ -178,6 +174,9 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View v) {
                 del_friend();
                 btn_wait.setEnabled(false);
+                Intent i = new Intent(DescriptionActivity.this,NavDrawer.class);
+                Toast.makeText(DescriptionActivity.this, "ยกเลิกการสมัครแล้ว", Toast.LENGTH_SHORT).show();
+                startActivity(i);
             }
         });
 
@@ -188,6 +187,9 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
                 Update_numjoin();
                 numjoindel = (numjoin + (-1));
                 btn_del.setEnabled(false);
+                Intent i = new Intent(DescriptionActivity.this,NavDrawer.class);
+                Toast.makeText(DescriptionActivity.this, "ถอนตัวแล้ว", Toast.LENGTH_SHORT).show();
+                startActivity(i);
             }
         });
 
@@ -199,6 +201,9 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
                 sendNonti(User_id,mName+" ขอเข้าร่วมกิจกรรม");
                 put_noti_sql(User_id,mUser_id);
                 btn_join.setEnabled(false);
+                Intent i = new Intent(DescriptionActivity.this,NavDrawer.class);
+                Toast.makeText(DescriptionActivity.this, "สมัครกิจกรรมแล้ว", Toast.LENGTH_SHORT).show();
+                startActivity(i);
             }
         });
 
@@ -229,16 +234,11 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
 //        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
 
-
-
-
-
-
         //initializing the productlist
         descrip_actDataList = new ArrayList<>();
 
-
     }
+
 
     private void onButtonClick(final String userid) {
 //        if (!stadium_name.isEmpty() && !description.isEmpty()) {
@@ -256,6 +256,8 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
                         String Name = jObj.getString("name");
                         String Location = jObj.getString("location");
                         String Description = jObj.getString("description");
+                        String status_id = jObj.getString("status_id");
+                        Log.d("stat",status_id);
                         numjoin = jObj.getString("number_join");
                         Log.d("sdk",numjoin);
                         User_id = jObj.getString("user_id");
@@ -290,17 +292,26 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
                         if (photo.equalsIgnoreCase("")){
                             photo = "Default";
                         }
-
                         Picasso.with(DescriptionActivity.this).load(photo).placeholder(R.drawable.s).into(image);
 
                         String photo_user = ConstansAPI.URL_PHOTO_USER+Photo_user;
                         if (photo_user.equalsIgnoreCase("")){
                             photo_user = "Default";
                         }
-
                         Picasso.with(DescriptionActivity.this).load(photo_user).placeholder(R.drawable.n).into(imgUser);
-
                         Log.d("mm", photo_user);
+
+                        if (User_id.equals(mUser_id)){
+                            btn_join.setVisibility(View.GONE);
+                            btn_wait.setVisibility(View.GONE);
+                            btn_del.setVisibility(View.GONE);
+                        }
+
+                        if (status_id.equals("ปิดรับแล้ว")){
+                            btn_join.setVisibility(View.GONE);
+                            btn_invite.setVisibility(View.GONE);
+                        }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

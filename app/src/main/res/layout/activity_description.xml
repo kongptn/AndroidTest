@@ -254,35 +254,29 @@
 
         <Button
             android:id="@+id/btn_join"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recyclerview_comment"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/btn_invite"
+            android:layout_below="@+id/btn_invite"
+            android:layout_marginTop="10dp"
             android:background="#30d26e"
             android:text="เข้าร่วม" />
 
         <Button
             android:id="@+id/btn_del"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recyclerview_comment"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/btn_invite"
+            android:layout_below="@+id/btn_invite"
+            android:layout_marginTop="10dp"
             android:background="#c72a2a"
             android:text="ถอนตัวออก"
             android:visibility="gone"/>
 
         <Button
             android:id="@+id/btn_wait"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recyclerview_comment"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/btn_invite"
+            android:layout_below="@+id/btn_invite"
+            android:layout_marginTop="10dp"
             android:background="#f4d227"
             android:text="ยกเลิกคำขอ"
             android:visibility="gone"/>
@@ -291,10 +285,9 @@
         android:id="@+id/btn_invite"
         android:text="เชิญเพื่อน"
         android:background="#2dc3f1"
-        android:layout_marginLeft="100dp"
         android:layout_below="@+id/recyclerview_comment"
         android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     </RelativeLayout>

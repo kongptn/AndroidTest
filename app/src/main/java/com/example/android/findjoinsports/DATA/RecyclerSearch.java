@@ -12,10 +12,11 @@ public class RecyclerSearch {
     private String name;
     private String location;
     private String description;
+    private String status_id;
 
 
 
-    public RecyclerSearch(int id,int user_id, String stadium_name, String photo,String photo_user, String date, String time, String name, String location, String description) {
+    public RecyclerSearch(int id,int user_id, String stadium_name, String photo,String photo_user, String date, String time, String name, String location, String description , String status_id) {
         this.id = id;
         this.user_id = user_id;
         this.stadium_name = stadium_name;
@@ -26,6 +27,7 @@ public class RecyclerSearch {
         this.name = name;
         this.location = location;
         this.description = description;
+        this.status_id = status_id;
 
     }
 
@@ -68,6 +70,10 @@ public class RecyclerSearch {
 
     public String getLocation() {
         return location;
+    }
+
+    public String getStatus_id() {
+        return status_id;
     }
 
 

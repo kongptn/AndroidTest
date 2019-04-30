@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class SearchFootball extends Fragment {
 
     //the recyclerview
     RecyclerView recyclerView;
-
+    String status_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,18 +102,20 @@ public class SearchFootball extends Fragment {
                                 String description = object.getString("description");
                                 int userid = object.getInt("user_id");
                                 String photo_user = object.getString("photo_user");
+                                status_id = object.getString("status_id");
+                                Log.d("stat",status_id);
 
-                                RecyclerSearch recyclerSearch = new RecyclerSearch(id, userid, stadiumname, photo, photo_user, date, time, name, location, description);
+                                RecyclerSearch recyclerSearch = new RecyclerSearch(id, userid, stadiumname, photo, photo_user, date, time, name, location, description, status_id);
                                 recyclerSearchList.add(recyclerSearch);
                             }
 
                             //creating adapter object and setting it to recyclerview
-                            Adapter adapter = new Adapter(getContext(), recyclerSearchList, new Adapter.OnItemClickListener() {
+                            Adapter adapter = new Adapter(getContext(), recyclerSearchList,status_id, new Adapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(int id) {
                                     Intent intent = new Intent(getContext(),DescriptionActivity.class);
                                     intent.putExtra("id",String.valueOf(id));
-                                    Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+                                  //  Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
                                     startActivity(intent);
                                 }
                             });

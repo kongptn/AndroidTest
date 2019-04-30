@@ -51,6 +51,8 @@ public class Act_User_Create extends Fragment {
     //the recyclerview
     RecyclerView recyclerView;
     SessionManager sessionManager;
+
+    String status_id;
     //    String userid_join;
 
     @Override
@@ -114,21 +116,23 @@ public class Act_User_Create extends Fragment {
                                 String description = object.getString("description");
                                 int userid = object.getInt("user_id");
                                 String photo_user = object.getString("photo_user");
+                                status_id = object.getString("status_id");
+                                Log.d("sra",status_id);
 
-                                Act_User_CreateData act_user_createData = new Act_User_CreateData(id, userid, stadiumname, photo, photo_user, date, time, name, location, description);
+                                Act_User_CreateData act_user_createData = new Act_User_CreateData(id, userid, stadiumname, photo, photo_user, date, time, name, location, description, status_id);
                                 act_user_createDataList.add(act_user_createData);
                             }
 
                             //creating adapter object and setting it to recyclerview
                             Adapter_Act_User_Craete adapter_act_user_craete = new Adapter_Act_User_Craete(getContext(), act_user_createDataList, new Adapter_Act_User_Craete.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(int id) {
-                                    Intent intent = new Intent(getContext(),Show_Act_User.class);
-                                    intent.putExtra("id",String.valueOf(id));
-                                    Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
-                                    startActivity(intent);
-                                }
-                            });
+                                                            @Override
+                                                            public void onItemClick(int id) {
+                                                                Intent intent = new Intent(getContext(),Show_Act_User.class);
+                                                                intent.putExtra("id",String.valueOf(id));
+                                                                Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+                                                                startActivity(intent);
+                                                            }
+                                                        });
                             recyclerView.setAdapter(adapter_act_user_craete);
                         } catch (JSONException e) {
                             e.printStackTrace();

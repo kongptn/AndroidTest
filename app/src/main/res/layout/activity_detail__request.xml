@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#009688"
+    tools:context=".DetailsActivity_Request"
+    tools:showIn="@layout/activity_details">
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="5dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_alignParentTop="true"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/se_gun" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textviewname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:text="ชื่อผู้ใช้ : "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvnameshow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:hint="ชื่อผู้ใช้"
+                            android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textviewemail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:text="อีเมลล์ : "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvemailshow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:hint="อีเมลล์"
+                            android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textviewfirstname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:text="ชื่อ : "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvfirstnameshow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:hint="ชื่อ"
+                            android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textviewlastname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:text="นามสกุล : "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvlastnameshow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:hint="นามสกุล"
+                            android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textviewtel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:text="เบอร์ติดต่อ : "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvtelshow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:hint="เบอร์ติดต่อ"
+                            android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textviewage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:text="อายุ : "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvageshow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:hint="อายุ"
+                            android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textviewsex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:text="เพศ : "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvsexshow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:padding="5dp"
+                            android:hint="เพศ"
+                            android:textAppearance="?android:attr/textAppearanceLarge"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <!--<Button-->
+                            <!--android:id="@+id/btn_accept"-->
+                            <!--android:layout_width="100dp"-->
+                            <!--android:layout_marginTop="30dp"-->
+                            <!--android:layout_marginLeft="50dp"-->
+                            <!--android:background="#228B22"-->
+                            <!--android:text="ยืนยันคำขอ"-->
+                            <!--android:layout_height="50dp" />-->
+
+                        <!--<Button-->
+                            <!--android:id="@+id/btn_not_accept"-->
+                            <!--android:layout_width="100dp"-->
+                            <!--android:layout_marginTop="30dp"-->
+                            <!--android:layout_marginLeft="80dp"-->
+                            <!--android:background="#c12f0a"-->
+                            <!--android:text="ลบคำขอ"-->
+                            <!--android:layout_height="50dp" />-->
+
+
+
+                    </LinearLayout>
+
+
+
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

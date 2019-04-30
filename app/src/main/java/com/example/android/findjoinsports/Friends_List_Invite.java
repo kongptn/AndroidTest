@@ -1,10 +1,14 @@
 package com.example.android.findjoinsports;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -161,6 +165,38 @@ public class Friends_List_Invite extends AppCompatActivity {
 
         //adding our stringrequest to queue
         Volley.newRequestQueue(Friends_List_Invite.this).add(stringRequest);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_action, menu);
+
+        Menu action = menu;
+        action.findItem(R.id.menu_save).setVisible(false);
+        action.findItem(R.id.menu_edit).setVisible(false);
+
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.menu_back:
+
+                Intent back = new Intent(Friends_List_Invite.this, NavDrawer.class);
+                startActivity(back);
+
+                return true;
+            default:
+
+                return super.onOptionsItemSelected(item);
+        }
+
+
     }
 
 

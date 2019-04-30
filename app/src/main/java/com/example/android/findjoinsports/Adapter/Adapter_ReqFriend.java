@@ -3,12 +3,14 @@ package com.example.android.findjoinsports.Adapter;
 import android.app.Dialog;
 import android.content.Context;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.android.findjoinsports.Constants.ConstansAPI;
 import com.example.android.findjoinsports.DATA.Request_FriendData;
+import com.example.android.findjoinsports.DetailsActivity_Request;
 import com.example.android.findjoinsports.R;
 import com.example.android.findjoinsports.SessionManager;
 import com.squareup.picasso.Picasso;
@@ -110,18 +113,19 @@ public class Adapter_ReqFriend extends RecyclerView.Adapter<Adapter_ReqFriend.Re
                 Log.d("rfid",rf_id);
 
                 userid_add= String.valueOf((request_friend.getUserid_add()));
-//
+                Log.d("useridadd",userid_add);
 //                user_join = String.valueOf((request_friend.getUserid_join()));
 //                Log.d("fdf", user_join);
 
                 TextView dialog_tv = (TextView) myDialog.findViewById(R.id.dialog_tv);
-                ImageButton bt_not_accept = (ImageButton)myDialog.findViewById(R.id.bt_not_accept);
+                Button bt_not_accept = (Button)myDialog.findViewById(R.id.bt_not_accept);
 
                 bt_not_accept.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         del_friend();
                         Toast.makeText(mCtx, "ลบคำขอแล้ว", Toast.LENGTH_SHORT).show();
+                        myDialog.dismiss();
                     }
                 });
 
@@ -135,7 +139,7 @@ public class Adapter_ReqFriend extends RecyclerView.Adapter<Adapter_ReqFriend.Re
                 }
                 Picasso.with(mCtx).load(photo_user).placeholder(R.drawable.n).into(imgDialog);
 
-                ImageButton bt_accept = (ImageButton)myDialog.findViewById(R.id.bt_accept);
+                Button bt_accept = (Button)myDialog.findViewById(R.id.bt_accept);
                 bt_accept.setOnClickListener(new View.OnClickListener() {
 
                     // String act_id = String.valueOf((request_joinData_creator.getId()));
@@ -149,7 +153,7 @@ public class Adapter_ReqFriend extends RecyclerView.Adapter<Adapter_ReqFriend.Re
                         sendNonti(userid_add,mName+" ตอบรับเป็นเพื่อน");
                         put_noti_sql(userid_add,mUser_id);
 //                        Update_numjoin();
-
+                        myDialog.dismiss();
                         //numjoin ++;
 //                        Intent intent = new Intent(mCtx,DescriptionActivity.class);
 //                        intent.putExtra("id",String.valueOf(id));
@@ -160,6 +164,21 @@ public class Adapter_ReqFriend extends RecyclerView.Adapter<Adapter_ReqFriend.Re
 
                 });
                 myDialog.show();
+
+            }
+        });
+
+        holder.images.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userid_add= String.valueOf((request_friend.getUserid_add()));
+                Intent i = new Intent(mCtx,DetailsActivity_Request.class);
+                i.putExtra("userid_add",String.valueOf(userid_add));
+                i.putExtra("rf_id",String.valueOf(rf_id));
+                i.putExtra("userid_add",String.valueOf(userid_add));
+               // Toast.makeText(mCtx, String.valueOf(userid_add), Toast.LENGTH_SHORT).show();
+                mCtx.startActivity(i);
+
 
             }
         });

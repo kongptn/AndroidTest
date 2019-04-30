@@ -252,6 +252,16 @@
 
 
             <Button
+                android:id="@+id/btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recyclerview_comment"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:background="#1ba2fc"
+                android:text="ปิดกิจกรรม" />
+
+            <Button
                 android:id="@+id/btn_join"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -266,8 +276,9 @@
                 android:id="@+id/btn_edit"
                 android:text="แก้ไข"
                 android:background="#dfd80c"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="20dp"
                 android:layout_below="@+id/recyclerview_comment"
+                android:layout_toRightOf="@+id/btn_close"
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
