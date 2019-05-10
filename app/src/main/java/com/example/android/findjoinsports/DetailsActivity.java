@@ -164,7 +164,7 @@ public class DetailsActivity extends AppCompatActivity {
                     if (ph.equalsIgnoreCase("")){
                         ph = "default";
                     }
-                    Picasso.with(DetailsActivity.this).load(ph).into(profile_image);
+                    Picasso.with(DetailsActivity.this).load(ph).placeholder(R.drawable.n).into(profile_image);
 
 
 

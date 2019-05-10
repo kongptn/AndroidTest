@@ -129,7 +129,7 @@ public class Act_User_Create extends Fragment {
                                                             public void onItemClick(int id) {
                                                                 Intent intent = new Intent(getContext(),Show_Act_User.class);
                                                                 intent.putExtra("id",String.valueOf(id));
-                                                                Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+                                                                //Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
                                                                 startActivity(intent);
                                                             }
                                                         });

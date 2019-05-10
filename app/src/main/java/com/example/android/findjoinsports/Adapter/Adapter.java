@@ -1,5 +1,6 @@
 package com.example.android.findjoinsports.Adapter;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,11 @@ import com.example.android.findjoinsports.R;
 import com.example.android.findjoinsports.DATA.RecyclerSearch;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,7 +62,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ProductViewHolder holder, final int position) {
+    public void onBindViewHolder(final ProductViewHolder holder, final int position) {
         final RecyclerSearch recyclerSearch = recyclerSearchList.get(position);
 
         //loading the image
@@ -80,7 +86,81 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
 
 
 
+//
+//
+            String date_act = recyclerSearch.getDate();
+            Log.d("daa", date_act);
 
+            Calendar calendar = Calendar.getInstance();
+            String currentDate = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
+            Log.d("cs", currentDate);
+            Log.d("sdda", recyclerSearch.getDate());
+
+            Log.d("dsad", date_act + currentDate);
+
+            if (date_act.compareTo(currentDate) <0){
+                holder.status_close.setText("กิจกรรมนี้ผ่านไปแล้ว");
+            }
+
+
+
+//        String dateStr = "04/05/2010";
+//        Calendar calendar = Calendar.getInstance();
+//        SimpleDateFormat curFormater = new SimpleDateFormat("dd/MM/yyyy");
+//        String strDate = curFormater.format(calendar.getTime());
+//        SimpleDateFormat postFormater = new SimpleDateFormat("MMMM dd, yyyy");
+//
+//        //String newDateStr = postFormater.format(dateObj);
+//try {
+//    Date dateObj = curFormater.parse(strDate);
+//    Date open = curFormater.parse(recyclerSearch.getDate());
+//
+//    if (dateObj.after(open)){
+//        holder.status_close.setText("close");
+//    }
+//
+//}catch (ParseException e){
+//    e.printStackTrace();
+//}
+
+//
+//            String openTime = recyclerSearch.getDate();
+//           // String closeTime = recyclerSearch.get(position).getClose();
+//
+//            Calendar calendar = Calendar.getInstance();
+//            SimpleDateFormat DateFormat = new SimpleDateFormat("HH:mm:ss");
+//            String strDate = DateFormat.format(calendar.getTime());
+//           // String strDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+//
+//            try {
+//                Date current = dateFormat.parse(strDate);
+//                Date open = dateFormat.parse(recyclerSearch.getDate());
+//               // Date close = dateFormat.parse(itemList.get(position).getClose());
+//              //  Log.d("timeget", itemList.get(position).getGaragename() + String.valueOf(open));
+//               // Log.d("timegetclose", itemList.get(position).getGaragename() + String.valueOf(close));
+//              //  Log.d("timegetcurrent", itemList.get(position).getGaragename() + String.valueOf(current));
+//
+//                if (current.after(open)) {
+//                    holder.status_close.setText("close");
+//                   // viewHolder.tvOpen.setBackgroundColor(Color.parseColor("#66CC66"));
+//                }
+////                } else if (openTime.equals("00:00:00") && closeTime.equals("00:00:00")) {
+////                    viewHolder.tvOpen.setText("ไม่ได้ลงทะเบียน");
+////                    viewHolder.tvOpen.setBackgroundColor(Color.parseColor("#6699FF"));
+////                } else {
+////                    viewHolder.tvOpen.setText("Close");
+////                    viewHolder.tvOpen.setBackgroundColor(Color.parseColor("#FF7F50"));
+////                }
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+
+//        else {
+//            viewHolder.tvOpen.setText("Close");
+//            viewHolder.tvOpen.setBackgroundColor(Color.parseColor("#FF7F50"));
+//        }
+//
 
 
 
@@ -88,8 +168,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ProductViewHolder> {
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onItemClick(recyclerSearch.getId());
-               // Toast.makeText(mCtx, status_id, Toast.LENGTH_SHORT).show();
+
+                String status_actt = holder.status_close.getText().toString();
+                if (!status_actt.equals("กิจกรรมนี้ผ่านไปแล้ว")){
+                    listener.onItemClick(recyclerSearch.getId());
+                }
+                else {
+                    Toast.makeText(mCtx, "no", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
        // holder.id.setText(recyclerSearch.getId());

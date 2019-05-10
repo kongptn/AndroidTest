@@ -13,6 +13,4 @@ public interface ApiInterface {
     Call<List<User_Data>> getUsers (@Query("key") String keyword );
 
 
-
-
 }

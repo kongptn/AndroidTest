@@ -200,7 +200,7 @@ public class Adapter_redJoin_Creator extends RecyclerView.Adapter<Adapter_redJoi
                 user_join = String.valueOf((request_joinData_creator.getUserid_join()));
                 Intent i = new Intent(mCtx,DetailsActivity.class);
                 i.putExtra("user_id",String.valueOf(user_join));
-                Toast.makeText(mCtx, String.valueOf(user_join), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mCtx, String.valueOf(user_join), Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(i);
             }
         });

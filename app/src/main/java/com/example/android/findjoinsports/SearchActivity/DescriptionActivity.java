@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -54,6 +55,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -285,6 +287,8 @@ public class DescriptionActivity extends AppCompatActivity implements OnMapReady
                         }
                         Picasso.with(DescriptionActivity.this).load(photo_user).placeholder(R.drawable.n).into(imgUser);
                         Log.d("mm", photo_user);
+
+
 
                         if (User_id.equals(mUser_id)){
                             btn_join.setVisibility(View.GONE);

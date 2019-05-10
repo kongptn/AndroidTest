@@ -2,6 +2,9 @@ package com.example.android.findjoinsports.CreateActivity;
 
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Application;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -22,6 +25,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
 import com.example.android.findjoinsports.CreateActivity.CreateFootball;
@@ -96,9 +100,12 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateFootball extends AppCompatActivity implements View.OnClickListener ,DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener,OnMapReadyCallback  {
+public class CreateFootball extends AppCompatActivity implements View.OnClickListener , TimePickerDialog.OnTimeSetListener,OnMapReadyCallback  {
     private EditText editStad_name, editdescrip, PHOTO, editlocation;
-    private TextView textDate, textTime, nametxt, emailtxt;
+    private static TextView textDate;
+    private TextView textTime;
+    private TextView nametxt;
+    private TextView emailtxt;
     private ImageView imgView;
     private Button btn_create, ChooseBT;
     private String stadium_name, description, date, time, mName, location, mUser,latti2,lngti2;
@@ -129,7 +136,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private Boolean mLocationPermissionsGranted = false;
     String photoName;
-
+    static Calendar calendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -156,8 +163,8 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onClick(View v) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "date picker");
+                DatePickerFragment mDatePicker = new DatePickerFragment();
+                mDatePicker.show(getFragmentManager(), "Select date");
             }
         });
         textDate = (TextView) findViewById(R.id.textDate);
@@ -169,6 +176,7 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
         editlocation = (EditText) findViewById(R.id.editlocation);
         ChooseBT.setOnClickListener(this);
         btn_create.setOnClickListener(this);
+
 
         onBindView();
 
@@ -458,17 +466,43 @@ public class CreateFootball extends AppCompatActivity implements View.OnClickLis
         textTime.setText(hourOfDay + " นาฬิกา " + minute +" นาที");
     }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.YEAR, year);
-        c.set(Calendar.MONTH, month);
-        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
-        TextView textDate = (TextView) findViewById(R.id.textDate);
-        textDate.setText(currentDateString);
-    }
 
+    public static class DatePickerFragment extends android.app.DialogFragment implements DatePickerDialog.OnDateSetListener {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+             calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog dpd = new DatePickerDialog(getActivity(),
+                    this,year,month,day);
+           // calendar.add(Calendar.DAY_OF_MONTH, 2);
+
+            // Set the Calendar new date as maximum date of date picker
+           // dpd.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+
+            // Subtract 6 days from Calendar updated date
+            calendar.add(Calendar.DAY_OF_MONTH, -1);
+
+            // Set the Calendar new date as minimum date of date picker
+            dpd.getDatePicker().setMinDate(calendar.getTimeInMillis());
+            //dpd.getDatePicker().setMaxDate(calendar.getTimeInMillis());
+
+            // So, now date picker selectable date range is 7 days only
+
+            // Return the DatePickerDialog
+            return  dpd;
+        }
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+           // displayCurrentTime.setText("Selected date: " + String.valueOf(year) + " - " + String.valueOf(month) + " - " + String.valueOf(day));
+          // String currentDateString = DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
+            textDate.setText(String.valueOf(day) + "/" + String.valueOf(month) + "/" + String.valueOf(year));
+           // textDate.setText(currentDateString);
+        }
+    }
+//
+//
     private void onBindView() {
         editStad_name = (EditText) findViewById(R.id.editStad_name);
         editdescrip = (EditText) findViewById(R.id.editdescrip);

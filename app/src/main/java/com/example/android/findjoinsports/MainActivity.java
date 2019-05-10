@@ -339,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
                         token = String.valueOf(FirebaseMessaging.getInstance().subscribeToTopic("test"));
                         token = FirebaseInstanceId.getInstance().getToken();
 
-                        Log.d("toto", token);
+//                        Log.d("toto", token);
                         updateToken(email, token);
 
                         if (response.toString().isEmpty()) {

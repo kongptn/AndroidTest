@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/name"
-                    android:hint="User Name"
+                    android:hint="ชื่อผู้ใช้งาน"
                     android:inputType="textPersonName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/firstname"
-                    android:hint="First Name"
+                    android:hint="ชื่อ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/lastname"
-                    android:hint="Last Name"
+                    android:hint="นามสกุล"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/email"
-                    android:hint="Email"
+                    android:hint="อีเมลล์"
                     android:inputType="textEmailAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -75,7 +75,7 @@
                 app:passwordToggleEnabled="true">
                 <EditText
                     android:id="@+id/telephone"
-                    android:hint="Password"
+                    android:hint="รหัสผ่าน"
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -89,7 +89,7 @@
                 app:passwordToggleEnabled="true">
                 <EditText
                     android:id="@+id/c_password"
-                    android:hint="Confrim Password"
+                    android:hint="ยืนยันรหัสผ่าน"
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/age"
-                    android:hint="Age"
+                    android:hint="อายุ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/phonenum"
-                    android:hint="Phone Number"
+                    android:hint="เบอร์ติดต่อ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
@@ -129,7 +129,7 @@
                     android:id="@+id/se_code"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="security Code"
+                    android:hint="รหัสเตือนความจำ"
                     android:maxLength="4" />
             </android.support.design.widget.TextInputLayout>
 

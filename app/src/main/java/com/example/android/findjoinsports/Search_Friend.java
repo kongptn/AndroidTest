@@ -74,7 +74,7 @@ public class Search_Friend extends AppCompatActivity {
 //                        intent.putExtra("user_age", String.valueOf(user_age));
 //                        intent.putExtra("user_sex", String.valueOf(user_sex));
 //                        intent.putExtra("photo_user", String.valueOf(photo_user));
-                        Toast.makeText(Search_Friend.this,String.valueOf(user_id), Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(Search_Friend.this,String.valueOf(user_id), Toast.LENGTH_SHORT).show();
                         startActivity(intent);
 
 

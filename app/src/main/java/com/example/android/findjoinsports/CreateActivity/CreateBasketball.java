@@ -108,7 +108,7 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
     double locationLong;
     double locationLat;
     String local;
-    String status_create = "เปิดรับ";
+   // String status_create = "เปิดรับ";
     private Button btFinish;
     private static final String TAG = "MapActivity";
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -479,11 +479,13 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar c = Calendar.getInstance();
+        Log.d("c", String.valueOf(c));
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        String currentDateString = DateFormat.getDateInstance(DateFormat.SHORT).format(c.getTime());
         TextView textDate = (TextView) findViewById(R.id.textDate);
+        Log.d("odk",currentDateString);
         textDate.setText(currentDateString);
     }
 
@@ -550,6 +552,7 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
                     params.put("photo", photoName);
                     params.put("image", imageToString(bitmap));
                     params.put("date", date);
+                    Log.d("datee",date);
                     params.put("time", time);
                     params.put("Latitude", latti);
                     params.put("Longitude", lngti);
@@ -558,7 +561,7 @@ public class CreateBasketball extends AppCompatActivity implements View.OnClickL
                     params.put("user_id", mUser);
                     params.put("name", mName);
                     params.put("number_join", numberjoin);
-                    params.put("status_id", status_create);
+                   // params.put("status_id", status_create);
 
                     return params;
                 }

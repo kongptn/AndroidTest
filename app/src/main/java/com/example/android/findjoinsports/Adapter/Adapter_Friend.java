@@ -55,7 +55,7 @@ public class Adapter_Friend extends RecyclerView.Adapter<Adapter_Friend.MyViewHo
         if (ph.equalsIgnoreCase("")) {
             ph = "default";
         }
-        Picasso.with(context).load(ph).placeholder(R.drawable.se_ball).into(holder.images);
+        Picasso.with(context).load(ph).placeholder(R.drawable.n).into(holder.images);
 
         /* String reg = "[0-9]{16}";
         String temp = us.getPhoto_user();
