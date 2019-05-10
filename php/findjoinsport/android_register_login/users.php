@@ -1,9 +1,9 @@
 <?php
 
     $host='localhost';
-    $username='root';
-    $pwd='';
-    $db="findjoinsport";
+    $username='Findjoinsport';
+    $pwd='Prekong@123';
+    $db="Findjoinsport";
 
     $con=mysqli_connect($host,$username,$pwd,$db) or die('Unable to connect');
 

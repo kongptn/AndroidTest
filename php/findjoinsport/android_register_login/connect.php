@@ -1,6 +1,6 @@
 <?php
 
-$conn = mysqli_connect("localhost", "root", "", "findjoinsport");
+$conn = mysqli_connect("localhost", "Findjoinsport", "Prekong@123", "Findjoinsport");
 if($conn->connect_error){
     die("Connection error: " . $conn->connect_error);
 

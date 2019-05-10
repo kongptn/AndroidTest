@@ -1,8 +1,8 @@
 <?php
 define('HOST','localhost');
-define('USER','root');
-define('PASS','');
-define('DATABASE','findjoinsport');
+define('USER','Findjoinsport');
+define('PASS','Prekong@123');
+define('DATABASE','Findjoinsport');
 
 $con = mysqli_connect(HOST,USER,PASS,DATABASE);
 if($con->connect_error){

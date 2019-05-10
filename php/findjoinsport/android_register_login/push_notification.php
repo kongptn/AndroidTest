@@ -29,7 +29,7 @@
        curl_close($ch);
        return $result;
 	}
-	$conn = mysqli_connect("localhost","root","","findjoinsport");
+	$conn = mysqli_connect("localhost","Findjoinsport","Prekong@123","Findjoinsport");
 
 	$user_create = isset($_POST['user_create']) ? $_POST['user_create'] : '';
 	$Notification = isset($_POST['Notification']) ? $_POST['Notification'] : '';

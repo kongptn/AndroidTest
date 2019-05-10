@@ -1,5 +1,5 @@
 <?php
-$con=mysqli_connect("localhost","root","","findjoinsport");
+$con=mysqli_connect("localhost","Findjoinsport","Prekong@123","Findjoinsport");
 
 $sql="SELECT * FROM activity fa inner join sport_type sp on fa.type_id = sp.type_id WHERE sp.type_id = 1;";
 										

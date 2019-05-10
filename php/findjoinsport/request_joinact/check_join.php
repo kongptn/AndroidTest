@@ -1,8 +1,8 @@
 <?php 
 	define('DB_HOST', 'localhost');
-	define('DB_USER', 'root');
-	define('DB_PASS', '');
-	define('DB_NAME', 'findjoinsport');
+	define('DB_USER', 'Findjoinsport');
+	define('DB_PASS', 'Prekong@123');
+	define('DB_NAME', 'Findjoinsport');
 	
 	//connecting to database and getting the connection object
 	$con = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
